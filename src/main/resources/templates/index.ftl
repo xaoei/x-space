@@ -8,7 +8,7 @@
     <title>${sitename}:主页</title>
 
     <!-- load stylesheets -->
-    <link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >
+    <#--<link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >-->
     <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
     <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
     <!-- load JS files -->
@@ -48,11 +48,11 @@
                         </li>
                         <#if username == '萧大侠'>
                             <li class="nav-item">
-                                <a href="username" class="nav-link">${nav_item_e}</a>
+                                <a href="http://www.leiho.me" class="nav-link">${nav_item_e}</a>
                             </li>
                         <#else>
                             <li class="nav-item">
-                                <a href="username" class="nav-link">${username}</a>
+                                <a href="http://www.leiho.me" class="nav-link">${username}</a>
                             </li>
                         </#if>
                     </ul>
