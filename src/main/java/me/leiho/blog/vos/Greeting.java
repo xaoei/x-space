@@ -1,4 +1,4 @@
-package me.leiho.blog.vo;
+package me.leiho.blog.vos;
 
 public class Greeting {
 

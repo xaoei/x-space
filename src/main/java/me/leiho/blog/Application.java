@@ -2,12 +2,12 @@ package me.leiho.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.ViewResolver;
-
+/**
+ * @Author: 萧大侠
+ * @Description: 项目启动类
+ * @Date: Create in 17:14 2018/1/22
+ * @Contact: yesxiaolei@outlook.com
+ */
 @SpringBootApplication
 public class Application {
 

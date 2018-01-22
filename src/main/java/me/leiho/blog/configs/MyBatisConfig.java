@@ -1,4 +1,4 @@
-package me.leiho.blog.config;
+package me.leiho.blog.configs;
 
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.plugin.Interceptor;
@@ -21,7 +21,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * MyBatis基础配置
+ * @Author: 萧大侠
+ * @Description: MyBatis基础配置
+ * @Date: Create in 17:26 2018/1/22
+ * @Contact: yesxiaolei@outlook.com
  */
 @Configuration
 @EnableTransactionManagement
@@ -36,7 +39,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     public SqlSessionFactory sqlSessionFactoryBean() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("me.leiho.blog.entity");
+        bean.setTypeAliasesPackage("me.leiho.blog.entities");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();
@@ -53,7 +56,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-//            bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+//            bean.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));//////////////////////////////////////////////////////////////////
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();

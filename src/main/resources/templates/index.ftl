@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title">${sitename}</title>
+    <title>${sitename}:主页</title>
 
     <!-- load stylesheets -->
     <link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >
@@ -26,120 +26,78 @@
     <div class="container-fluid">
         <div class="tm-header-inner">
             <a href="#" class="navbar-brand tm-site-name">${sitename}</a>
-
             <!-- navbar -->
             <nav class="navbar tm-main-nav">
 
                 <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
                     &#9776;
                 </button>
-
                 <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a href="index" class="nav-link" th:text="${nav_item_a}">Home</a>
+                            <a href="index" class="nav-link">${nav_item_a}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="about" class="nav-link" th:text="${nav_item_b}">About</a>
+                            <a href="about" class="nav-link">${nav_item_b}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="blog" class="nav-link" th:text="${nav_item_c}">Blog</a>
+                            <a href="blog" class="nav-link">${nav_item_c}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contact" class="nav-link" th:text="${nav_item_d}">Contact</a>
+                            <a href="contact" class="nav-link">${nav_item_d}</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="username" class="nav-link" th:text="${username}">username</a>
-                        </li>
+                        <#if username == '萧大侠'>
+                            <li class="nav-item">
+                                <a href="username" class="nav-link">${nav_item_e}</a>
+                            </li>
+                        <#else>
+                            <li class="nav-item">
+                                <a href="username" class="nav-link">${username}</a>
+                            </li>
+                        </#if>
                     </ul>
                 </div>
-
             </nav>
-
         </div>
     </div>
 </div>
 
 <div class="tm-home-img-container">
-    <img src="img/tm-home-img.jpg" alt="Image" class="hidden-lg-up img-fluid" th:attr="src=${logo_url},title=${logo},alt=${logo}">
+    <img src=${logo_url} alt=${logo} class="hidden-lg-up img-fluid" title=${logo},>
 </div>
 
 <section class="tm-section">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
-                <h2 class="tm-gold-text tm-title" th:text="#{site.title}">Introduction</h2>
-                <p class="tm-subtitle"th:text="#{site.subtitle}">Suspendisse ut magna vel velit cursus tempor ut nec nunc. Mauris vehicula, augue in tincidunt porta, purus ipsum blandit massa.</p>
+                <h2 class="tm-gold-text tm-title">${title}</h2>
+                <p class="tm-subtitle">${subtitle}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
 
-                <div class="tm-content-box">
-                    <img src="img/tm-img-310x180-1.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
-                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #1</h4>
-                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                        consequat mauris dapibus id. Donec
-                        scelerisque porttitor pharetra</p>
-                    <a href="#" class="tm-btn text-uppercase">Detail</a>
+            <#list short_new_article as sna>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="tm-content-box">
+                        <img src=${sna.img} alt="Image" class="tm-margin-b-20 img-fluid">
+                        <h4 class="tm-margin-b-20 tm-gold-text">${sna.title}</h4>
+                        <p class="tm-margin-b-20">${sna.article}</p>
+                        <a href=${sna.link} class="tm-btn text-uppercase">详情</a>
+                    </div>
                 </div>
+            </#list>
 
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
-                <div class="tm-content-box">
-                    <img src="img/tm-img-310x180-2.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
-                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #2</h4>
-                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                        consequat mauris dapibus id. Donec
-                        scelerisque porttitor pharetra</p>
-                    <a href="#" class="tm-btn text-uppercase">Read More</a>
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
-                <div class="tm-content-box">
-                    <img src="img/tm-img-310x180-3.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
-                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #3</h4>
-                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                        consequat mauris dapibus id. Donec
-                        scelerisque porttitor pharetra</p>
-                    <a href="#" class="tm-btn text-uppercase">Detail</a>
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
-                <div class="tm-content-box">
-                    <img src="img/tm-img-310x180-4.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
-                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #4</h4>
-                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                        consequat mauris dapibus id. Donec
-                        scelerisque porttitor pharetra</p>
-                    <a href="#" class="tm-btn text-uppercase">Read More</a>
-                </div>
-
-            </div>
         </div> <!-- row -->
 
         <div class="row tm-margin-t-big">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                 <div class="tm-2-col-left">
 
-                    <h3 class="tm-gold-text tm-title">Pellentesque fermentum mauris et posuere</h3>
-                    <p class="tm-margin-b-30">Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-                    <img src="img/tm-img-660x330-1.jpg" alt="Image" class="tm-margin-b-40 img-fluid">
-                    <p>
-                        Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.
-                    </p>
-                    <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis.</p>
-                    <p class="m-b-2"> Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis. Mauris id vulputate lectus, id fermentum sapien.
-                    </p>
-                    <a href="#" class="tm-btn text-uppercase">Read More</a>
+                    <h3 class="tm-gold-text tm-title">${main_article_title}</h3>
+                    <p class="tm-margin-b-30">${main_article_feeling}</p>
+                    <img src=${main_article_img} alt="Image" class="tm-margin-b-40 img-fluid">
+                    ${main_article_context}
+                    <a href="#" class="tm-btn text-uppercase">阅读全部</a>
 
                 </div>
             </div>
@@ -153,31 +111,23 @@
                     <div class="tm-2-rows-md-swap">
                         <div class="tm-overflow-auto row tm-2-rows-md-down-2">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                <h3 class="tm-gold-text tm-title">
-                                    Categories
-                                </h3>
+                                <h3 class="tm-gold-text tm-title">简单随笔</h3>
                                 <nav>
                                     <ul class="nav">
-                                        <li><a href="#" class="tm-text-link">Tincidunt non faucibus placerat</a></li>
-                                        <li><a href="#" class="tm-text-link">Vestibulum tempor ac lectus</a></li>
-                                        <li><a href="#" class="tm-text-link">Fusce non turpis euismod</a></li>
-                                        <li><a href="#" class="tm-text-link">Nam in augue consectetur</a></li>
-                                        <li><a href="#" class="tm-text-link">Text Link Color #006699</a></li>
+                                        <#list essay_links as el>
+                                            <li><a href=${el.url} class="tm-text-link">${el.desc}</a></li>
+                                        </#list>
                                     </ul>
                                 </nav>
                             </div> <!-- col -->
 
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 tm-xs-m-t">
-                                <h3 class="tm-gold-text tm-title">
-                                    Useful Links
-                                </h3>
+                                <h3 class="tm-gold-text tm-title">精品转载</h3>
                                 <nav>
                                     <ul class="nav">
-                                        <li><a href="#" class="tm-text-link">Suspendisse sed dui nulla</a></li>
-                                        <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
-                                        <li><a href="#" class="tm-text-link">Duiss nec purus et eros</a></li>
-                                        <li><a href="#" class="tm-text-link">Etiam pulvinar et ligula sed</a></li>
-                                        <li><a href="#" class="tm-text-link">Proin egestas eu felis et iaculis</a></li>
+                                        <#list repring_links as rl>
+                                            <li><a href=${rl.url} class="tm-text-link">${rl.desc}</a></li>
+                                        </#list>
                                     </ul>
                                 </nav>
                             </div> <!-- col -->
@@ -185,49 +135,26 @@
 
                         <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <h3 class="tm-gold-text tm-title tm-margin-b-30">Related Posts</h3>
-                                <div class="media tm-related-post">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                            <img class="media-object" src="img/tm-img-240x120-1.jpg" alt="Generic placeholder image">
-                                        </a>
+                                <h3 class="tm-gold-text tm-title tm-margin-b-30">热门文章</h3>
+                                <#list short_hot_article as sha>
+                                    <div class="media tm-related-post">
+                                        <div class="media-left media-middle">
+                                            <a href=${sha.link}>
+                                                <img class="media-object" src=${sha.img} alt="Generic placeholder image">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15">${sha.title}</h4></a>
+                                            <p class="tm-small-font tm-media-description">${sha.article}</p>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                                    </div>
-                                </div>
-                                <div class="media tm-related-post">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                            <img class="media-object" src="img/tm-img-240x120-2.jpg" alt="Generic placeholder image">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                                    </div>
-                                </div>
-                                <div class="media tm-related-post">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                            <img class="media-object" src="img/tm-img-240x120-3.jpg" alt="Generic placeholder image">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                                    </div>
-                                </div>
+                                </#list>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div> <!-- row -->
-
     </div>
 </section>
 
@@ -238,11 +165,11 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
 
                 <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Proin eu posuere felis</h3>
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">站长信息</h3>
                     <div class="tm-gray-bg">
-                        <p>Classic is free HTML CSS website template provided by templatemo for everyone. Feel free to use it.</p>
-                        <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                        <p><strong>Danny Egg (Executive)</strong></p>
+                        <p>${motto}</p>
+                        <p>${authorize}</p>
+                        <p><strong>${site_master_name}</strong></p>
                     </div>
                 </div>
 
@@ -251,15 +178,12 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box tm-footer-links-container">
 
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Nulla tortor dolor</h3>
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">友情链接</h3>
                     <nav>
                         <ul class="nav">
-                            <li><a href="#" class="tm-footer-link">Tincidunt non faucibus</a></li>
-                            <li><a href="#" class="tm-footer-link">Vestibulum tempor</a></li>
-                            <li><a href="#" class="tm-footer-link">Fusce non turpis euismod</a></li>
-                            <li><a href="#" class="tm-footer-link">Lorem ipsum dolor sit</a></li>
-                            <li><a href="#" class="tm-footer-link">Nam in augue consectetur</a></li>
-                            <li><a href="#" class="tm-footer-link">Text Link Color #CCCC66</a></li>
+                            <#list friend_links as fl>
+                                <li><a href=${fl.url} class="tm-footer-link">${fl.desc}</a></li>
+                            </#list>
                         </ul>
                     </nav>
 
@@ -271,44 +195,28 @@
                 http://stackoverflow.com/questions/24590222/bootstrap-3-grid-with-different-height-in-each-item-is-it-solvable-using-only
             -->
             <div class="clearfix hidden-lg-up"></div>
-
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
                 <div class="tm-footer-content-box">
-
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Etiam mollis ornare</h3>
-                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p><hr class="tm-margin-b-30">
-                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p><hr class="tm-margin-b-30">
-                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">Read More</a>
-
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">热门评论</h3>
+                    <#list comment_links as cl>
+                        <p class="tm-margin-b-30">${cl.desc}<br/><a href=${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
+                    </#list>
+                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
                 </div>
-
             </div>
-
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
                 <div class="tm-footer-content-box">
-
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Fusce non turpis</h3>
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">博客相册</h3>
                     <div class="tm-margin-b-30">
-                        <img src="img/tm-img-100x100-1.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-2.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-3.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-4.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-5.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-6.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <#list picture_links as pl>
+                            <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail" ></a>
+                        </#list>
                     </div>
-                    <p class="tm-margin-b-20">Curabitur dui massa, aliquam quis mi sed, tempor vulputate tellus. Sed vestibulum non neque.</p>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">Browse</a>
-
+                    <p class="tm-margin-b-20">${picture_area_context}</p>
+                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">浏览更多</a>
                 </div>
-
             </div>
-
-
         </div>
-
         <div class="row">
             <div class="col-xs-12 tm-copyright-col">
                 <p class="tm-copyright-text">Copyright 2018 leiho site.<a href="http://www.leiho.me/" target="_blank" title="雷吼小站">雷吼小站</a> - Build By <a href="http://www.leiho.me/" title="雷吼小站" target="_blank">萧大侠</a></p>

@@ -1,12 +1,18 @@
-package me.leiho.blog.api;
+package me.leiho.blog.apis;
 
-import me.leiho.blog.vo.Greeting;
+import me.leiho.blog.vos.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
+
+/**
+ * @Author: 萧大侠
+ * @Description: 接口
+ * @Date: Create in 17:14 2018/1/22
+ * @Contact: yesxiaolei@outlook.com
+ */
 @RestController
 public class ApiController {
     private static final String template = "Hello, %s!";
