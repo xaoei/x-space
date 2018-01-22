@@ -1,18 +1,7 @@
-#THYMELEAF
+#freemarker
 spring:
-  thymeleaf:
-    cache: false #开发时需要关闭
-    check-template: true
-    check-template-location: true
-    content-type: text/html
-    enabled: true
-    encoding: utf-8
-#    excluded-view-names:
-    mode: LEGACYHTML5
-    prefix: classpath:/templates/
-    suffix: .html
-#    template-resolver-order:
-#    view-names:
+  freemarker:
+    cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource

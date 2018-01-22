@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title">${sitename}</title>
+
+    <!-- load stylesheets -->
+    <link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >
+    <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
+    <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
+    <!-- load JS files -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="tm-header">
+    <div class="container-fluid">
+        <div class="tm-header-inner">
+            <a href="#" class="navbar-brand tm-site-name">${sitename}</a>
+
+            <!-- navbar -->
+            <nav class="navbar tm-main-nav">
+
+                <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
+                    &#9776;
+                </button>
+
+                <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item active">
+                            <a href="index" class="nav-link" th:text="${nav_item_a}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about" class="nav-link" th:text="${nav_item_b}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="blog" class="nav-link" th:text="${nav_item_c}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact" class="nav-link" th:text="${nav_item_d}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="username" class="nav-link" th:text="${username}">username</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<div class="tm-home-img-container">
+    <img src="img/tm-home-img.jpg" alt="Image" class="hidden-lg-up img-fluid" th:attr="src=${logo_url},title=${logo},alt=${logo}">
+</div>
+
+<section class="tm-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
+                <h2 class="tm-gold-text tm-title" th:text="#{site.title}">Introduction</h2>
+                <p class="tm-subtitle"th:text="#{site.subtitle}">Suspendisse ut magna vel velit cursus tempor ut nec nunc. Mauris vehicula, augue in tincidunt porta, purus ipsum blandit massa.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-content-box">
+                    <img src="img/tm-img-310x180-1.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
+                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #1</h4>
+                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
+                        consequat mauris dapibus id. Donec
+                        scelerisque porttitor pharetra</p>
+                    <a href="#" class="tm-btn text-uppercase">Detail</a>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-content-box">
+                    <img src="img/tm-img-310x180-2.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
+                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #2</h4>
+                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
+                        consequat mauris dapibus id. Donec
+                        scelerisque porttitor pharetra</p>
+                    <a href="#" class="tm-btn text-uppercase">Read More</a>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-content-box">
+                    <img src="img/tm-img-310x180-3.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
+                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #3</h4>
+                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
+                        consequat mauris dapibus id. Donec
+                        scelerisque porttitor pharetra</p>
+                    <a href="#" class="tm-btn text-uppercase">Detail</a>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-content-box">
+                    <img src="img/tm-img-310x180-4.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
+                    <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #4</h4>
+                    <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
+                        consequat mauris dapibus id. Donec
+                        scelerisque porttitor pharetra</p>
+                    <a href="#" class="tm-btn text-uppercase">Read More</a>
+                </div>
+
+            </div>
+        </div> <!-- row -->
+
+        <div class="row tm-margin-t-big">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="tm-2-col-left">
+
+                    <h3 class="tm-gold-text tm-title">Pellentesque fermentum mauris et posuere</h3>
+                    <p class="tm-margin-b-30">Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
+                    <img src="img/tm-img-660x330-1.jpg" alt="Image" class="tm-margin-b-40 img-fluid">
+                    <p>
+                        Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.
+                    </p>
+                    <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis.</p>
+                    <p class="m-b-2"> Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis. Mauris id vulputate lectus, id fermentum sapien.
+                    </p>
+                    <a href="#" class="tm-btn text-uppercase">Read More</a>
+
+                </div>
+            </div>
+
+            <div class="copyrights">Build By <a href="http://www.leiho.me"  title="雷吼小站">萧大侠</a></div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                <div class="tm-2-col-right">
+
+                    <div class="tm-2-rows-md-swap">
+                        <div class="tm-overflow-auto row tm-2-rows-md-down-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <h3 class="tm-gold-text tm-title">
+                                    Categories
+                                </h3>
+                                <nav>
+                                    <ul class="nav">
+                                        <li><a href="#" class="tm-text-link">Tincidunt non faucibus placerat</a></li>
+                                        <li><a href="#" class="tm-text-link">Vestibulum tempor ac lectus</a></li>
+                                        <li><a href="#" class="tm-text-link">Fusce non turpis euismod</a></li>
+                                        <li><a href="#" class="tm-text-link">Nam in augue consectetur</a></li>
+                                        <li><a href="#" class="tm-text-link">Text Link Color #006699</a></li>
+                                    </ul>
+                                </nav>
+                            </div> <!-- col -->
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 tm-xs-m-t">
+                                <h3 class="tm-gold-text tm-title">
+                                    Useful Links
+                                </h3>
+                                <nav>
+                                    <ul class="nav">
+                                        <li><a href="#" class="tm-text-link">Suspendisse sed dui nulla</a></li>
+                                        <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
+                                        <li><a href="#" class="tm-text-link">Duiss nec purus et eros</a></li>
+                                        <li><a href="#" class="tm-text-link">Etiam pulvinar et ligula sed</a></li>
+                                        <li><a href="#" class="tm-text-link">Proin egestas eu felis et iaculis</a></li>
+                                    </ul>
+                                </nav>
+                            </div> <!-- col -->
+                        </div>
+
+                        <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h3 class="tm-gold-text tm-title tm-margin-b-30">Related Posts</h3>
+                                <div class="media tm-related-post">
+                                    <div class="media-left media-middle">
+                                        <a href="#">
+                                            <img class="media-object" src="img/tm-img-240x120-1.jpg" alt="Generic placeholder image">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
+                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
+                                    </div>
+                                </div>
+                                <div class="media tm-related-post">
+                                    <div class="media-left media-middle">
+                                        <a href="#">
+                                            <img class="media-object" src="img/tm-img-240x120-2.jpg" alt="Generic placeholder image">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
+                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
+                                    </div>
+                                </div>
+                                <div class="media tm-related-post">
+                                    <div class="media-left media-middle">
+                                        <a href="#">
+                                            <img class="media-object" src="img/tm-img-240x120-3.jpg" alt="Generic placeholder image">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
+                                        <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div> <!-- row -->
+
+    </div>
+</section>
+
+<footer class="tm-footer">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-footer-content-box">
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Proin eu posuere felis</h3>
+                    <div class="tm-gray-bg">
+                        <p>Classic is free HTML CSS website template provided by templatemo for everyone. Feel free to use it.</p>
+                        <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
+                        <p><strong>Danny Egg (Executive)</strong></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <div class="tm-footer-content-box tm-footer-links-container">
+
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Nulla tortor dolor</h3>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="#" class="tm-footer-link">Tincidunt non faucibus</a></li>
+                            <li><a href="#" class="tm-footer-link">Vestibulum tempor</a></li>
+                            <li><a href="#" class="tm-footer-link">Fusce non turpis euismod</a></li>
+                            <li><a href="#" class="tm-footer-link">Lorem ipsum dolor sit</a></li>
+                            <li><a href="#" class="tm-footer-link">Nam in augue consectetur</a></li>
+                            <li><a href="#" class="tm-footer-link">Text Link Color #CCCC66</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+            <!-- Add the extra clearfix for only the required viewport
+                http://stackoverflow.com/questions/24590222/bootstrap-3-grid-with-different-height-in-each-item-is-it-solvable-using-only
+            -->
+            <div class="clearfix hidden-lg-up"></div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-footer-content-box">
+
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Etiam mollis ornare</h3>
+                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p><hr class="tm-margin-b-30">
+                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p><hr class="tm-margin-b-30">
+                    <p class="tm-margin-b-30">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
+                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">Read More</a>
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                <div class="tm-footer-content-box">
+
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Fusce non turpis</h3>
+                    <div class="tm-margin-b-30">
+                        <img src="img/tm-img-100x100-1.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="img/tm-img-100x100-2.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="img/tm-img-100x100-3.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="img/tm-img-100x100-4.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="img/tm-img-100x100-5.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="img/tm-img-100x100-6.jpg" alt="Image" class="tm-footer-thumbnail">
+                    </div>
+                    <p class="tm-margin-b-20">Curabitur dui massa, aliquam quis mi sed, tempor vulputate tellus. Sed vestibulum non neque.</p>
+                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">Browse</a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 tm-copyright-col">
+                <p class="tm-copyright-text">Copyright 2018 leiho site.<a href="http://www.leiho.me/" target="_blank" title="雷吼小站">雷吼小站</a> - Build By <a href="http://www.leiho.me/" title="雷吼小站" target="_blank">萧大侠</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
