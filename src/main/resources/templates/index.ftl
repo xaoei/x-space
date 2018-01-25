@@ -11,56 +11,12 @@
     <#--<link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >-->
     <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
     <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
-    <!-- load JS files -->
-    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
-    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
 
 </head>
 
 <body>
 
-<div class="tm-header">
-    <div class="container-fluid">
-        <div class="tm-header-inner">
-            <a href="#" class="navbar-brand tm-site-name">${sitename}</a>
-            <!-- navbar -->
-            <nav class="navbar tm-main-nav">
-
-                <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
-                    &#9776;
-                </button>
-                <div class="collapse navbar-toggleable-sm" id="tmNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item active">
-                            <a href="index" class="nav-link">${nav_item_a}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="about" class="nav-link">${nav_item_b}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="blog" class="nav-link">${nav_item_c}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact" class="nav-link">${nav_item_d}</a>
-                        </li>
-                        <#if username == '萧大侠'>
-                            <li class="nav-item">
-                                <a href="http://www.leiho.me" class="nav-link">${nav_item_e}</a>
-                            </li>
-                        <#else>
-                            <li class="nav-item">
-                                <a href="http://www.leiho.me" class="nav-link">${username}</a>
-                            </li>
-                        </#if>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
+<#include "./common/head.ftl">
 
 <div class="tm-home-img-container">
     <img src=${logo_url} alt=${logo} class="hidden-lg-up img-fluid" title=${logo},>
@@ -158,71 +114,13 @@
     </div>
 </section>
 
-<footer class="tm-footer">
-    <div class="container-fluid">
-        <div class="row">
+<#include "./common/foot.ftl">
+<!-- load JS files -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
 
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-
-                <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">站长信息</h3>
-                    <div class="tm-gray-bg">
-                        <p>${motto}</p>
-                        <p>${authorize}</p>
-                        <p><strong>${site_master_name}</strong></p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                <div class="tm-footer-content-box tm-footer-links-container">
-
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">友情链接</h3>
-                    <nav>
-                        <ul class="nav">
-                            <#list friend_links as fl>
-                                <li><a href=${fl.url} class="tm-footer-link">${fl.desc}</a></li>
-                            </#list>
-                        </ul>
-                    </nav>
-
-                </div>
-
-            </div>
-
-            <!-- Add the extra clearfix for only the required viewport
-                http://stackoverflow.com/questions/24590222/bootstrap-3-grid-with-different-height-in-each-item-is-it-solvable-using-only
-            -->
-            <div class="clearfix hidden-lg-up"></div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">热门评论</h3>
-                    <#list comment_links as cl>
-                        <p class="tm-margin-b-30">${cl.desc}<br/><a href=${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
-                    </#list>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">博客相册</h3>
-                    <div class="tm-margin-b-30">
-                        <#list picture_links as pl>
-                            <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail" ></a>
-                        </#list>
-                    </div>
-                    <p class="tm-margin-b-20">${picture_area_context}</p>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">浏览更多</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 tm-copyright-col">
-                <p class="tm-copyright-text">Copyright 2018 leiho site.<a href="http://www.leiho.me/" target="_blank" title="雷吼小站">雷吼小站</a> - Build By <a href="http://www.leiho.me/" title="雷吼小站" target="_blank">萧大侠</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
 </html>
