@@ -9,11 +9,14 @@
                 </button>
                 <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                     <ul class="nav navbar-nav">
-                        ${nav_item_a}
-                        ${nav_item_b}
-                        ${nav_item_c}
-                        ${nav_item_d}
-                        ${nav_item_e}
+                        <#list head_items as item>
+                            <#if item.isSelective == 1>
+                            <li class='nav-item active'>
+                            <#else>
+                            <li class='nav-item'>
+                            </#if>
+                            <a href=${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
+                        </#list>
                     </ul>
                 </div>
             </nav>

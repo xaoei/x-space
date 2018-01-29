@@ -22,7 +22,7 @@
                     <nav>
                         <ul class="nav">
                             <#list friend_links as fl>
-                                <li><a href=${fl.url} class="tm-footer-link">${fl.desc}</a></li>
+                                <li><a href=${fl.url} class="tm-footer-link" style="text-decoration: none">${fl.desc}</a></li>
                             </#list>
                         </ul>
                     </nav>
