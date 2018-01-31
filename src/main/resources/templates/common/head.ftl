@@ -15,7 +15,11 @@
                             <#else>
                             <li class='nav-item'>
                             </#if>
+                            <#if item.sortId == 5 && user?exists>
+                            <a href=${item.itemHref} class='nav-link'>${user.username}</a></li>
+                            <#else>
                             <a href=${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
+                            </#if>
                         </#list>
                     </ul>
                 </div>

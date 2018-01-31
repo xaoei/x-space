@@ -52,6 +52,7 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
         XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
         if (xUserAccount==null){
             logger.error("账号不存在");
+            return this;
         }
         UserAccountDTO userAccountDTO = new UserAccountDTO();
         BeanUtils.copyProperties(xUserAccount,userAccountDTO);
