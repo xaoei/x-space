@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "x_site_info")
-public class XSiteInfo implements Serializable {
-    /**
-     * 唯一标识
-     */
+@Table(name = "x_comment")
+public class XComment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,22 +17,20 @@ public class XSiteInfo implements Serializable {
     private Integer sortId;
 
     /**
-     * 标签名
+     * 评论
      */
-    @Column(name = "item_name")
-    private String itemName;
+    private String comment;
 
     /**
-     * 标签值
+     * 原文
      */
-    @Column(name = "item_value")
-    private String itemValue;
+    @Column(name = "source_link")
+    private String sourceLink;
 
     /**
-     * 标签简介
+     * 是否热门,0否1是
      */
-    @Column(name = "item_desc")
-    private String itemDesc;
+    private Integer hot;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -54,18 +49,14 @@ public class XSiteInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 获取唯一标识
-     *
-     * @return id - 唯一标识
+     * @return id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 设置唯一标识
-     *
-     * @param id 唯一标识
+     * @param id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -90,57 +81,57 @@ public class XSiteInfo implements Serializable {
     }
 
     /**
-     * 获取标签名
+     * 获取评论
      *
-     * @return item_name - 标签名
+     * @return comment - 评论
      */
-    public String getItemName() {
-        return itemName;
+    public String getComment() {
+        return comment;
     }
 
     /**
-     * 设置标签名
+     * 设置评论
      *
-     * @param itemName 标签名
+     * @param comment 评论
      */
-    public void setItemName(String itemName) {
-        this.itemName = itemName == null ? null : itemName.trim();
+    public void setComment(String comment) {
+        this.comment = comment == null ? null : comment.trim();
     }
 
     /**
-     * 获取标签值
+     * 获取原文
      *
-     * @return item_value - 标签值
+     * @return source_link - 原文
      */
-    public String getItemValue() {
-        return itemValue;
+    public String getSourceLink() {
+        return sourceLink;
     }
 
     /**
-     * 设置标签值
+     * 设置原文
      *
-     * @param itemValue 标签值
+     * @param sourceLink 原文
      */
-    public void setItemValue(String itemValue) {
-        this.itemValue = itemValue == null ? null : itemValue.trim();
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink == null ? null : sourceLink.trim();
     }
 
     /**
-     * 获取标签简介
+     * 获取是否热门,0否1是
      *
-     * @return item_desc - 标签简介
+     * @return hot - 是否热门,0否1是
      */
-    public String getItemDesc() {
-        return itemDesc;
+    public Integer getHot() {
+        return hot;
     }
 
     /**
-     * 设置标签简介
+     * 设置是否热门,0否1是
      *
-     * @param itemDesc 标签简介
+     * @param hot 是否热门,0否1是
      */
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc == null ? null : itemDesc.trim();
+    public void setHot(Integer hot) {
+        this.hot = hot;
     }
 
     /**

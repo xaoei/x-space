@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "x_user_account")
-public class XUserAccount extends StringEntity implements Serializable {
+public class XUserAccount implements Serializable {
     /**
      * 唯一标识
      */
@@ -48,9 +48,9 @@ public class XUserAccount extends StringEntity implements Serializable {
     private Date updateTime;
 
     /**
-     * 删除标识
+     * 删除标识,0正常1删除
      */
-    private String del;
+    private Integer del;
 
     private static final long serialVersionUID = 1L;
 
@@ -195,20 +195,20 @@ public class XUserAccount extends StringEntity implements Serializable {
     }
 
     /**
-     * 获取删除标识
+     * 获取删除标识,0正常1删除
      *
-     * @return del - 删除标识
+     * @return del - 删除标识,0正常1删除
      */
-    public String getDel() {
+    public Integer getDel() {
         return del;
     }
 
     /**
-     * 设置删除标识
+     * 设置删除标识,0正常1删除
      *
-     * @param del 删除标识
+     * @param del 删除标识,0正常1删除
      */
-    public void setDel(String del) {
-        this.del = del == null ? null : del.trim();
+    public void setDel(Integer del) {
+        this.del = del;
     }
 }

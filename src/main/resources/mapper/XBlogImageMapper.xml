@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.leiho.blog.mappers.XBlogImageMapper">
+  <resultMap id="BaseResultMap" type="me.leiho.blog.entities.XBlogImage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="hot" jdbcType="INTEGER" property="hot" />
+    <result column="sync" jdbcType="INTEGER" property="sync" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="me.leiho.blog.entities.XBlogImage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="sync" jdbcType="INTEGER" property="sync" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="me.leiho.blog.entities.XBlogImage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="sync" jdbcType="INTEGER" property="sync" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+  </resultMap>
+</mapper>

@@ -131,7 +131,7 @@ public class MainPageController {
     }
     @GetMapping("/media")
     public String about(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setCommonPageSiteInfo().setCommonPageHead(3).setCommonPageFoot();
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setCommonPageHead(3).setCommonPageFoot();
         map.put("username", "萧大侠");
         logger.info("/media");
         return "media";

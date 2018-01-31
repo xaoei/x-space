@@ -59,7 +59,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 tm-copyright-col">
-                <p class="tm-copyright-text">Copyright 2018 leiho site.<a href="http://www.leiho.me/" target="_blank" title="雷吼小站">雷吼小站</a> - Build By <a href="http://www.leiho.me/" title="雷吼小站" target="_blank">萧大侠</a></p>
+                <p class="tm-copyright-text">${copyright_text}<a href=${copyright_link} target="_blank" title=${copyright_title}>${copyright_title}</a> - ${contact_text} <a href=${contact_link} title=${contact_title} target="_blank">${contact_title}</a></p>
             </div>
         </div>
     </div>
