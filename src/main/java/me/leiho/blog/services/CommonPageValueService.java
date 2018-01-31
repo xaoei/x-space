@@ -42,4 +42,10 @@ public interface CommonPageValueService {
      * @return
      */
     CommonPageValueServiceImpl setCommonPageFoot();
+
+    /**
+     * 设置网站页面名称
+     * @return
+     */
+    CommonPageValueServiceImpl setPageName(String pageName);
 }

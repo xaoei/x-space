@@ -28,24 +28,7 @@ public class MainPageController {
     private CommonPageValueService commonPageValueService;
     @GetMapping({"/","/index"})
     public String index(Map<String, Object> map) {
-        map.put("sitename","x-space");
-        map.put("title","雷吼");
-        map.put("subtitle","也许你只是一株稚嫩的幼苗，然而只要坚忍不拔，终会成为参天大树。");
-
-
-        map.put("username", "萧大侠");
-
-
-        map.put("nav_item_a","<li class='nav-item active'><a href='index' class='nav-link'>主页</a></li>");
-        map.put("nav_item_b","<li class='nav-item'><a href='contact' class='nav-link'>文章</a></li>");
-        map.put("nav_item_c","<li class='nav-item'><a href='about' class='nav-link'>影像</a></li>");
-        map.put("nav_item_d","<li class='nav-item'><a href='blog' class='nav-link'>发布</a></li>");
-        if (true/*符合权限*/){
-            map.put("nav_item_e","<li class='nav-item'><a href='http://www.leiho.me' class='nav-link'>管理</a></li>");
-        }else {
-            map.put("nav_item_e","<li class='nav-item'><a href='http://www.leiho.me' class='nav-link'>萧大侠</a></li>");
-        }
-
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(2).setCommonPageFoot();
 
 
         map.put("logo","tm-home-img");
@@ -87,107 +70,31 @@ public class MainPageController {
         map.put("short_hot_article",shortHotArticles);
 
 
-        map.put("motto","这是座右铭的位置，请务必保证字数，不要太多，也不要太少，要适中，刚刚好最好。");
-        map.put("authorize","转载本站标注原创内容均需获得本人授权，如有版权纠纷请联系本人。");
-        map.put("site_master_name","萧大侠/lester");
-
-
-        List<SimpleLink> friendLinks = new ArrayList<>();
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这个网站不错"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("一个很好的博客"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这是什么东西"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("还行啊"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("点进来看看"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("不要错过"));
-        map.put("friend_links",friendLinks);
-
-        List<SimpleLink> commentLinks = new ArrayList<>();
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("开局一张图，故事全靠编"));
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("签完合同，美军立刻吓得屁滚尿流、抱头鼠窜、落荒而逃"));
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("希斯莱杰，出演过电影蝙蝠侠黑暗骑士里的小丑，因为演的出神入化而被广为传颂，但演完那部电影..."));
-        map.put("comment_links",commentLinks);
-
-        List<PictureLink> pictureLinks = new ArrayList<>();
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-1.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-2.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-3.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-4.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-5.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-6.jpg").setLink("http://www.leiho.me"));
-        map.put("picture_links",pictureLinks);
-        map.put("picture_area_context","时光在无声无息的冲刷着人们的记忆，像一把锋利的刀锋把你的记忆切成零散碎片。");
-
-
-
         logger.info("/index");
         return "index";
     }
     @GetMapping("/article")
     public String contact(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setCommonPageHead(2).setCommonPageFoot();
-        map.put("username", "萧大侠");
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
         logger.info("/article");
         return "article";
     }
     @GetMapping("/media")
     public String about(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setCommonPageHead(3).setCommonPageFoot();
-        map.put("username", "萧大侠");
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
         logger.info("/media");
         return "media";
     }
     @GetMapping("/write")
     public String blog(Map<String, Object> map) {
-        map.put("sitename","x-space");
-        map.put("title","雷吼");
-        map.put("subtitle","也许你只是一株稚嫩的幼苗，然而只要坚忍不拔，终会成为参天大树。");
-
-
-        map.put("username", "萧大侠");
-
-        map.put("nav_item_a","<li class='nav-item'><a href='index' class='nav-link'>主页</a></li>");
-        map.put("nav_item_b","<li class='nav-item'><a href='contact' class='nav-link'>文章</a></li>");
-        map.put("nav_item_c","<li class='nav-item'><a href='about' class='nav-link'>影像</a></li>");
-        map.put("nav_item_d","<li class='nav-item active'><a href='blog' class='nav-link'>发布</a></li>");
-        if (true/*符合权限*/){
-            map.put("nav_item_e","<li class='nav-item'><a href='http://www.leiho.me' class='nav-link'>管理</a></li>");
-        }else {
-            map.put("nav_item_e","<li class='nav-item'><a href='http://www.leiho.me' class='nav-link'>萧大侠</a></li>");
-        }
-
-        map.put("motto","这是座右铭的位置，请务必保证字数，不要太多，也不要太少，要适中，刚刚好最好。");
-        map.put("authorize","转载本站标注原创内容均需获得本人授权，如有版权纠纷请联系本人。");
-        map.put("site_master_name","萧大侠/lester");
-
-
-        List<SimpleLink> friendLinks = new ArrayList<>();
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这个网站不错"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("一个很好的博客"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这是什么东西"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("还行啊"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("点进来看看"));
-        friendLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("不要错过"));
-        map.put("friend_links",friendLinks);
-
-        List<SimpleLink> commentLinks = new ArrayList<>();
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("开局一张图，故事全靠编"));
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("签完合同，美军立刻吓得屁滚尿流、抱头鼠窜、落荒而逃"));
-        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("希斯莱杰，出演过电影蝙蝠侠黑暗骑士里的小丑，因为演的出神入化而被广为传颂，但演完那部电影..."));
-        map.put("comment_links",commentLinks);
-
-        List<PictureLink> pictureLinks = new ArrayList<>();
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-1.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-2.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-3.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-4.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-5.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-6.jpg").setLink("http://www.leiho.me"));
-        map.put("picture_links",pictureLinks);
-        map.put("picture_area_context","时光在无声无息的冲刷着人们的记忆，像一把锋利的刀锋把你的记忆切成零散碎片。");
-
-
-
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
         logger.info("/write");
         return "write";
+    }
+    @GetMapping("/user")
+    public String user(Map<String, Object> map) {
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("用户").setCommonPageHead(5).setCommonPageFoot();
+        logger.info("/user");
+        return "user";
     }
 }

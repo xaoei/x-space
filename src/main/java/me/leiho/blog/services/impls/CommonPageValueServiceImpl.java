@@ -37,6 +37,8 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
     private XFriendLinkMapper xFriendLinkMapper;
     @Autowired
     private XCommentMapper xCommentMapper;
+    @Autowired
+    private XBlogImageMapper xBlogImageMapper;
 
     private Map<String, Object> map;
     public CommonPageValueServiceImpl getValueMap(Map<String, Object> map){
@@ -67,7 +69,6 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
         List<XHeadItem> xHeadItemList = xHeadItemMapper.selectAll();
         List<HeadItemDTO> headItemDTOList = new ArrayList<>();
 
-//        for (int i=0;i<xHeadItemList.size();i++){
         for (XHeadItem xHeadItem:xHeadItemList){
             HeadItemDTO headItemDTO = new HeadItemDTO();
             BeanUtils.copyProperties(xHeadItem,headItemDTO);
@@ -100,23 +101,26 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             }
             commentLinks.add(SimpleLink.build().setUrl(xHotComments.get(i).getSourceLink()).setDesc(comment));
         }
-//        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("开局一张图，故事全靠编"));
-//        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("签完合同，美军立刻吓得屁滚尿流、抱头鼠窜、落荒而逃"));
-//        commentLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("希斯莱杰，出演过电影蝙蝠侠黑暗骑士里的小丑，因为演的出神入化而被广为传颂，但演完那部电影..."));
         map.put("comment_links",commentLinks);
 
         List<PictureLink> pictureLinks = new ArrayList<>();
         Example pictureExample = new Example(XBlogImage.class);
         pictureExample.createCriteria().andEqualTo("hot",1).andEqualTo("del",0);
-
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-1.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-2.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-3.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-4.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-5.jpg").setLink("http://www.leiho.me"));
-        pictureLinks.add(PictureLink.build().setUrl("img/tm-img-100x100-6.jpg").setLink("http://www.leiho.me"));
+        List<XBlogImage> xHotBlogImages = xBlogImageMapper.selectByExample(pictureExample);
+        for (int i=0;i<6;i++){
+            String url = "";
+            if (xHotBlogImages.get(i).getSync()==1){
+                url = xHotBlogImages.get(i).getPath();
+            }else {
+                url = xHotBlogImages.get(i).getSrc();
+            }
+            pictureLinks.add(PictureLink.build().setUrl(url).setLink(xHotBlogImages.get(i).getLink()));
+        }
         map.put("picture_links",pictureLinks);
-//        map.put("picture_area_context","时光在无声无息的冲刷着人们的记忆，像一把锋利的刀锋把你的记忆切成零散碎片。");
+        return this;
+    }
+    public CommonPageValueServiceImpl setPageName(String pageName){
+        map.put("page_name",pageName);
         return this;
     }
 }

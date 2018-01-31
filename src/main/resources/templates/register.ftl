@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>${sitename}:注册</title>
+    <title>${sitename}:${page_name}</title>
 
     <!-- load stylesheets -->
     <#--<link rel='stylesheet' type='text/css' href='http://fonts.font.im/css?family=Open+Sans:300,400' >-->

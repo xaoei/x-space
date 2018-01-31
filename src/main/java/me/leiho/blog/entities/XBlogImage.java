@@ -29,7 +29,8 @@ public class XBlogImage implements Serializable {
     /**
      * 图片描述
      */
-    private String desc;
+    @Column(name = "img_desc")
+    private String imgDesc;
 
     /**
      * 图片所在页面链接
@@ -133,19 +134,19 @@ public class XBlogImage implements Serializable {
     /**
      * 获取图片描述
      *
-     * @return desc - 图片描述
+     * @return img_desc - 图片描述
      */
-    public String getDesc() {
-        return desc;
+    public String getImgDesc() {
+        return imgDesc;
     }
 
     /**
      * 设置图片描述
      *
-     * @param desc 图片描述
+     * @param imgDesc 图片描述
      */
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setImgDesc(String imgDesc) {
+        this.imgDesc = imgDesc == null ? null : imgDesc.trim();
     }
 
     /**
