@@ -1,14 +1,12 @@
 package me.leiho.blog.controllers;
 
 import me.leiho.blog.entities.IndexShortArticle;
-import me.leiho.blog.entities.PictureLink;
 import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
@@ -22,13 +20,13 @@ import java.util.Map;
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class MainPageController {
+public class IndexController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
     @GetMapping({"/","/index"})
     public String index(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(2).setCommonPageFoot();
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(1).setCommonPageFoot();
 
 
         map.put("logo","tm-home-img");
@@ -45,6 +43,7 @@ public class MainPageController {
         map.put("main_article_feeling","精品文章感言");
         map.put("main_article_img","img/tm-img-660x330-1.jpg");
         map.put("main_article_context","<p>胡适之先生在一九二二年三月，写了一篇《五十年来中国之文学》；篇末论到白话文学的成绩，第三项说：</p><p>白话散文很进步了。长篇议论文的进步，那是显而易见的，可以不论。这几年来，散文方面最可注意的发展，乃是周作人等提倡的“小品散文”。这一类的小品，用平淡的谈话，包藏着深刻的意味；有时很像笨拙，其实却是滑稽。这一类作品的成功，就可彻底打破那“美文不能用白话”的迷信了。</p><p>胡先生共举了四项。第一项白话诗，他说，“可以算是上了成功的路了”；第二项短篇小说，他说“也渐渐的成立了”；第四项戏剧与长篇小说...</p>");
+        map.put("main_article_url","http://www.leiho.me");
 
         List<SimpleLink> essayLinks = new ArrayList<>();
         essayLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这是一篇文章"));
@@ -72,29 +71,5 @@ public class MainPageController {
 
         logger.info("/index");
         return "index";
-    }
-    @GetMapping("/article")
-    public String contact(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
-        logger.info("/article");
-        return "article";
-    }
-    @GetMapping("/media")
-    public String about(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
-        logger.info("/media");
-        return "media";
-    }
-    @GetMapping("/write")
-    public String blog(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
-        logger.info("/write");
-        return "write";
-    }
-    @GetMapping("/user")
-    public String user(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("用户").setCommonPageHead(5).setCommonPageFoot();
-        logger.info("/user");
-        return "user";
     }
 }

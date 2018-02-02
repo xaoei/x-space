@@ -14,7 +14,7 @@ import java.util.Map;
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class UserPageController {
+public class UserController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @GetMapping("/register")
     public String index(Map<String, Object> map) {

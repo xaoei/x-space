@@ -37,7 +37,7 @@
                         <img src=${sna.img} alt="Image" class="tm-margin-b-20 img-fluid">
                         <h4 class="tm-margin-b-20 tm-gold-text">${sna.title}</h4>
                         <p class="tm-margin-b-20">${sna.article}</p>
-                        <a href=${sna.link} class="tm-btn text-uppercase">详情</a>
+                        <a href=${sna.link} class="tm-btn text-uppercase" style="text-decoration:none">详情</a>
                     </div>
                 </div>
             </#list>
@@ -52,13 +52,10 @@
                     <p class="tm-margin-b-30">${main_article_feeling}</p>
                     <img src=${main_article_img} alt="Image" class="tm-margin-b-40 img-fluid">
                     ${main_article_context}
-                    <a href="#" class="tm-btn text-uppercase">阅读全部</a>
+                    <a href=${main_article_url} class="tm-btn text-uppercase" style="text-decoration:none">阅读全部</a>
 
                 </div>
             </div>
-
-            <div class="copyrights">Build By <a href="http://www.leiho.me"  title="雷吼小站">萧大侠</a></div>
-
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
                 <div class="tm-2-col-right">
@@ -70,7 +67,7 @@
                                 <nav>
                                     <ul class="nav">
                                         <#list essay_links as el>
-                                            <li><a href=${el.url} class="tm-text-link">${el.desc}</a></li>
+                                            <li><a href=${el.url} class="tm-text-link" style="text-decoration:none">${el.desc}</a></li>
                                         </#list>
                                     </ul>
                                 </nav>
@@ -81,7 +78,7 @@
                                 <nav>
                                     <ul class="nav">
                                         <#list repring_links as rl>
-                                            <li><a href=${rl.url} class="tm-text-link">${rl.desc}</a></li>
+                                            <li><a href=${rl.url} class="tm-text-link" style="text-decoration:none">${rl.desc}</a></li>
                                         </#list>
                                     </ul>
                                 </nav>
@@ -99,7 +96,7 @@
                                             </a>
                                         </div>
                                         <div class="media-body">
-                                            <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15">${sha.title}</h4></a>
+                                            <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15" style="text-decoration:none">${sha.title}</h4></a>
                                             <p class="tm-small-font tm-media-description">${sha.article}</p>
                                         </div>
                                     </div>

@@ -11,25 +11,14 @@
     <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
     <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
     <link rel="stylesheet" type='text/css' href="font-awesome-4.7.0/css/font-awesome.min.css">                                   <!-- Templatemo style -->
-    <style>
-        #editor {
-            resize: vertical;
-        }
-    </style>
 </head>
-
     <body>
-       
         <#include "./common/head.ftl">
-
         <div class="tm-blog-img-container">
-            
         </div>
-
         <section class="tm-section">
             <div class="container-fluid">
                 <div class="row">
-
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
                         <div id="editor"></div>
                         <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..."></textarea>
@@ -66,8 +55,8 @@
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-rocket" aria-hidden="true"></i> 文章标题:
                                 <input style="width: 60%;border-style: double" type="text" placeholder="造个大新闻..." >
-                                <button style="width: 10%" type="button" class="btn btn-primary"><i class="fa fa-camera-retro" aria-hidden="true"></i> 保存</button>
-                                <button style="width: 10%" type="button" class="btn btn-success"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> 发布</button>
+                                <button style="width: 10%" type="button" class="btn btn-primary" id="save"><i class="fa fa-floppy-o" aria-hidden="true"></i>  保存</button>
+                                <button style="width: 10%" type="button" class="btn btn-success" id="announce"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> 发布</button>
                             </div>
                         </form>
                     </div>
@@ -75,56 +64,33 @@
                     <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">
 
                         <div class="tm-aside-container">
-                            <h3 class="tm-gold-text tm-title">
-                                Categories
-                            </h3>
+                            <h3 class="tm-gold-text tm-title">精品转载</h3>
                             <nav>
                                 <ul class="nav">
-                                    <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
-                                    <li><a href="#" class="tm-text-link">Tincidunt non faucibus placerat</a></li>
-                                    <li><a href="#" class="tm-text-link">Vestibulum tempor ac lectus</a></li>
-                                    <li><a href="#" class="tm-text-link">Elementum egestas dui</a></li>
-                                    <li><a href="#" class="tm-text-link">Nam in augue consectetur</a></li>
-                                    <li><a href="#" class="tm-text-link">Fusce non turpis euismod</a></li>
-                                    <li><a href="#" class="tm-text-link">Text Link Color #006699</a></li>
+                                        <#list repring_links as rl>
+                                            <li><a href=${rl.url} class="tm-text-link" style="text-decoration:none">${rl.desc}</a></li>
+                                        </#list>
                                 </ul>
                             </nav>
-                            <hr class="tm-margin-t-small">   
-                            <h3 class="tm-gold-text tm-title tm-margin-t-small">
-                                Useful Links
-                            </h3>
-                            <nav>   
+                            <hr class="tm-margin-t-small">
+                            <h3 class="tm-gold-text tm-title">简单随笔</h3>
+                            <nav>
                                 <ul class="nav">
-                                    <li><a href="#" class="tm-text-link">Suspendisse sed dui nulla</a></li>
-                                    <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
-                                    <li><a href="#" class="tm-text-link">Duiss nec purus et eros</a></li>
-                                    <li><a href="#" class="tm-text-link">Etiam pulvinar et ligula sed</a></li>
-                                    <li><a href="#" class="tm-text-link">Proin egestas eu felis et iaculis</a></li>
+                                        <#list essay_links as el>
+                                            <li><a href=${el.url} class="tm-text-link" style="text-decoration:none">${el.desc}</a></li>
+                                        </#list>
                                 </ul>
-                            </nav>   
-                            <hr class="tm-margin-t-small"> 
-
-                            <div class="tm-content-box tm-margin-t-small">
-                                <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique #1</h4></a>
-                                <p class="tm-margin-b-30">Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie elit.</p>
-                            </div>
-                            <hr class="tm-margin-t-small">
-                            <div class="tm-content-box tm-margin-t-small">
-                                <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique #2</h4></a>
-                                <p>Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie elit.</p>
-                            </div>  
-                            <hr class="tm-margin-t-small">
-                            <div class="tm-content-box tm-margin-t-small">
-                                <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique #3</h4></a>
-                                <p>Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie elit.</p>
-                            </div>      
+                            </nav>
+                            <#list short_hot_article as sha>
+                                <hr class="tm-margin-t-small">
+                                <div class="tm-content-box tm-margin-t-small">
+                                    <a href=${sha.link} class="tm-text-link" style="text-decoration:none"><h4 class="tm-margin-b-20 tm-thin-font">${sha.title}</h4></a>
+                                    <p class="tm-margin-b-30">${sha.article}</p>
+                                </div>
+                            </#list>
                         </div>
-                        
-                        
                     </aside>
-
                 </div>
-                
             </div>
         </section>
         
@@ -142,7 +108,13 @@
             var E = window.wangEditor
             var editor = new E('#editor')
             editor.create()
+            document.getElementById('save').addEventListener('click', function () {
+                alert(editor.txt.html())
+            }, false)
 
+            document.getElementById('announce').addEventListener('click', function () {
+                alert(editor.txt.html())
+            }, false)
         </script>
     </body>
 </html>
