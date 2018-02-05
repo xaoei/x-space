@@ -8,8 +8,12 @@ package me.leiho.blog.enums;
  */
 public enum ResultCode {
 
-    SUCCESS(0,"SUCCESS"),
-    FAILED(400,"FAILED");
+    SUCCESS(1000,"成功"),
+    FAILED(1500,"失败"),
+    FAILED_JSON_PARSE(1501,"内容传输异常"),
+    FAILED_ARTICLE_CONTENT_NONE(1502,"文章内容不能为空"),
+    FAILED_ARTICLE_TITLE_NONE(1503,"文章标题不能为空"),
+    FAILED_ARTICLE_TYPE_NONE(1504,"文章分类不能为空");
     private Integer value;
     private String desc;
 

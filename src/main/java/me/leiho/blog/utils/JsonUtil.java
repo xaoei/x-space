@@ -104,7 +104,7 @@ public class JsonUtil {
     /**
      * map convert to javaBean
      */
-    public static <T> T map2pojo(Map map, Class<T> clazz) {
+    public static <T> T map2pojo(Object map, Class<T> clazz) {
         try {
             return objectMapper.convertValue(map, clazz);
         } catch (Exception e) {

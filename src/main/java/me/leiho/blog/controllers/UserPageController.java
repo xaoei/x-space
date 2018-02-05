@@ -9,12 +9,12 @@ import java.util.Map;
 
 /**
  * @Author: 萧大侠
- * @Description:
+ * @Description: 用户页控制器
  * @Date: Create in 15:25 2018/1/25
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class UserController {
+public class UserPageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @GetMapping("/register")
     public String index(Map<String, Object> map) {

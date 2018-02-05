@@ -15,19 +15,19 @@ import java.util.Map;
 
 /**
  * @Author: 萧大侠
- * @Description: 主页控制器
+ * @Description: 文章页控制器
  * @Date: Create in 17:41 2018/1/22
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class ManageController {
+public class ArticlePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
-    @GetMapping("/manage")
-    public String user(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(5).setCommonPageFoot();
-        logger.info("/manage");
-        return "manage";
+    @GetMapping("/article")
+    public String contact(Map<String, Object> map) {
+        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
+        logger.info("/article");
+        return "article";
     }
 }

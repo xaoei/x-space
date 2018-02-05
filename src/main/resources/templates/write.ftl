@@ -24,21 +24,21 @@
                         <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..."></textarea>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-cubes" aria-hidden="true"></i> 选择分类:
-                                <div class="btn-group" data-toggle="buttons" style="">
+                                <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="article"><i class="fa fa-pencil" aria-hidden="true"></i> 文章
-                                    </label>
-                                    <label class="btn btn-info active">
-                                        <input style="width: 20%" type="radio" name="category" id="tech"><i class="fa fa-book" aria-hidden="true"></i> 教程
+                                        <input style="width: 20%" type="radio" name="category" id="article" value="1"><i class="fa fa-pencil" aria-hidden="true"></i> 文章
                                     </label>
                                     <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="essay"><i class="fa fa-leaf" aria-hidden="true"></i> 随笔
+                                        <input style="width: 20%" type="radio" name="category" id="tech" value="2"><i class="fa fa-book" aria-hidden="true"></i> 教程
                                     </label>
                                     <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="reprint"><i class="fa fa-retweet" aria-hidden="true"></i> 转载
+                                        <input style="width: 20%" type="radio" name="category" id="essay" value="3"><i class="fa fa-leaf" aria-hidden="true"></i> 随笔
                                     </label>
                                     <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="other"><i class="fa fa-paint-brush" aria-hidden="true"></i> 其它
+                                        <input style="width: 20%" type="radio" name="category" id="reprint" value="4"><i class="fa fa-retweet" aria-hidden="true"></i> 转载
+                                    </label>
+                                    <label class="btn btn-info">
+                                        <input style="width: 20%" type="radio" name="category" id="other" value="5"><i class="fa fa-paint-brush" aria-hidden="true"></i> 其它
                                     </label>
                                 </div>
                             </div>
@@ -79,6 +79,7 @@
             var E = window.wangEditor
             var editor = new E('#editor')
             editor.create()
+            editor.txt.html('')
 
             document.getElementById('save').addEventListener('click', function () {
                 var article = getValue()
@@ -93,13 +94,30 @@
                 var article = {}
                 article.content=editor.txt.html()
                 article.title=$('#title').val()
+                article.type=$('input:radio[name="category"]:checked').val()
                 return article
             }
             function save(article) {
-                alert(JSON.stringify(article))
+                $.ajax({
+                    url:"http://localhost:8888/v1/write/save",
+                    type:"post",
+                    contentType : "application/json; charset=UTF-8",
+                    data:JSON.stringify(article),
+                    success:function(data){
+                        alert(data.code+","+data.msg);
+                    }
+                })
             }
             function announce(article) {
-                alert(JSON.stringify(article))
+                $.ajax({
+                    url:"http://localhost:8888/v1/write/announce",
+                    type:"post",
+                    contentType : "application/json; charset=UTF-8",
+                    data:JSON.stringify(article),
+                    success:function(data){
+                        alert(data.code+","+data.msg);
+                    }
+                })
             }
         </script>
     </body>

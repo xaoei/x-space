@@ -20,7 +20,7 @@ import java.util.Map;
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class IndexController {
+public class IndexPageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-02-05 17:13:49
+Date: 2018-02-05 18:16:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,13 +42,32 @@ CREATE TABLE `x_article` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for x_article_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `x_article_tag`;
+CREATE TABLE `x_article_tag` (
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
+  `sort_id` int(4) NOT NULL COMMENT '顺序',
+  `tag_name` varchar(255) NOT NULL COMMENT '标签名',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of x_article_tag
+-- ----------------------------
+INSERT INTO `x_article_tag` VALUES ('0000000001', '0', '未分类', '2018-02-05 17:13:25', null, '0');
+
+-- ----------------------------
 -- Table structure for x_article_type
 -- ----------------------------
 DROP TABLE IF EXISTS `x_article_type`;
 CREATE TABLE `x_article_type` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
   `sort_id` int(4) NOT NULL COMMENT '顺序',
-  `type_name` varchar(255) NOT NULL,
+  `type_name` varchar(255) NOT NULL COMMENT '分类名',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',

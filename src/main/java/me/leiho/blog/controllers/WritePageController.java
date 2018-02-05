@@ -15,12 +15,12 @@ import java.util.Map;
 
 /**
  * @Author: 萧大侠
- * @Description: 主页控制器
+ * @Description: 创作页控制器
  * @Date: Create in 17:41 2018/1/22
  * @Contact: yesxiaolei@outlook.com
  */
 @Controller
-public class WriteController {
+public class WritePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
