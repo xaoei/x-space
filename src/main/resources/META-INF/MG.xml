@@ -6,7 +6,7 @@
 <generatorConfiguration>
     <!--执行generator插件生成文件的命令： call mvn mybatis-generator:generate -e -->
     <!-- 引入配置文件 -->
-    <properties resource="MG.properties"/>
+    <properties resource="META-INF/MG.properties"/>
     <!--classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 可选 -->
     <!--<classPathEntry location="D:\generator_mybatis\mysql-connector-java-5.1.24-bin.jar" /> -->
 
