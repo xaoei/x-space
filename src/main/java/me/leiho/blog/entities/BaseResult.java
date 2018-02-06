@@ -37,6 +37,10 @@ public class BaseResult extends StringEntity implements Serializable {
         this.code = code;
         this.msg = msg;
     }
+    public BaseResult(ResultCode resultCode) {
+        this.code = resultCode.getValue();
+        this.msg = resultCode.getDesc();
+    }
 
     public BaseResult() {
         this.code = ResultCode.SUCCESS.getValue();

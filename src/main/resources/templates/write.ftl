@@ -11,6 +11,7 @@
     <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
     <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
     <link rel="stylesheet" type='text/css' href="font-awesome-4.7.0/css/font-awesome.min.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="css/buttons.css">                                   <!-- Templatemo style -->
 </head>
     <body>
         <#include "./common/head.ftl">
@@ -21,37 +22,34 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
                         <div id="editor"></div>
-                        <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..."></textarea>
+                        <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..." id="feeling"></textarea>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-cubes" aria-hidden="true"></i> 选择分类:
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="article" value="1"><i class="fa fa-pencil" aria-hidden="true"></i> 文章
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="tech" value="2"><i class="fa fa-book" aria-hidden="true"></i> 教程
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="essay" value="3"><i class="fa fa-leaf" aria-hidden="true"></i> 随笔
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="reprint" value="4"><i class="fa fa-retweet" aria-hidden="true"></i> 转载
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input style="width: 20%" type="radio" name="category" id="other" value="5"><i class="fa fa-paint-brush" aria-hidden="true"></i> 其它
-                                    </label>
+                                    <#list types as item>
+                                        <label class="btn btn-primary">
+                                            <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
+                                        </label>
+                                    </#list>
                                 </div>
                             </div>
                         </form>
-                        <form class="col-sm-12">
-                            <div style="margin-top: 20px"><i class="fa fa-tags" aria-hidden="true"></i> 设置标签:
-                                <input style="width: 17%;border-style: dashed" type="text" placeholder="标签1" >
-                                <input style="width: 17%;border-style: dashed" type="text" placeholder="标签2" >
-                                <input style="width: 17%;border-style: dashed" type="text" placeholder="标签3" >
-                                <input style="width: 17%;border-style: dashed" type="text" placeholder="标签4" >
-                                <input style="width: 17%;border-style: dashed" type="text" placeholder="标签5" >
+                        <div class="col-sm-12">
+                            <div style="margin-top: 20px">
+                                <i class="fa fa-tags" aria-hidden="true"></i> 设置标签:
+                                <input style="width: 60%;border-style: dashed" type="text" placeholder="多个标签需以逗号分隔">
+                                <button type="button" class="btn btn-info" id="addNewTag"><i class="fa fa-floppy-o" aria-hidden="true"></i>  添加新标签</button>
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="btn-group-sm" data-toggle="buttons">
+                                <#list tags as item>
+                                    <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
+                                        <input type="checkbox" name="tag" mark="unchecked" value=${item.id}>${item.tagName}
+                                    </label>
+                                </#list>
+                            </div>
+                        </div>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-rocket" aria-hidden="true"></i> 文章标题:
                                 <input style="width: 60%;border-style: double" type="text" id="title" placeholder="造个大新闻..." >
@@ -90,12 +88,34 @@
                 var article = getValue()
                 announce(article)
             }, false)
+
+            document.getElementById('addNewTag').addEventListener('click', function () {
+                getTags()
+            }, false)
             function getValue(){
                 var article = {}
                 article.content=editor.txt.html()
                 article.title=$('#title').val()
                 article.type=$('input:radio[name="category"]:checked').val()
+                article.feeling=$('#feeling').val()
+                article.tags=getTags()
                 return article
+            }
+            function getTags() {
+                var tagList =[];
+                $('input:checkbox[name="tag"]:checked').each(function(){
+                    tagList.push($(this).val());
+                });
+                if (tagList.length>0){
+                    var tags = tagList[0];
+                    if (tagList.length>1){
+                        for (var i=1;i<tagList.length;i++){
+                            tags = tags +","+tagList[i]
+                        }
+                    }
+                    console.info(tags)
+                    return tags
+                }
             }
             function save(article) {
                 $.ajax({
@@ -118,6 +138,31 @@
                         alert(data.code+","+data.msg);
                     }
                 })
+            }
+            function buttonChoose(e)
+            {
+                if ("checked"!=e.mark){
+                    e.mark = "checked"
+                    e.style.backgroundColor = "#FEC04E";
+                    e.style.color = "#FFFFFF";
+                }else {
+                    e.mark = "unchecked"
+                    e.style.backgroundColor = "#F6F6F6"
+                    e.style.color = "#666666"
+                }
+                // $('input:checkbox[name="tag"]:checked').each(function(){
+                //     if (e.val() == $(this).val()){
+                //         e.style.backgroundColor = "#FEC04E";
+                //         e.style.color = "#FFFFFF";
+                //         alert("o")
+                //         return "c"
+                //     }
+                // });
+                // e.
+                // e.style.backgroundColor = "#F6F6F6"
+                // e.style.color = "#666666"
+                // alert("b")
+                // return "c"
             }
         </script>
     </body>

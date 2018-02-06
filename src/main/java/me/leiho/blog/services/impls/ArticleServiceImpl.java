@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import static me.leiho.blog.enums.ResultCode.*;
 
@@ -35,18 +36,33 @@ public class ArticleServiceImpl implements ArticleService {
         logger.info(articleWriteVO.toString());
         //格式检校
         if (articleWriteVO==null){
-            return new BaseResult(FAILED_JSON_PARSE.getValue(),FAILED_JSON_PARSE.getDesc());
+            //解析失败
+            return new BaseResult(FAILED_JSON_PARSE);
         }
         if (StringUtils.isBlank(articleWriteVO.getContent())||"<p><br></p>".equals(articleWriteVO.getContent().trim())){
-            return new BaseResult(FAILED_ARTICLE_CONTENT_NONE.getValue(),FAILED_ARTICLE_CONTENT_NONE.getDesc());
+            //文章内容为空
+            return new BaseResult(FAILED_ARTICLE_CONTENT_NONE);
         }
         if (StringUtils.isBlank(articleWriteVO.getTitle())){
-            return new BaseResult(FAILED_ARTICLE_TITLE_NONE.getValue(),FAILED_ARTICLE_TITLE_NONE.getDesc());
+            //标题为空
+            return new BaseResult(FAILED_ARTICLE_TITLE_NONE);
         }
         if (articleWriteVO.getType()==null){
-            return new BaseResult(FAILED_ARTICLE_TYPE_NONE.getValue(),FAILED_ARTICLE_TYPE_NONE.getDesc());
+            //未选择文章类型
+            return new BaseResult(FAILED_ARTICLE_TYPE_NONE);
         }
+        if (articleWriteVO.getContent().length()>60000){
+            //文章内容过长
+            return new BaseResult(FAILED_ARTICLE_CONTENT_TOLONG);
+        }
+        if (articleWriteVO.getFeeling().length()>200){
+            //感想过长
+            return new BaseResult(FAILED_ARTICLE_FEELING_TOLONG);
+        }
+        //文章类型不存在
+
+        //文章标签不存在
         //
-        return new BaseResult();
+        return new BaseResult(SUCCESS);
     }
 }

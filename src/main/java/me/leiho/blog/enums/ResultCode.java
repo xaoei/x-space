@@ -13,7 +13,11 @@ public enum ResultCode {
     FAILED_JSON_PARSE(1501,"内容传输异常"),
     FAILED_ARTICLE_CONTENT_NONE(1502,"文章内容不能为空"),
     FAILED_ARTICLE_TITLE_NONE(1503,"文章标题不能为空"),
-    FAILED_ARTICLE_TYPE_NONE(1504,"文章分类不能为空");
+    FAILED_ARTICLE_TYPE_NONE(1504,"文章分类不能为空"),
+    FAILED_ARTICLE_CONTENT_TOLONG(1505,"文章内容过长"),
+    FAILED_ARTICLE_FEELING_TOLONG(1506,"文章感言过长"),
+    FAILED_ARTICLE_TYPE_NOT_EXIST(1507,"文章分类不存在"),
+    FAILED_ARTICLE_TAG_NOT_EXIST(1508,"文章标签不存在");
     private Integer value;
     private String desc;
 

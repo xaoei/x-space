@@ -3,6 +3,7 @@ package me.leiho.blog.controllers;
 import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
+import me.leiho.blog.services.WritePageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,12 @@ public class WritePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
+    @Autowired
+    private WritePageService writePageService;
     @GetMapping("/write")
     public String blog(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
-
+        writePageService.getValueMap(map).setTypes().setTags();
         List<SimpleLink> reprintLinks = new ArrayList<>();
         reprintLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这篇文章贼溜"));
         reprintLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("非常好的教程"));
@@ -49,6 +52,8 @@ public class WritePageController {
         shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-2.jpg").setTitle("第二篇热门文章").setArticle("北京嘉利华连锁宾馆刘家窑店是一家全新理念的经济宾馆连锁企业。").setLink("http://www.leiho.me"));
         shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-3.jpg").setTitle("第三篇热门文章").setArticle("京石景山玖玖源速8酒店座落于空气清新，环境宜人的北京石景山区CRD的繁盛地段。").setLink("http://www.leiho.me"));
         map.put("short_hot_article",shortHotArticles);
+
+
 
         logger.info("/write");
         return "write";

@@ -1,5 +1,7 @@
 package me.leiho.blog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -16,6 +18,7 @@ public class XArticleTag implements Serializable {
     /**
      * 顺序
      */
+    @JsonIgnore
     @Column(name = "sort_id")
     private Integer sortId;
 
@@ -28,18 +31,21 @@ public class XArticleTag implements Serializable {
     /**
      * 创建时间
      */
+    @JsonIgnore
     @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @JsonIgnore
     @Column(name = "update_time")
     private Date updateTime;
 
     /**
      * 删除标识,0正常1删除
      */
+    @JsonIgnore
     private Integer del;
 
     private static final long serialVersionUID = 1L;
