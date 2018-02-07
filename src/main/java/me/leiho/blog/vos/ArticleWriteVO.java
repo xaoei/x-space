@@ -1,5 +1,6 @@
 package me.leiho.blog.vos;
 
+import io.swagger.models.auth.In;
 import me.leiho.blog.entities.StringEntity;
 
 /**
@@ -9,11 +10,20 @@ import me.leiho.blog.entities.StringEntity;
  * @Contact: yesxiaolei@outlook.com
  */
 public class ArticleWriteVO extends StringEntity {
+    private Integer id;
     private String content;
     private String feeling;
     private Integer type;
     private String tags;
     private String title;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getContent() {
         return content;

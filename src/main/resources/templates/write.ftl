@@ -37,12 +37,12 @@
                         <div class="col-sm-12">
                             <div style="margin-top: 20px">
                                 <i class="fa fa-tags" aria-hidden="true"></i> 设置标签:
-                                <input style="width: 60%;border-style: dashed" type="text" placeholder="多个标签需以逗号分隔">
-                                <button type="button" class="btn btn-info" id="addNewTag"><i class="fa fa-floppy-o" aria-hidden="true"></i>  添加新标签</button>
+                                <input style="width: 60%;border-style: dashed" type="text" placeholder="多个标签需以逗号分隔" id="newTags">
+                                <button type="button" class="btn btn-info" onclick="addNewTags()"><i class="fa fa-floppy-o" aria-hidden="true"></i>  添加新标签</button>
                             </div>
                         </div>
-                        <div class="col-sm-12">
-                            <div class="btn-group-sm" data-toggle="buttons">
+                        <div class="col-sm-12" id="tagsAreaSide">
+                            <div class="btn-group-sm" id="tagsArea" data-toggle="buttons">
                                 <#list tags as item>
                                     <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
                                         <input type="checkbox" name="tag" mark="unchecked" value=${item.id}>${item.tagName}
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </section>
-        
+        <#include "./common/modal.ftl">
         <#include "./common/foot.ftl">
 
         <!-- load JS files -->
@@ -88,18 +88,45 @@
                 var article = getValue()
                 announce(article)
             }, false)
-
-            document.getElementById('addNewTag').addEventListener('click', function () {
-                getTags()
-            }, false)
             function getValue(){
                 var article = {}
+                article.id=editor.article_id
                 article.content=editor.txt.html()
                 article.title=$('#title').val()
                 article.type=$('input:radio[name="category"]:checked').val()
                 article.feeling=$('#feeling').val()
                 article.tags=getTags()
                 return article
+            }
+            function addNewTags(){
+                var tags = $('#newTags').val()
+                if (tags!=null&&tags!=""&&tags!="''"){
+                    $.ajax({
+                        url:"http://localhost:8888/v1/addNewTags",
+                        type:"post",
+                        contentType : "application/json; charset=UTF-8",
+                        data:JSON.stringify(tags),
+                        success:function(data){
+                            if (data.code==1000){
+                                $("#tagsArea").remove();
+                                var newTags = "<div class=\"btn-group-sm\" id=\"tagsArea\" data-toggle=\"buttons\">"
+                                $.each($.parseJSON("["+data.tags+"]"), function (n, item) {
+                                    newTags +=
+                                            "<label class=\"btn btn-sm\" style=\"background-color: #F6F6F6;color: #666666\" onclick=\"buttonChoose(this)\">\n" +
+                                            "  <input type=\"checkbox\" name=\"tag\" mark=\"unchecked\" value="+item.id+">"+item.tagName+"\n" +
+                                            "</label>"
+                                });
+                                newTags += "</div>"
+                                $("#tagsAreaSide").append(newTags)
+                                $("#tagsAreaSide").load(location.href+" #tagsAreaSide");
+                            }else {
+                                $("#modal_title").text("警告");
+                                $("#modal_content").text(data.msg);
+                                $('#commonModal').modal('show')
+                            }
+                        }
+                    })
+                }
             }
             function getTags() {
                 var tagList =[];
@@ -113,7 +140,6 @@
                             tags = tags +","+tagList[i]
                         }
                     }
-                    console.info(tags)
                     return tags
                 }
             }
@@ -124,7 +150,17 @@
                     contentType : "application/json; charset=UTF-8",
                     data:JSON.stringify(article),
                     success:function(data){
-                        alert(data.code+","+data.msg);
+                        if (data.id!=null){
+                            //将id写入
+                            editor.article_id = data.id
+                        }
+                        if (data.code==1000){
+                            $("#modal_title").text("提示");
+                        }else {
+                            $("#modal_title").text("警告");
+                        }
+                        $("#modal_content").text(data.msg);
+                        $('#commonModal').modal('show')
                     }
                 })
             }
@@ -135,7 +171,17 @@
                     contentType : "application/json; charset=UTF-8",
                     data:JSON.stringify(article),
                     success:function(data){
-                        alert(data.code+","+data.msg);
+                        if (data.id!=null){
+                            //将id写入
+                            editor.article_id = data.id
+                        }
+                        if (data.code==1000){
+                            $("#modal_title").text("提示");
+                        }else {
+                            $("#modal_title").text("警告");
+                        }
+                        $("#modal_content").text(data.msg);
+                        $('#commonModal').modal('show')
                     }
                 })
             }
@@ -150,19 +196,6 @@
                     e.style.backgroundColor = "#F6F6F6"
                     e.style.color = "#666666"
                 }
-                // $('input:checkbox[name="tag"]:checked').each(function(){
-                //     if (e.val() == $(this).val()){
-                //         e.style.backgroundColor = "#FEC04E";
-                //         e.style.color = "#FFFFFF";
-                //         alert("o")
-                //         return "c"
-                //     }
-                // });
-                // e.
-                // e.style.backgroundColor = "#F6F6F6"
-                // e.style.color = "#666666"
-                // alert("b")
-                // return "c"
             }
         </script>
     </body>

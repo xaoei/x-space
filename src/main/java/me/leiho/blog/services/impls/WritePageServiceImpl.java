@@ -1,15 +1,12 @@
 package me.leiho.blog.services.impls;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XArticleTag;
 import me.leiho.blog.entities.XArticleType;
-import me.leiho.blog.enums.ResultCode;
 import me.leiho.blog.mappers.XArticleTagMapper;
 import me.leiho.blog.mappers.XArticleTypeMapper;
 import me.leiho.blog.services.WritePageService;
 import me.leiho.blog.utils.JsonUtil;
-import me.leiho.blog.vos.TagsVO;
+import me.leiho.blog.vos.TagsResult;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static me.leiho.blog.enums.ResultCode.FAILED_JSON_PARSE;
+import static me.leiho.blog.enums.ResultCode.FAILED_ARTICLE_TAG_ERROR;
 import static me.leiho.blog.enums.ResultCode.SUCCESS;
 
 /**
@@ -58,25 +55,38 @@ public class WritePageServiceImpl implements WritePageService {
         map.put("tags",tags);
         return this;
     }
-    public BaseResult addNewTags(String tags){
+    public TagsResult addNewTags(String tags){
+        if (tags==null){
+            return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
+        }
+        tags = tags.replace("\"","");
+        tags = tags.replace("\\","");
         if (StringUtils.isBlank(tags)){
-            return new BaseResult(FAILED_JSON_PARSE);
+            return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
         }
         tags = tags.trim();
-        tags.replace("，",",");
+        tags = tags.replace("，",",");
         if (tags.indexOf(",")>0){
             //多tag
             String[] tagList = tags.split(",");
+            for (String tag:tagList){
+                if (checkOneTagFailed(tag)){
+                    return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
+                }
+            }
             for (String tag:tagList){
                 addOneTag(tag);
             }
         }else {
             //单tag
+            if (checkOneTagFailed(tags)){
+                return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
+            }
             addOneTag(tags);
         }
-        return new BaseResult(SUCCESS);
+        return getAllTags();
     }
-    public TagsVO getAllTags(){
+    private TagsResult getAllTags(){
         Example tagExample = new Example(XArticleTag.class);
         tagExample.createCriteria().andEqualTo("del",0);
         List<XArticleTag> tagList = xArticleTagMapper.selectByExample(tagExample);
@@ -84,21 +94,55 @@ public class WritePageServiceImpl implements WritePageService {
         for (XArticleTag tag:tagList){
             tags.add(JsonUtil.obj2json(tag));
         }
-        TagsVO tagsVO = new TagsVO();
-        tagsVO.setCode(ResultCode.SUCCESS.getValue());
-        tagsVO.setMsg(ResultCode.SUCCESS.getDesc());
-        tagsVO.setTags(tags);
-        return tagsVO;
+        return new TagsResult(SUCCESS,tags);
     }
     private void addOneTag(String tag){
         tag=tag.toLowerCase();
         Example tagExample = new Example(XArticleTag.class);
         tagExample.createCriteria().andEqualTo("tagName",tag).andEqualTo("del",0);
-        if (xArticleTagMapper.selectByExample(tagExample)==null){
+        if (xArticleTagMapper.selectByExample(tagExample)==null||xArticleTagMapper.selectByExample(tagExample).size()==0){
             XArticleTag newTag = new XArticleTag();
             newTag.setTagName(tag);
             newTag.setCreateTime(new Date());
             xArticleTagMapper.insertSelective(newTag);
         }
+    }
+    private Boolean checkOneTagFailed(String tag){
+        if (
+                "<".equals(tag)||
+                ">".equals(tag)||
+                "?".equals(tag)||
+                "/".equals(tag)||
+                ";".equals(tag)||
+                ":".equals(tag)||
+                "'".equals(tag)||
+                "\"".equals(tag)||
+                "\\".equals(tag)||
+                "{".equals(tag)||
+                "}".equals(tag)||
+                "[".equals(tag)||
+                "]".equals(tag)||
+                "~".equals(tag)||
+                "!".equals(tag)||
+                "@".equals(tag)||
+                "#".equals(tag)||
+                "$".equals(tag)||
+                "%".equals(tag)||
+                "^".equals(tag)||
+                "&".equals(tag)||
+                "*".equals(tag)||
+                "(".equals(tag)||
+                ")".equals(tag)||
+                "-".equals(tag)||
+                "+".equals(tag)||
+                "|".equals(tag)||
+                "`".equals(tag)||
+                tag.matches("[a-zA-Z]")||
+                tag.matches("[0-9]")||
+                tag.matches("[\\s]")
+                ){
+            return true;
+        }
+        return false;
     }
 }

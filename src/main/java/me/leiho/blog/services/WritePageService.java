@@ -1,8 +1,7 @@
 package me.leiho.blog.services;
 
-import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.services.impls.WritePageServiceImpl;
-import me.leiho.blog.vos.TagsVO;
+import me.leiho.blog.vos.TagsResult;
 
 import java.util.Map;
 
@@ -33,15 +32,9 @@ public interface WritePageService {
     WritePageServiceImpl setTags();
 
     /**
-     * 新增标签
+     * 新增标签,并返回所有标签
      * @param tags
      * @return
      */
-    BaseResult addNewTags(String tags);
-
-    /**
-     * 获得所有可选标签
-     * @return
-     */
-    TagsVO getAllTags();
+    TagsResult addNewTags(String tags);
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name = "x_comment")
 public class XComment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

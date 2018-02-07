@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name = "x_blog_image")
 public class XBlogImage implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

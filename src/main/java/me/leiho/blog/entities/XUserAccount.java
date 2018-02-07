@@ -10,7 +10,6 @@ public class XUserAccount implements Serializable {
      * 唯一标识
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

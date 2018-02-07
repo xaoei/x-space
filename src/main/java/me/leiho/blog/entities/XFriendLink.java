@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name = "x_friend_link")
 public class XFriendLink implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
