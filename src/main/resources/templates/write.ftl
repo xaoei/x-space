@@ -12,6 +12,7 @@
     <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
     <link rel="stylesheet" type='text/css' href="font-awesome-4.7.0/css/font-awesome.min.css">                                   <!-- Templatemo style -->
     <link rel="stylesheet" type='text/css' href="css/buttons.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="highlight/styles/github.css">                                   <!-- Templatemo style -->
 </head>
     <body>
         <#include "./common/head.ftl">
@@ -66,16 +67,28 @@
         <#include "./common/foot.ftl">
 
         <!-- load JS files -->
-        <script src="js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-        <script src="js/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-        <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-        <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
-        <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
-        <!-- 引用js -->
-        <script type="text/javascript" src="js/wangEditor.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+        <script type="text/javascript" src="js/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+        <script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
+        <script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
+
+        <script type="text/javascript" src="highlight/highlight.pack.js"></script>                 <!-- highlight (https://highlightjs.org/) -->
+    <script type="text/javascript">
+        $(function(){
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/wangEditor.min.js"></script>
         <script type="text/javascript">
             var E = window.wangEditor
             var editor = new E('#editor')
+            editor.customConfig.uploadImgServer = '/v1/upload'
+            editor.customConfig.uploadFileName = 'multipartFile'
+            editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024
+            editor.customConfig.debug = true
             editor.create()
             editor.txt.html('')
 
