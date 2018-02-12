@@ -1,3 +1,13 @@
+<style>
+    <#--修复模态框隐藏时出现的body多了'padding-right: 17px;'的问题 -->
+    body {
+        padding-right: 0px !important;
+    }
+    *.modal-open {
+        overflow-y: scroll;
+        padding-right: 0 !important;
+    }
+</style>
 <div class="tm-header">
     <div class="container-fluid">
         <div class="tm-header-inner">
@@ -16,7 +26,7 @@
                             <li class='nav-item'>
                             </#if>
                             <#if item.sortId == 5 && user?exists>
-                            <a href=${item.itemHref} class='nav-link'>${user.username}</a></li>
+                            <a href="javascript:void(0)" data-toggle="modal" class='nav-link' onclick="openLoginModal();">${user.username}</a></li>
                             <#else>
                             <a href=${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
                             </#if>
@@ -27,3 +37,4 @@
         </div>
     </div>
 </div>
+<#include "./login.ftl">
