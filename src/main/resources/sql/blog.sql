@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-02-05 18:16:28
+Date: 2018-02-12 15:47:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `x_article`;
 CREATE TABLE `x_article` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
-  `sort_id` int(4) NOT NULL COMMENT '顺序',
+  `sort_id` int(4) DEFAULT NULL COMMENT '顺序',
   `title` varchar(255) NOT NULL DEFAULT 'unnamed' COMMENT '文章标题',
   `content` text NOT NULL COMMENT '内容,限制10000字',
   `feeling` varchar(255) DEFAULT NULL COMMENT '感言',
@@ -35,11 +35,16 @@ CREATE TABLE `x_article` (
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_article
 -- ----------------------------
+INSERT INTO `x_article` VALUES ('0000000001', null, '第一篇文章', '<p>付款了就是离开房间卡圣诞节福利时间的房价飞洒地方受到了福建阿双方距离圣诞节福利的看法s</p>', '还阔以', '1', '2', '2,3,4,5', '1', '7', '0', '2018-02-07 10:55:22', '2018-02-07 10:57:29', '0');
+INSERT INTO `x_article` VALUES ('0000000002', null, '测试', '<p style=\"text-align: center;\"><embed height=\"415\" width=\"544\" quality=\"high\" allowfullscreen=\"true\" type=\"application/x-shockwave-flash\" src=\"//static.hdslb.com/miniloader.swf\" flashvars=\"aid=19250761&amp;p=1\"></p><p><img src=\"https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=c4931b2f2334349b600b66d7a8837eab/94cad1c8a786c9179e80a80cc23d70cf3bc75700.jpg\" style=\"max-width:100%;\"><br></p>', '哈哈哈哈哈哈哈哈哈哈哈哈', '1', '6', '5,6,12,28,29', '1', '3', '0', '2018-02-07 14:59:41', '2018-02-07 15:01:53', '0');
+INSERT INTO `x_article` VALUES ('0000000003', null, '本地图片上传测试', '<p><img src=\"image/54d78641cf7d45b8a118f91e2d4cc516.png\" style=\"max-width:100%;\"><br></p><p>哈哈哈哈哈哈哈哈哈哈哈哈或或hhhhhhhhhh<img src=\"http://localhost:8888/image/54d78641cf7d45b8a118f91e2d4cc516.png\" style=\"max-width: 100%;\"></p>', '还行', '1', '4', '3,20,24,30,41', '1', '4', '0', '2018-02-07 17:30:03', '2018-02-07 17:30:54', '0');
+INSERT INTO `x_article` VALUES ('0000000004', null, '图片上传至服务器', '<h1>测试上传图片到服务器成功<img src=\"image/1bce443c584949af88e4fe4e64020e32.png\" style=\"max-width: 100%;\"></h1><p><img src=\"http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png\" alt=\"[舔屏]\" data-w-e=\"1\"><br></p><p><br></p><p><br></p>', '哈哈', '1', '3', '3,19,31', '1', '2', '0', '2018-02-08 10:25:05', '2018-02-08 10:25:07', '0');
+INSERT INTO `x_article` VALUES ('0000000005', null, '代码测试', '<pre><code>package me.leiho.blog.vos;\n\nimport me.leiho.blog.entities.StringEntity;\n\nimport java.util.List;\n\n/**\n * @Author: 萧大侠\n * @Description:\n * @Date: Create in 9:55 2018/2/7\n * @Contact: yesxiaolei@outlook.com\n */\npublic class PicUpResult extends StringEntity{\n    private Integer errno;\n    private List&lt;String&gt; data;\n\n    public PicUpResult(){}\n\n    public PicUpResult(Integer errno){\n        this.errno = errno;\n    }\n\n    public PicUpResult(Integer errno,List&lt;String&gt; data){\n        this.errno = errno;\n        this.data = data;\n    }\n\n    public Integer getErrno() {\n        return errno;\n    }\n\n    public void setErrno(Integer errno) {\n        this.errno = errno;\n    }\n\n    public List&lt;String&gt; getData() {\n        return data;\n    }\n\n    public void setData(List&lt;String&gt; data) {\n        this.data = data;\n    }\n}</code></pre><p><br></p>', '代码测试', '1', '3', '3', '1', '2', '0', '2018-02-08 11:19:10', '2018-02-08 11:19:12', '0');
 
 -- ----------------------------
 -- Table structure for x_article_tag
@@ -47,18 +52,58 @@ CREATE TABLE `x_article` (
 DROP TABLE IF EXISTS `x_article_tag`;
 CREATE TABLE `x_article_tag` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
-  `sort_id` int(4) NOT NULL COMMENT '顺序',
+  `sort_id` int(4) DEFAULT NULL COMMENT '顺序',
   `tag_name` varchar(255) NOT NULL COMMENT '标签名',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_article_tag
 -- ----------------------------
-INSERT INTO `x_article_tag` VALUES ('0000000001', '0', '未分类', '2018-02-05 17:13:25', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000001', null, 'java', '2018-02-05 17:13:25', '2018-02-06 15:51:13', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000002', null, 'spring', '2018-02-06 15:51:12', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000003', null, 'mybatis', '2018-02-06 15:51:22', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000004', null, '荒野之息', '2018-02-06 15:51:32', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000005', null, '软件', '2018-02-06 15:51:48', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000006', null, 'windows', '2018-02-06 15:51:58', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000007', null, 'linux', '2018-02-06 15:52:05', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000008', null, 'hello', '2018-02-07 11:21:09', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000009', null, '1', '2018-02-07 11:22:31', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000010', null, '2', '2018-02-07 11:28:35', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000011', null, '3', '2018-02-07 11:28:35', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000012', null, '测试', '2018-02-07 13:46:21', '2018-02-07 13:47:36', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000013', null, 'wrong', '2018-02-07 13:47:56', '2018-02-07 13:48:21', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000014', null, 'error', '2018-02-07 13:49:18', '2018-02-07 13:51:49', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000015', null, 'hhh', '2018-02-07 13:52:03', '2018-02-07 13:54:40', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000016', null, '大发顺丰三分', '2018-02-07 13:52:42', '2018-02-07 13:54:50', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000017', null, '方法', '2018-02-07 13:55:00', '2018-02-07 13:57:31', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000018', null, '搜索', '2018-02-07 13:57:23', '2018-02-07 13:57:33', '0');
+INSERT INTO `x_article_tag` VALUES ('0000000019', null, '嗯嗯', '2018-02-07 13:57:55', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000020', null, '哈哈哈', '2018-02-07 14:04:56', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000021', null, '订单', '2018-02-07 14:06:16', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000022', null, '大饭店', '2018-02-07 14:07:37', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000023', null, '问问', '2018-02-07 14:11:26', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000024', null, '如同仁堂', '2018-02-07 14:14:09', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000025', null, 'id', '2018-02-07 14:17:02', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000026', null, '让人', '2018-02-07 14:42:24', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000027', null, '天天', '2018-02-07 14:42:26', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000028', null, '影音', '2018-02-07 14:42:29', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000029', null, '哈哈哈哈哈哈哈哈哈哈哈哈', '2018-02-07 14:43:31', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000030', null, '嗯嗯嗯', '2018-02-07 14:52:28', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000031', null, '日日日', '2018-02-07 14:52:33', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000032', null, '啊啊啊啊', '2018-02-07 14:52:36', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000033', null, 'helloworld', '2018-02-07 14:54:05', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000034', null, '啊啊啊', '2018-02-07 14:54:51', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000035', null, 'wtf', '2018-02-07 14:55:22', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000036', null, '\\', '2018-02-07 15:44:44', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000037', null, '>', '2018-02-07 15:45:09', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000038', null, '!!', '2018-02-07 16:02:34', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000039', null, '发的顺丰', '2018-02-07 17:28:36', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000040', null, '发的顺丰发的顺丰', '2018-02-07 17:28:39', null, '0');
+INSERT INTO `x_article_tag` VALUES ('0000000041', null, '都是噶速度高速啊', '2018-02-07 17:28:41', null, '0');
 
 -- ----------------------------
 -- Table structure for x_article_type
@@ -72,12 +117,17 @@ CREATE TABLE `x_article_type` (
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_article_type
 -- ----------------------------
-INSERT INTO `x_article_type` VALUES ('0000000001', '0', '未分类', '2018-02-05 17:13:25', null, '0');
+INSERT INTO `x_article_type` VALUES ('0000000001', '1', '<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> 文章', '2018-02-06 14:53:29', '2018-02-06 15:44:26', '0');
+INSERT INTO `x_article_type` VALUES ('0000000002', '2', '<i class=\"fa fa-book\" aria-hidden=\"true\"></i> 教程', '2018-02-06 14:53:33', '2018-02-06 15:44:37', '0');
+INSERT INTO `x_article_type` VALUES ('0000000003', '3', '<i class=\"fa fa-leaf\" aria-hidden=\"true\"></i> 随笔', '2018-02-06 14:53:44', '2018-02-06 15:44:44', '0');
+INSERT INTO `x_article_type` VALUES ('0000000004', '4', '<i class=\"fa fa-retweet\" aria-hidden=\"true\"></i> 转载', '2018-02-06 14:53:49', '2018-02-06 15:44:52', '0');
+INSERT INTO `x_article_type` VALUES ('0000000005', '5', '<i class=\"fa fa-calendar\" aria-hidden=\"true\"></i> 日志', '2018-02-06 14:54:28', '2018-02-06 15:46:58', '0');
+INSERT INTO `x_article_type` VALUES ('0000000006', '6', '<i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i> 其它', '2018-02-06 14:54:00', '2018-02-06 15:46:46', '0');
 
 -- ----------------------------
 -- Table structure for x_blog_image
@@ -181,6 +231,49 @@ INSERT INTO `x_head_item` VALUES ('00000004', '4', 'write', '发布', '2018-01-2
 INSERT INTO `x_head_item` VALUES ('00000005', '5', 'manage', '用户', '2018-01-26 14:10:19', '2018-02-02 17:58:36', '0');
 
 -- ----------------------------
+-- Table structure for x_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `x_permission`;
+CREATE TABLE `x_permission` (
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
+  `sort_id` int(4) DEFAULT NULL COMMENT '顺序',
+  `permission` varchar(64) DEFAULT NULL,
+  `desc` varchar(64) DEFAULT NULL,
+  `role` varchar(255) DEFAULT 'superadmin' COMMENT '角色',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of x_permission
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for x_role
+-- ----------------------------
+DROP TABLE IF EXISTS `x_role`;
+CREATE TABLE `x_role` (
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
+  `sort_id` int(4) DEFAULT NULL COMMENT '顺序',
+  `role` varchar(64) DEFAULT NULL COMMENT '角色',
+  `desc` varchar(64) DEFAULT NULL COMMENT '描述',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of x_role
+-- ----------------------------
+INSERT INTO `x_role` VALUES ('0000000001', '1', 'superadmin', '超级管理员', '2018-02-12 14:16:17', null, '0');
+INSERT INTO `x_role` VALUES ('0000000002', '2', 'admin', '管理员', '2018-02-12 14:16:29', null, '0');
+INSERT INTO `x_role` VALUES ('0000000003', '3', 'author', '作者', '2018-02-12 14:16:43', null, '0');
+INSERT INTO `x_role` VALUES ('0000000004', '4', 'reader', '读者', '2018-02-12 14:16:53', null, '0');
+
+-- ----------------------------
 -- Table structure for x_site_info
 -- ----------------------------
 DROP TABLE IF EXISTS `x_site_info`;
@@ -220,17 +313,19 @@ DROP TABLE IF EXISTS `x_user_account`;
 CREATE TABLE `x_user_account` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '唯一标识',
   `account` varchar(64) NOT NULL COMMENT '邮箱或手机号码',
-  `username` varchar(32) DEFAULT NULL COMMENT '用户名',
-  `password` varchar(32) NOT NULL COMMENT '密码',
+  `username` varchar(32) NOT NULL COMMENT '用户名',
+  `password` varchar(255) NOT NULL COMMENT '密码',
   `role` varchar(16) NOT NULL DEFAULT 'reader' COMMENT '角色',
   `gender` varchar(8) NOT NULL DEFAULT 'unknown' COMMENT '性别',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del` int(1) NOT NULL DEFAULT '0' COMMENT '删除标识,0正常1删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_user_account
 -- ----------------------------
-INSERT INTO `x_user_account` VALUES ('0000000001', 'admin@admin.com', 'admin', 'admin', 'superadmin', 'unknown', '2018-01-26 16:04:31', '2018-01-26 16:22:32', '0');
+INSERT INTO `x_user_account` VALUES ('0000000001', 'admin', 'admin', '1000:49629c65618b0014dcaab20d36d340e95cdf2bd5a79027ad:54ea9c6052ebffb51752c60dcb8317262d81f1ab3112a0c6', 'superadmin', 'unknown', '2018-01-26 16:04:31', '2018-02-12 10:51:10', '0');
+INSERT INTO `x_user_account` VALUES ('0000000002', '1104300304@qq.com', '1104300304@qq.com', '1000:c2f41b1172570cda352d18c2e81365feea3b365400d82991:69923b626559b6e6c5c3078e20a771a0d4e8d7dcad309224', 'reader', 'unknown', '2018-02-11 17:49:44', null, '0');
+INSERT INTO `x_user_account` VALUES ('0000000003', '970244559@qq.com', '本人就是萧大俠', '1000:2044854c5e42de16eaabc543edbd997227bc5e654cfbeb2c:1213d60a1b0e25d245c41562b3581158c362c40ce0856617', 'reader', 'unknown', '2018-02-12 10:23:21', null, '0');
