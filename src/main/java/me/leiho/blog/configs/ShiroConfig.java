@@ -1,5 +1,6 @@
 package me.leiho.blog.configs;
 
+import me.leiho.blog.shiro.CustomCredentialsMatcher;
 import me.leiho.blog.shiro.MyShiroRealm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -43,7 +44,7 @@ public class ShiroConfig {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/index");
         // 登录成功后要跳转的链接
-//        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/write");
 
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
@@ -54,8 +55,10 @@ public class ShiroConfig {
     @Bean
     public MyShiroRealm myShiroRealm(){
         MyShiroRealm myShiroRealm = new MyShiroRealm();
+        myShiroRealm.setCredentialsMatcher(new CustomCredentialsMatcher());
         return myShiroRealm;
     }
+
 
 
     @Bean

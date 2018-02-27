@@ -8,6 +8,10 @@ import me.leiho.blog.utils.PBKDF2;
 import me.leiho.blog.vos.LoginVO;
 import me.leiho.blog.vos.RegisterVO;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,18 +97,27 @@ public class UserServiceImpl implements UserService {
             return new BaseResult(FAILED_USER_LOGIN_NOT_EXIST);
         }
         XUserAccount xUserAccount = xUserAccountList.get(0);
+//        try {
+//            if (!PBKDF2.validatePassword(password,xUserAccount.getPassword())){
+//                return new BaseResult(FAILED_USER_LOGIN_VALIDATE_PASSWORD);
+//            }
+//        } catch (NoSuchAlgorithmException e) {
+//            logger.error("解密失败,可能是加密类型出现非法修改",e);
+//            return new BaseResult(FAILED_USER_LOGIN_SERVICE_ERROR);
+//        } catch (InvalidKeySpecException e) {
+//            logger.error("解密失败,可能是参数出现了非法变动",e);
+//            return new BaseResult(FAILED_USER_LOGIN_SERVICE_ERROR);
+//        }
+        Subject subject = SecurityUtils.getSubject();
         try {
-            if (!PBKDF2.validatePassword(password,xUserAccount.getPassword())){
-                return new BaseResult(FAILED_USER_LOGIN_VALIDATE_PASSWORD);
-            }
-        } catch (NoSuchAlgorithmException e) {
-            logger.error("解密失败,可能是加密类型出现非法修改",e);
-            return new BaseResult(FAILED_USER_LOGIN_SERVICE_ERROR);
-        } catch (InvalidKeySpecException e) {
-            logger.error("解密失败,可能是参数出现了非法变动",e);
-            return new BaseResult(FAILED_USER_LOGIN_SERVICE_ERROR);
+            UsernamePasswordToken token = new UsernamePasswordToken(account,password);
+            subject.login(token);
         }
-        //todo 载加权限
+        catch (AuthenticationException e){
+            logger.error("shiro认证失败");
+            return new BaseResult(FAILED_USER_LOGIN_VALIDATE_PASSWORD);
+        }
+        //todo 加载权限
         return new BaseResult(SUCCESS);
     }
     public BaseResult logout(){

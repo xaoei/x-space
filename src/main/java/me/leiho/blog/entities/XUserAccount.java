@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "x_user_account")
-public class XUserAccount implements Serializable {
+public class XUserAccount extends StringEntity implements Serializable {
     /**
      * 唯一标识
      */
