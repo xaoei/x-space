@@ -44,7 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         String role = userInfo.getRole();
         authorizationInfo.addRole(role);
         Example permissionExample = new Example(XPermission.class);
-        permissionExample.createCriteria().andEqualTo("del",0).andCondition("like '%"+role+"%'");//todo 待验证
+        permissionExample.createCriteria().andEqualTo("del",0).andCondition(" like '%"+role+"%'");//todo 待验证
         List<XPermission> permissions = xPermissionMapper.selectByExample(permissionExample);
         for(XPermission p:permissions){
             authorizationInfo.addStringPermission(p.getPermission());
@@ -75,7 +75,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             return null;
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                userInfo, //用户名
+                userInfo, //用户信息
                 userInfo.getPassword(), //密码
 //                ByteSource.Util.bytes("WHAT?"),//salt=username+salt
                 getName()  //realm name

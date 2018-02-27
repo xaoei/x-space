@@ -31,7 +31,7 @@ public class WritePageController {
     private WritePageService writePageService;
     @GetMapping("/write")
     public String blog(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
         writePageService.getValueMap(map).setTypes().setTags();
         List<SimpleLink> reprintLinks = new ArrayList<>();
         reprintLinks.add(SimpleLink.build().setUrl("http://www.leiho.me").setDesc("这篇文章贼溜"));

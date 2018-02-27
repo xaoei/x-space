@@ -26,8 +26,10 @@
                             <li class='nav-item'>
                             </#if>
                             <#if item.sortId == 5 && user?exists>
-                            <a href="javascript:void(0)" data-toggle="modal" class='nav-link' onclick="openLoginModal();">${user.username}</a></li>
-                            <#else>
+                            <a href="/v1/user/logout" class='nav-link'><#--${user.username}-->退出</a></li>
+                            <#elseif item.sortId == 5>
+                            <a href="/v1/user/login" data-toggle="modal" class='nav-link' onclick="openLoginModal();">${item.itemValue}</a></li>
+                            <#else >
                             <a href=${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
                             </#if>
                         </#list>

@@ -12,7 +12,7 @@
                 文本内容
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.location.reload(true)">
                     确定
                 </button>
             </div>

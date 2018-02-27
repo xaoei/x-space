@@ -20,10 +20,9 @@ public interface CommonPageValueService {
 
     /**
      * 设置用户信息
-     * @param userId
      * @return
      */
-    CommonPageValueServiceImpl setUserInfo(Integer userId);
+    CommonPageValueServiceImpl setUserInfo();
 
     /**
      * 设置网站信息

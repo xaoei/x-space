@@ -2,7 +2,9 @@ package me.leiho.blog.controllers;
 
 import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.SimpleLink;
+import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.services.CommonPageValueService;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,8 @@ public class IndexPageController {
     private CommonPageValueService commonPageValueService;
     @GetMapping({"/","/index"})
     public String index(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(1).setCommonPageFoot();
+
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(1).setCommonPageFoot();
 
 
         map.put("logo","tm-home-img");

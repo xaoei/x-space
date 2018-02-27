@@ -6,6 +6,7 @@ import me.leiho.blog.dtos.UserAccountDTO;
 import me.leiho.blog.entities.*;
 import me.leiho.blog.mappers.*;
 import me.leiho.blog.services.CommonPageValueService;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -45,18 +46,21 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
         this.map = map;
         return this;
     }
-    public CommonPageValueServiceImpl setUserInfo(Integer userId){
-        XUserAccount param = new XUserAccount();
-        param.setId(userId);
-        param.setDel(0);
-        XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
-        if (xUserAccount==null){
-            logger.error("账号不存在");
-            return this;
+    public CommonPageValueServiceImpl setUserInfo(){
+        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null){
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount==null){
+                logger.error("账号不存在");
+                return this;
+            }
+            UserAccountDTO userAccountDTO = new UserAccountDTO();
+            BeanUtils.copyProperties(xUserAccount,userAccountDTO);
+            map.put("user",userAccountDTO);
         }
-        UserAccountDTO userAccountDTO = new UserAccountDTO();
-        BeanUtils.copyProperties(xUserAccount,userAccountDTO);
-        map.put("user",userAccountDTO);
         return this;
     }
     public CommonPageValueServiceImpl setCommonPageSiteInfo(){
@@ -73,12 +77,17 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
         for (XHeadItem xHeadItem:xHeadItemList){
             HeadItemDTO headItemDTO = new HeadItemDTO();
             BeanUtils.copyProperties(xHeadItem,headItemDTO);
-            if (headItemDTO.getSortId() == selective){
-                headItemDTO.setIsSelective(1);
-            }else {
-                headItemDTO.setIsSelective(0);
+            if (headItemDTO.getSortId() != 4 || SecurityUtils.getSubject().isAuthenticated()){
+                if(SecurityUtils.getSubject().getPrincipal()!=null){
+                    //判断权限 TODO
+                }
+                if (headItemDTO.getSortId() == selective){
+                    headItemDTO.setIsSelective(1);
+                }else {
+                    headItemDTO.setIsSelective(0);
+                }
+                headItemDTOList.add(headItemDTO);
             }
-            headItemDTOList.add(headItemDTO);
         }
         map.put("head_items",headItemDTOList);
         return this;

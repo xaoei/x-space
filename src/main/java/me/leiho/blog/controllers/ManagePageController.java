@@ -26,7 +26,7 @@ public class ManagePageController {
     private CommonPageValueService commonPageValueService;
     @GetMapping("/manage")
     public String user(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(5).setCommonPageFoot();
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(5).setCommonPageFoot();
         logger.info("/manage");
         return "manage";
     }

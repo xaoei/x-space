@@ -16,9 +16,9 @@ import java.util.Map;
 @Controller
 public class UserPageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    @GetMapping("/register")
-    public String index(Map<String, Object> map) {
-        map.put("sitename","x-space");
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String index(Map<String, Object> map) {
+//        map.put("sitename","x-space");
+//        return "register";
+//    }
 }

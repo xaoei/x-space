@@ -26,7 +26,7 @@ public class MediaPageController {
     private CommonPageValueService commonPageValueService;
     @GetMapping("/media")
     public String about(Map<String, Object> map) {
-        commonPageValueService.getValueMap(map).setUserInfo(1).setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
         logger.info("/media");
         return "media";
     }
