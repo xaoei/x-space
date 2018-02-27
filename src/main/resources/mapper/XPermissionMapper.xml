@@ -8,7 +8,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sort_id" property="sortId" jdbcType="INTEGER" />
     <result column="permission" property="permission" jdbcType="VARCHAR" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="permission_desc" property="permissionDesc" jdbcType="VARCHAR" />
     <result column="role" property="role" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />

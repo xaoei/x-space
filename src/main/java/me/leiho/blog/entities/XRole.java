@@ -27,7 +27,8 @@ public class XRole implements Serializable {
     /**
      * 描述
      */
-    private String desc;
+    @Column(name = "role_desc")
+    private String roleDesc;
 
     /**
      * 创建时间
@@ -105,19 +106,19 @@ public class XRole implements Serializable {
     /**
      * 获取描述
      *
-     * @return desc - 描述
+     * @return role_desc - 描述
      */
-    public String getDesc() {
-        return desc;
+    public String getRoleDesc() {
+        return roleDesc;
     }
 
     /**
      * 设置描述
      *
-     * @param desc 描述
+     * @param roleDesc 描述
      */
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setRoleDesc(String roleDesc) {
+        this.roleDesc = roleDesc == null ? null : roleDesc.trim();
     }
 
     /**

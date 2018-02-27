@@ -1,12 +1,9 @@
 package me.leiho.blog.shiro;
 
 import me.leiho.blog.entities.XPermission;
-import me.leiho.blog.entities.XRole;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XPermissionMapper;
 import me.leiho.blog.mappers.XUserAccountMapper;
-import me.leiho.blog.services.UserService;
-import me.leiho.blog.utils.PBKDF2;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +12,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +40,11 @@ public class MyShiroRealm extends AuthorizingRealm {
         String role = userInfo.getRole();
         authorizationInfo.addRole(role);
         Example permissionExample = new Example(XPermission.class);
-        permissionExample.createCriteria().andEqualTo("del",0).andCondition(" like '%"+role+"%'");//todo 待验证
+        permissionExample.createCriteria().andEqualTo("del",0).andLike("role","%"+role+"%");//todo 待验证
         List<XPermission> permissions = xPermissionMapper.selectByExample(permissionExample);
+        if (permissions==null||permissions.isEmpty()){
+            return authorizationInfo;
+        }
         for(XPermission p:permissions){
             authorizationInfo.addStringPermission(p.getPermission());
         }

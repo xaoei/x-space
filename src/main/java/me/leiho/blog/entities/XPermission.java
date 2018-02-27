@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "x_permission")
-public class XPermission implements Serializable {
+public class XPermission extends StringEntity implements Serializable {
     /**
      * 唯一标识
      */
@@ -21,7 +21,8 @@ public class XPermission implements Serializable {
 
     private String permission;
 
-    private String desc;
+    @Column(name = "permission_desc")
+    private String permissionDesc;
 
     /**
      * 角色
@@ -98,17 +99,17 @@ public class XPermission implements Serializable {
     }
 
     /**
-     * @return desc
+     * @return permission_desc
      */
-    public String getDesc() {
-        return desc;
+    public String getPermissionDesc() {
+        return permissionDesc;
     }
 
     /**
-     * @param desc
+     * @param permissionDesc
      */
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setPermissionDesc(String permissionDesc) {
+        this.permissionDesc = permissionDesc == null ? null : permissionDesc.trim();
     }
 
     /**

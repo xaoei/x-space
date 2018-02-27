@@ -5,6 +5,7 @@ import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
 import me.leiho.blog.services.WritePageService;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class WritePageController {
     private WritePageService writePageService;
     @GetMapping("/write")
     public String blog(Map<String, Object> map) {
+        if (!SecurityUtils.getSubject().isPermitted("/write")){
+            return "/403.html";
+        }
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
         writePageService.getValueMap(map).setTypes().setTags();
         List<SimpleLink> reprintLinks = new ArrayList<>();

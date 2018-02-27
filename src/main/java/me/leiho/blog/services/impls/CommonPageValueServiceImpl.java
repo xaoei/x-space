@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: 萧大侠
@@ -78,15 +75,15 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             HeadItemDTO headItemDTO = new HeadItemDTO();
             BeanUtils.copyProperties(xHeadItem,headItemDTO);
             if (headItemDTO.getSortId() != 4 || SecurityUtils.getSubject().isAuthenticated()){
-                if(SecurityUtils.getSubject().getPrincipal()!=null){
-                    //判断权限 TODO
+                List<String> roles = new ArrayList<>();
+                if(headItemDTO.getSortId() != 4 || SecurityUtils.getSubject().isPermitted("/write")){
+                    if (headItemDTO.getSortId() == selective){
+                        headItemDTO.setIsSelective(1);
+                    }else {
+                        headItemDTO.setIsSelective(0);
+                    }
+                    headItemDTOList.add(headItemDTO);
                 }
-                if (headItemDTO.getSortId() == selective){
-                    headItemDTO.setIsSelective(1);
-                }else {
-                    headItemDTO.setIsSelective(0);
-                }
-                headItemDTOList.add(headItemDTO);
             }
         }
         map.put("head_items",headItemDTOList);
