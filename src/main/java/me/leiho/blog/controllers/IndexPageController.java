@@ -29,7 +29,13 @@ public class IndexPageController {
     @GetMapping({"/","/index"})
     public String index(Map<String, Object> map) {
 
-        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(1).setCommonPageFoot();
+        commonPageValueService
+                .getValueMap(map)
+                .setUserInfo()
+                .setCommonPageSiteInfo()
+                .setPageName("主页")
+                .setCommonPageHead(1)
+                .setCommonPageFoot();
 
 
         map.put("logo","tm-home-img");

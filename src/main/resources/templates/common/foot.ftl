@@ -1,4 +1,4 @@
-<footer class="tm-footer">
+<footer class="tm-footer" style="background-image: url('https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/bg/01.png')">
     <div class="container-fluid">
         <div class="row">
 

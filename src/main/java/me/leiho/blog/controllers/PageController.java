@@ -26,19 +26,12 @@ public class PageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
-//    @GetMapping(value="/page/{type}/{id}")
-//    public String index(Map<String, Object> map,@PathVariable String type,@PathVariable String id) {
-//        logger.info(type+","+id);
-//        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(0).setCommonPageFoot();
-//
-//        logger.info("/page");
-//        return "page";
-//    }
-    @GetMapping(value="/page")
-    public String index(Map<String, Object> map) {
+    @GetMapping(value="/page/{type}/{id}")
+    public String index(Map<String, Object> map,@PathVariable String type,@PathVariable String id) {
+        logger.info(type+","+id);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(0).setCommonPageFoot();
 
-        logger.info("/page");
+        logger.info("/page/"+type+"/"+id);
         return "page";
     }
 }

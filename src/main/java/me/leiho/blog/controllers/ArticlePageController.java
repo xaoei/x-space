@@ -24,7 +24,7 @@ public class ArticlePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
-    @GetMapping("/article")
+    @GetMapping("/article/{type}/{key}")
     public String contact(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
         logger.info("/article");

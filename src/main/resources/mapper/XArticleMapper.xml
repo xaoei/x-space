@@ -15,9 +15,53 @@
     <result column="announce" property="announce" jdbcType="INTEGER" />
     <result column="update_count" property="updateCount" jdbcType="INTEGER" />
     <result column="hot" property="hot" jdbcType="INTEGER" />
+    <result column="announce_time" property="announceTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del" property="del" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <resultMap id="SimpleArticleInfo" type="me.leiho.blog.vos.SimpleArticleInfo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author_id" property="authorId" jdbcType="INTEGER" />
+    <result column="author_name" property="authorName" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="INTEGER" />
+    <result column="announce_time" property="announceTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="getSimpleArticleInfo" parameterType="String" resultMap="SimpleArticleInfo">
+    SELECT info.id id,title,author author_id,username author_name,type type_id,xat.type_name type_name,tags,hot,announce_time,info.create_time create_time,info.update_time update_time
+    FROM
+      ( SELECT base.*,xua.username
+        FROM (
+            SELECT *
+            FROM x_article
+            WHERE del=0
+            <if test="keyWord != null and keyWord != ''" >
+              AND (title LIKE #{keyWord} AND content LIKE #{keyWord} AND feeling LIKE #{keyWord})
+            </if>
+            <if test="author != null and author != ''" >
+              AND author = #{author}
+            </if>
+            <if test="hot != null and hot != ''" >
+              AND hot = #{hot}
+            </if>
+            <if test="announceTime != null and announceTime != ''" >
+              AND announce_time = #{announceTime}
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+              AND update_time = #{createTime}
+            </if>
+      ) base,x_user_account xua
+        where xua.id = base.author) info,x_article_type xat
+    WHERE info.type = xat.id
+  </select>
 </mapper>

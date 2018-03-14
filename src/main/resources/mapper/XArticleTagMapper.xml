@@ -12,4 +12,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del" property="del" jdbcType="INTEGER" />
   </resultMap>
+  <select id="getAllTag" resultMap="BaseResultMap">
+    SELECT * FROM x_article_tag WHERE  del = 0
+  </select>
 </mapper>

@@ -60,6 +60,12 @@ public class XArticle implements Serializable {
     private Integer hot;
 
     /**
+     * 发布时间
+     */
+    @Column(name = "announce_time")
+    private Date announceTime;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
@@ -261,6 +267,23 @@ public class XArticle implements Serializable {
      */
     public void setHot(Integer hot) {
         this.hot = hot;
+    }
+
+    /**
+     * 获取发布时间
+     *
+     * @return create_time - 发布时间
+     */
+    public Date getAnnounceTime() {
+        return announceTime;
+    }
+    /**
+     * 设置发布时间
+     *
+     * @return create_time - 发布时间
+     */
+    public void setAnnounceTime(Date announceTime) {
+        this.announceTime = announceTime;
     }
 
     /**
