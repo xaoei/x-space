@@ -106,7 +106,7 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             if (comment.length()>40){//将读取的评论字数控制在40以下
                 comment = comment.substring(0,40)+"...";
             }
-            commentLinks.add(SimpleLink.build().setUrl(xHotComments.get(i).getSourceLink()).setDesc(comment));
+            commentLinks.add(SimpleLink.build().setUrl(xHotComments.get(i).getArticleId()+"").setDesc(comment));
         }
         map.put("comment_links",commentLinks);
 

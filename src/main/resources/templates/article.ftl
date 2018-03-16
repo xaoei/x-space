@@ -17,28 +17,62 @@
        
         <#include "./common/head.ftl">
 
-        <div class="tm-blog-img-container">
-
-        </div>
-
+        <div class="tm-blog-img-container"></div>
         <section class="tm-section">
             <div class="container-fluid">
                 <div class="row">
-
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                        </ul><br>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>作者</th>
+                                <th>分类</th>
+                                <th>发布时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <#list simple_article_info as sai>
+                            <tr>
+                                <#if sai.hot == 1>
+                                <td><a href="/page/article/${sai.id}" style="color: red">${sai.title}</a></td>
+                                <#else >
+                                <td><a href="/page/article/${sai.id}">${sai.title}</a></td>
+                                </#if>
+                                <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
+                                <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>
+                                <td><a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</td>
+                            </tr>
+                            </#list>
+                            </tbody>
+                        </table>
+
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9" style="text-align: center">
+                            <ul class="pagination">
+                                <#if page_index == 1>
+                                        <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                                <#else >
+                                        <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_pre}">&laquo;</a></li>
+                                </#if>
+                                <#list 1..page_total as i>
+                                    <#if page_index == i>
+                                        <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+                                    <#else >
+                                        <li class="page-item"><a class="page-link" href="/article/announce_desc/${i}">${i}</a></li>
+                                    </#if>
+                                </#list>
+                                <#if page_total == page_index>
+                                    <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                                <#else >
+                                    <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_next}">&raquo;</a></li>
+                                </#if>
+                            </ul><br>
+                        </div>
                     </div>
 
                     <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">
-
                         <div class="tm-aside-container">
                             <h3 class="tm-gold-text tm-title">
                                 Categories

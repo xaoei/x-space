@@ -8,6 +8,7 @@ import me.leiho.blog.mappers.XArticleMapper;
 import me.leiho.blog.services.PageListService;
 import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -51,11 +52,11 @@ public class PageListServiceImpl implements PageListService {
         }
         List<SimpleArticleInfo> simpleArticleInfos = null;
         simpleArticleInfos = xArticleMapper.getSimpleArticleInfo(
-                req.getKeyWord(),
+                StringUtils.isNotBlank(req.getKeyWord())?"%"+req.getKeyWord()+"%":req.getKeyWord(),
                 req.getAuthor(),
                 req.getHot(),
-                req.getAnnounceTime(),
-                req.getUpdateTime()
+                StringUtils.isNotBlank(req.getAnnounceTime())?"%"+req.getAnnounceTime()+"%":req.getAnnounceTime(),
+                StringUtils.isNotBlank(req.getUpdateTime())?"%"+req.getUpdateTime()+"%":req.getUpdateTime()
         );
         PageInfo<SimpleArticleInfo> pageInfo = new PageInfo<>(simpleArticleInfos);
         if (simpleArticleInfos.isEmpty()){

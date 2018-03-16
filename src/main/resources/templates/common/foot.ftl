@@ -39,7 +39,7 @@
                 <div class="tm-footer-content-box">
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">热门评论</h3>
                     <#list comment_links as cl>
-                        <p class="tm-margin-b-30">${cl.desc}<br/><a href=${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
+                        <p class="tm-margin-b-30">${cl.desc}<br/><a href=/page/article/${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
                     </#list>
                     <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
                 </div>

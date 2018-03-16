@@ -23,8 +23,8 @@ public class XComment implements Serializable {
     /**
      * 原文
      */
-    @Column(name = "source_link")
-    private String sourceLink;
+    @Column(name = "article_id")
+    private Integer articleId;
 
     /**
      * 是否热门,0否1是
@@ -102,17 +102,17 @@ public class XComment implements Serializable {
      *
      * @return source_link - 原文
      */
-    public String getSourceLink() {
-        return sourceLink;
+    public Integer getArticleId() {
+        return articleId;
     }
 
     /**
      * 设置原文
      *
-     * @param sourceLink 原文
+     * @param articleId 原文
      */
-    public void setSourceLink(String sourceLink) {
-        this.sourceLink = sourceLink == null ? null : sourceLink.trim();
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     /**

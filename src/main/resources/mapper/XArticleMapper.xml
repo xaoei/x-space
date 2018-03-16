@@ -46,7 +46,7 @@
             FROM x_article
             WHERE del=0
             <if test="keyWord != null and keyWord != ''" >
-              AND (title LIKE #{keyWord} AND content LIKE #{keyWord} AND feeling LIKE #{keyWord})
+              AND title LIKE #{keyWord}
             </if>
             <if test="author != null and author != ''" >
               AND author = #{author}
@@ -55,10 +55,10 @@
               AND hot = #{hot}
             </if>
             <if test="announceTime != null and announceTime != ''" >
-              AND announce_time = #{announceTime}
+              AND announce_time like #{announceTime}
             </if>
             <if test="updateTime != null and updateTime != ''" >
-              AND update_time = #{createTime}
+              AND update_time like #{updateTime}
             </if>
       ) base,x_user_account xua
         where xua.id = base.author) info,x_article_type xat
