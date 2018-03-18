@@ -19,6 +19,11 @@ public class XComment implements Serializable {
      * 评论
      */
     private String comment;
+    /**
+     * 评论人
+     */
+    @Column(name = "user_id")
+    private Integer userId;
 
     /**
      * 原文
@@ -181,5 +186,13 @@ public class XComment implements Serializable {
      */
     public void setDel(Integer del) {
         this.del = del;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

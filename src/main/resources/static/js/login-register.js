@@ -48,7 +48,7 @@ function loginAjax(){
     login_info.account = $('#laccount').val()
     login_info.password = $('#lpassword').val()
     $.ajax({
-        url:"http://localhost:8888/v1/user/login",
+        url:"/v1/user/login",
         type:"post",
         contentType : "application/json; charset=UTF-8",
         data:JSON.stringify(login_info),
@@ -76,7 +76,7 @@ function registerAjax(){
         return
     }
     $.ajax({
-        url:"http://localhost:8888/v1/user/register",
+        url:"/v1/user/register",
         type:"post",
         contentType : "application/json; charset=UTF-8",
         data:JSON.stringify(register_info),

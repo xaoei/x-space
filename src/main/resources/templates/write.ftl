@@ -109,7 +109,7 @@
                 var tags = $('#newTags').val()
                 if (tags!=null&&tags!=""&&tags!="''"){
                     $.ajax({
-                        url:"http://localhost:8888/v1/addNewTags",
+                        url:"/v1/addNewTags",
                         type:"post",
                         contentType : "application/json; charset=UTF-8",
                         data:JSON.stringify(tags),
@@ -152,7 +152,7 @@
             }
             function save(article) {
                 $.ajax({
-                    url:"http://localhost:8888/v1/write/save",
+                    url:"/v1/write/save",
                     type:"post",
                     contentType : "application/json; charset=UTF-8",
                     data:JSON.stringify(article),
@@ -173,7 +173,7 @@
             }
             function announce(article) {
                 $.ajax({
-                    url:"http://localhost:8888/v1/write/announce",
+                    url:"/v1/write/announce",
                     type:"post",
                     contentType : "application/json; charset=UTF-8",
                     data:JSON.stringify(article),
