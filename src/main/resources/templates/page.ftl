@@ -29,6 +29,24 @@
         &nbsp;<i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>&nbsp;<h3 style="position: absolute;top: 50%;transform: translateY(-50%);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${one_content.feeling}</h3>
     </div><br>
     ${one_content.content}
+    <hr>
+    <div id="comment">
+
+        <div id="comment_show" style="background-color: #F8F8F8">
+            <hr>
+
+            <h4><a>评论者</a>:</h4>
+            <div style="background-color: #E8E8E8;margin-left: 6%;margin-right: 6%"><a style="color: black;">今天天气真棒!</a></div>
+            <br>
+
+            <hr>
+        </div>
+        <div id="comment_edit">
+            <input type="text" class="form-control" id="comment_input" placeholder="想说说点什么吗?" style="width: 80%;display:inline"><button type="button" class="btn btn-info btn-lg" style="margin-left: 5%;display:inline"><i class="fa fa-commenting-o" aria-hidden="true"></i> 评论</button>
+        </div>
+        <br>
+    </div>
+    <br>
 </div>
 <#include "./common/foot.ftl">
 
