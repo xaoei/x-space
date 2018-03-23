@@ -1,15 +1,21 @@
 package me.leiho.blog.services.impls;
 
+import me.leiho.blog.dtos.UserAccountDTO;
 import me.leiho.blog.entities.XArticleTag;
 import me.leiho.blog.entities.XArticleType;
-import me.leiho.blog.mappers.XArticleTagMapper;
-import me.leiho.blog.mappers.XArticleTypeMapper;
+import me.leiho.blog.entities.XComment;
+import me.leiho.blog.entities.XUserAccount;
+import me.leiho.blog.mappers.*;
 import me.leiho.blog.services.WritePageService;
 import me.leiho.blog.utils.JsonUtil;
+import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.TagsResult;
+import me.leiho.blog.vos.WriteCommentVO;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -35,6 +41,12 @@ public class WritePageServiceImpl implements WritePageService {
     private XArticleTypeMapper xArticleTypeMapper;
     @Autowired
     private XArticleTagMapper xArticleTagMapper;
+    @Autowired
+    private XArticleMapper xArticleMapper;
+    @Autowired
+    private XUserAccountMapper xUserAccountMapper;
+    @Autowired
+    private XCommentMapper xCommentMapper;
 
     private Map<String, Object> map;
     public WritePageServiceImpl getValueMap(Map<String, Object> map){
@@ -46,6 +58,23 @@ public class WritePageServiceImpl implements WritePageService {
         typeExample.createCriteria().andEqualTo("del",0);
         List<XArticleType> types = xArticleTypeMapper.selectByExample(typeExample);
         map.put("types",types);
+        return this;
+    }
+    public WritePageServiceImpl setSideBar(){
+        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            Integer id = userInfo.getId();
+            //获取未完成
+            List<SimpleArticleInfo> unFinishArticles = xArticleMapper.getUnFinishArticles(id,0,5);
+            //获取已完成
+            List<SimpleArticleInfo> finishedArticles = xArticleMapper.getUnFinishArticles(id,1,5);
+            //获取评论
+            List<WriteCommentVO> myComments = xCommentMapper.getCommentByAuthor(id,3);
+            map.put("unFinishArticles",unFinishArticles);
+            map.put("finishedArticles",finishedArticles);
+            map.put("myComments",myComments);
+        }
         return this;
     }
     public WritePageServiceImpl setTags(){
@@ -145,4 +174,5 @@ public class WritePageServiceImpl implements WritePageService {
         }
         return false;
     }
+
 }

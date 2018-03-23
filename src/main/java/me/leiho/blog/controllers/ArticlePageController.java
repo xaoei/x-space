@@ -49,21 +49,21 @@ public class ArticlePageController {
      */
     public String contactA(Map<String, Object> map, @PathVariable String type,@PathVariable Integer no) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
-        articlePageService.getValueMap(map).setSimpleArticleInfo(type,no);
+        articlePageService.getValueMap(map).setSimpleArticleInfo(type,no).setSideBar();
         logger.info("/article/"+type+"/"+no);
         return "article";
     }
     @GetMapping("/article/{type}")
     public String contactB(Map<String, Object> map, @PathVariable String type) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
-        articlePageService.getValueMap(map).setSimpleArticleInfo(type,1);
+        articlePageService.getValueMap(map).setSimpleArticleInfo(type,1).setSideBar();
         logger.info("/article/"+type);
         return "article";
     }
     @GetMapping("/article")
     public String contactC(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
-        articlePageService.getValueMap(map).setSimpleArticleInfo("announce_desc",1);
+        articlePageService.getValueMap(map).setSimpleArticleInfo("announce_desc",1).setSideBar();
         logger.info("/article");
         return "article";
     }

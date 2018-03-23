@@ -59,7 +59,7 @@
                             </div>
                         </form>
                     </div>
-                    <#include "./common/sidebar.ftl">
+                    <#include "./common/write_sidebar.ftl">
                 </div>
             </div>
         </section>

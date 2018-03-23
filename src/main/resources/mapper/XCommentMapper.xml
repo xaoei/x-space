@@ -15,7 +15,22 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del" property="del" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="ResultMapWithTitle" type="me.leiho.blog.vos.WriteCommentVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sort_id" property="sortId" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="hot" property="hot" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
   <select id="getAllCommentByArticleId" parameterType="Integer" resultMap="BaseResultMap">
     SELECT * FROM x_comment WHERE article_id = #{articleId} AND del = 0
+  </select>
+  <select id="getCommentByAuthor" parameterType="Integer" resultMap="ResultMapWithTitle">
+    SELECT * FROM x_comment,(SELECT id,title FROM x_article WHERE author = #{author} AND announce = 1) t WHERE article_id = t.id ORDER BY create_time LIMIT 0,#{size};
   </select>
 </mapper>

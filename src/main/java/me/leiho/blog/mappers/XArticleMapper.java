@@ -24,4 +24,9 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
             @Param("announceTime") String announceTime,
             @Param("updateTime") String updateTime
     );
+    List<SimpleArticleInfo> getUnFinishArticles(
+            @Param("author") Integer author,
+            @Param("announce") Integer announce,
+            @Param("size") Integer size
+    );
 }
