@@ -74,9 +74,9 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
         for (XHeadItem xHeadItem:xHeadItemList){
             HeadItemDTO headItemDTO = new HeadItemDTO();
             BeanUtils.copyProperties(xHeadItem,headItemDTO);
-            if (headItemDTO.getSortId() != 4 || SecurityUtils.getSubject().isAuthenticated()){
-                List<String> roles = new ArrayList<>();
-                if(headItemDTO.getSortId() != 4 || SecurityUtils.getSubject().isPermitted("/write")){
+            if ((headItemDTO.getSortId() != 4&&headItemDTO.getSortId() != 3) || SecurityUtils.getSubject().isAuthenticated()){
+//                List<String> roles = new ArrayList<>();
+                if((headItemDTO.getSortId() != 4 &&headItemDTO.getSortId() != 3 )|| SecurityUtils.getSubject().isPermitted("/write")|| SecurityUtils.getSubject().isPermitted("/media")){
                     if (headItemDTO.getSortId() == selective){
                         headItemDTO.setIsSelective(1);
                     }else {
