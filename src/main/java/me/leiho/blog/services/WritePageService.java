@@ -32,6 +32,13 @@ public interface WritePageService {
     WritePageServiceImpl setTags();
 
     /**
+     * 通过文章id读取文章
+     * @param articleId
+     * @return
+     */
+    WritePageServiceImpl setDefaultArticle(Integer articleId);
+
+    /**
      * 新增标签,并返回所有标签
      * @param tags
      * @return

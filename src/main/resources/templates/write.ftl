@@ -9,10 +9,10 @@
 
     <!-- load stylesheets -->
     <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
-    <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
-    <link rel="stylesheet" type='text/css' href="font-awesome-4.7.0/css/font-awesome.min.css">                                   <!-- Templatemo style -->
-    <link rel="stylesheet" type='text/css' href="css/buttons.css">                                   <!-- Templatemo style -->
-    <link rel="stylesheet" type='text/css' href="highlight/styles/github.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="/css/templatemo-style.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="/font-awesome-4.7.0/css/font-awesome.min.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="/css/buttons.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css' href="/highlight/styles/github.css">                                   <!-- Templatemo style -->
 </head>
     <body>
         <#include "./common/head.ftl">
@@ -22,16 +22,35 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-                        <div id="editor"></div>
+                        <div id="editor">
+                            <#if (edit_article)??>
+                                ${edit_article}
+                            </#if>
+                        </div>
                         <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..." id="feeling"></textarea>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-cubes" aria-hidden="true"></i> 选择分类:
                                 <div class="btn-group" data-toggle="buttons">
-                                    <#list types as item>
-                                        <label class="btn btn-primary">
-                                            <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
-                                        </label>
-                                    </#list>
+                                    <#if (edit_type)??>
+                                        <#list types as item>
+                                            <#if edit_type==item.id>
+                                                <label class="btn btn-primary active">
+                                                    <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
+                                                </label>
+                                            <#else>
+                                                <label class="btn btn-primary">
+                                                    <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
+                                                </label>
+                                            </#if>
+                                        </#list>
+                                    <#else>
+                                        <#list types as item>
+                                            <label class="btn btn-primary">
+                                                <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
+                                            </label>
+                                        </#list>
+                                    </#if>
+
                                 </div>
                             </div>
                         </form>
@@ -44,11 +63,25 @@
                         </div>
                         <div class="col-sm-12" id="tagsAreaSide">
                             <div class="btn-group-sm" id="tagsArea" data-toggle="buttons">
-                                <#list tags as item>
-                                    <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
-                                        <input type="checkbox" name="tag" mark="unchecked" value=${item.id}>${item.tagName}
-                                    </label>
-                                </#list>
+                                <#if (tag_ids)??>
+                                    <#list tags as item>
+                                        <#if tag_ids?index_of(item.id?c)!=-1>
+                                            <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
+                                                <input type="checkbox" name="tag" mark="checked" value=${item.id}>${item.tagName}
+                                            </label>
+                                        <#else>
+                                            <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
+                                                <input type="checkbox" name="tag" mark="unchecked" value=${item.id}>${item.tagName}
+                                            </label>
+                                        </#if>
+                                    </#list>
+                                <#else>
+                                    <#list tags as item>
+                                        <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
+                                            <input type="checkbox" name="tag" mark="unchecked" value=${item.id}>${item.tagName}
+                                        </label>
+                                    </#list>
+                                </#if>
                             </div>
                         </div>
                         <form class="col-sm-12">
@@ -66,13 +99,13 @@
         <#include "./common/foot.ftl">
 
         <!-- load JS files -->
-        <script type="text/javascript" src="js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-        <script type="text/javascript" src="js/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+        <script type="text/javascript" src="/js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+        <script type="text/javascript" src="/js/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
         <script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
         <script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
 
-    <script type="text/javascript" src="js/wangEditor.min.js">
+    <script type="text/javascript" src="/js/wangEditor.min.js">
 
     </script>
         <script type="text/javascript">
@@ -84,7 +117,6 @@
             editor.customConfig.debug = true
             editor.customConfig.zIndex = 1000
             editor.create()
-            editor.txt.html('')
 
             document.getElementById('save').addEventListener('click', function () {
                 var article = getValue()

@@ -7,9 +7,9 @@
             <#if unFinishArticles??>
                 <#list unFinishArticles as ufa>
                 <#if ufa.title?length gt 10>
-                    <li><a href="/edit/article/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title?substring(0,10)}...</a></li>
+                    <li><a href="/write/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title?substring(0,10)}...</a></li>
                 <#else>
-                    <li><a href="/edit/article/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title}</a></li>
+                    <li><a href="/write/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title}</a></li>
                 </#if>
                 </#list>
             </#if>
@@ -23,9 +23,9 @@
             <#if finishedArticles??>
                 <#list finishedArticles as fea>
                     <#if fea.title?length gt 10>
-                <li><a href="/edit/article/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title?substring(0,10)}...</a></li>
+                <li><a href="/write/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title?substring(0,10)}...</a></li>
                     <#else>
-                <li><a href="/edit/article/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title}</a></li>
+                <li><a href="/write/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title}</a></li>
                     </#if>
                 </#list>
             </#if>

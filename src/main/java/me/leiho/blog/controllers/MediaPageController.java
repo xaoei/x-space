@@ -3,6 +3,7 @@ package me.leiho.blog.controllers;
 import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
+import me.leiho.blog.services.MediaPageService;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +26,17 @@ public class MediaPageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
+
+    @Autowired
+    private MediaPageService mediaPageService;
     @GetMapping("/media")
     public String about(Map<String, Object> map) {
         if (!SecurityUtils.getSubject().isPermitted("/media")){
             return "/403.html";
         }
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
+        mediaPageService.getValueMap(map).setPhotoWall();
+
         logger.info("/media");
         return "media";
     }

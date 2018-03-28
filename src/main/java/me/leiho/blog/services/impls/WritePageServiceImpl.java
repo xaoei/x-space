@@ -1,10 +1,8 @@
 package me.leiho.blog.services.impls;
 
+import io.swagger.models.auth.In;
 import me.leiho.blog.dtos.UserAccountDTO;
-import me.leiho.blog.entities.XArticleTag;
-import me.leiho.blog.entities.XArticleType;
-import me.leiho.blog.entities.XComment;
-import me.leiho.blog.entities.XUserAccount;
+import me.leiho.blog.entities.*;
 import me.leiho.blog.mappers.*;
 import me.leiho.blog.services.WritePageService;
 import me.leiho.blog.utils.JsonUtil;
@@ -20,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static me.leiho.blog.enums.ResultCode.FAILED_ARTICLE_TAG_ERROR;
 import static me.leiho.blog.enums.ResultCode.SUCCESS;
@@ -82,6 +77,13 @@ public class WritePageServiceImpl implements WritePageService {
         tagExample.createCriteria().andEqualTo("del",0);
         List<XArticleTag> tags = xArticleTagMapper.selectByExample(tagExample);
         map.put("tags",tags);
+        return this;
+    }
+    public WritePageServiceImpl setDefaultArticle(Integer articleId){
+        XArticle xArticle = xArticleMapper.selectByPrimaryKey(articleId);
+        map.put("edit_article",xArticle.getContent());
+        map.put("edit_type",xArticle.getType());
+        map.put("tag_ids",xArticle.getTags());
         return this;
     }
     public TagsResult addNewTags(String tags){

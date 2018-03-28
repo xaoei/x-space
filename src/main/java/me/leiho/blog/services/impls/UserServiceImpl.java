@@ -109,6 +109,8 @@ public class UserServiceImpl implements UserService {
 //            return new BaseResult(FAILED_USER_LOGIN_SERVICE_ERROR);
 //        }
         Subject subject = SecurityUtils.getSubject();
+        //设置会话为半个小时有效
+        SecurityUtils.getSubject().getSession().setTimeout(1800000);
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(account,password);
             subject.login(token);
