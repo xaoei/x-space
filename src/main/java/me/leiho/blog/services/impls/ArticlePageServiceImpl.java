@@ -41,13 +41,13 @@ public class ArticlePageServiceImpl implements ArticlePageService {
     public ArticlePageServiceImpl setSimpleArticleInfo(String type,Integer no){
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25);
         PageInfo<SimpleArticleInfo> pageInfo = pageListService.getSimpleArticleInfo(req);
-        if (pageInfo.getSize()==0){
-            return this;
-        }
         map.put("page_index",pageInfo.getPageNum());
         map.put("page_total",pageInfo.getPages());
         map.put("page_pre",pageInfo.getPrePage());
         map.put("page_next",pageInfo.getNextPage());
+        if (pageInfo.getSize()==0){
+            return this;
+        }
         map.put("simple_article_info",pageInfo.getList());
         return this;
     }

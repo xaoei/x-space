@@ -33,37 +33,47 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                            <#list simple_article_info as sai>
-                            <tr>
-                                <#if sai.hot == 1>
-                                <td><a href="/page/article/${sai.id}" style="color: red">${sai.title}</a></td>
-                                <#else >
-                                <td><a href="/page/article/${sai.id}">${sai.title}</a></td>
-                                </#if>
-                                <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
-                                <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>
-                                <td><a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</td>
-                            </tr>
-                            </#list>
+                            <#if (simple_article_info)??>
+                                <#list simple_article_info as sai>
+                                    <tr>
+                                    <#if sai.hot == 1>
+                                    <td><a href="/page/article/${sai.id}" style="color: red">${sai.title}</a></td>
+                                    <#else >
+                                    <td><a href="/page/article/${sai.id}">${sai.title}</a></td>
+                                    </#if>
+                                    <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
+                                    <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>
+                                    <td><a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</td>
+                                    </tr>
+                                </#list>
+                            <#else>
+                                <br>
+                                    <h1 >暂无内容</h1>
+                                <br>
+                            </#if>
                             </tbody>
                         </table>
 
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9" style="text-align: center">
                             <ul class="pagination">
-                                <#if page_index == 1>
+                                <#if page_index == 1 || page_total<=0>
                                         <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
                                 <#else >
                                         <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_pre}">&laquo;</a></li>
                                 </#if>
-                                <#list 1..page_total as i>
-                                    <#if page_index == i>
+                                <#if page_total<=0>
+                                    <li class="page-item active"><a class="page-link" href="#">0</a></li>
+                                <#else>
+                                    <#list 1..page_total as i>
+                                        <#if page_index == i>
                                         <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
-                                    <#else >
+                                        <#else >
                                         <li class="page-item"><a class="page-link" href="/article/announce_desc/${i}">${i}</a></li>
-                                    </#if>
-                                </#list>
-                                <#if page_total == page_index>
+                                        </#if>
+                                    </#list>
+                                </#if>
+
+                                <#if page_total == page_index||page_total<=0>
                                     <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
                                 <#else >
                                     <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_next}">&raquo;</a></li>

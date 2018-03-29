@@ -14,7 +14,15 @@
                 </#list>
             </#if>
             </ul>
-            <button type="button" class="btn btn-success">查看更多</button>
+            <#if unFinishArticles??>
+                <#if (unFinishArticles?size>4)>
+                    <button type="button" class="btn btn-success">查看更多</button>
+                <#elseif (unFinishArticles?size<1)>
+                    <br>
+                    <p>还没有未完成的作品喔,请多多创作!</p>
+                    <br>
+                </#if>
+            </#if>
             </nav>
             <hr class="tm-margin-t-small">
             <h3 class="tm-gold-text tm-title">已发布</h3>
@@ -30,7 +38,15 @@
                 </#list>
             </#if>
             </ul>
-            <button type="button" class="btn btn-info">查看更多</button>
+            <#if finishedArticles??>
+                <#if (finishedArticles?size>4)>
+                    <button type="button" class="btn btn-success">查看更多</button>
+                <#elseif (finishedArticles?size<1)>
+                    <br>
+                    <p>还没有已完成的作品喔,请多多创作!</p>
+                    <br>
+                </#if>
+            </#if>
         </nav>
         <hr class="tm-margin-t-small">
         <h3 class="tm-gold-text tm-title">指指点点</h3>
@@ -52,8 +68,15 @@
                 </p>
             </#list>
         </#if>
-
         </div>
-        <button type="button" class="btn btn-warning">查看更多</button>
+        <#if myComments??>
+            <#if (myComments?size>2)>
+                <button type="button" class="btn btn-warning">查看更多</button>
+            <#elseif (myComments?size<1)>
+                <br>
+                <p>还没有读者的评论喔,别急,迟早会有的!</p>
+                <br>
+            </#if>
+        </#if>
     </div>
 </aside>

@@ -25,7 +25,7 @@
 <div class="article_div" style="width: 880px;Margin-Right: auto;Margin-Left: auto;"><br>
     <input name="articleId" value="${one_content.id}" hidden="hidden">
     <h1 style="text-align: center">${one_content.title}</h1><br>
-    <h6 style="text-align: center">---------本文章由${one_content.author}发布于${(one_content.announceTime?string("yyyy-MM-dd"))!}--------- </h6><br>
+    <h6 style="text-align: center">---------本文章由${one_content.authorName}发布于${(one_content.announceTime?string("yyyy-MM-dd"))!}--------- </h6><br>
     <div  style="border-left-style:solid;border-left-width:15px;border-left-color:#117799;background-color:#dddddd;position:relative;">
         &nbsp;<i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>&nbsp;<h3 style="position: absolute;top: 50%;transform: translateY(-50%);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${one_content.feeling}</h3>
     </div><br>
@@ -36,7 +36,8 @@
         <div id="comment_show" style="background-color: #F8F8F8">
             <hr>
             <#if have_comment=0>
-            <h4><a>现在还没有评论喔,要不要来一条?</a>:</h4>
+            <h4 style="text-align: center"><#if (user)??><a>现在还没有评论喔,要不要来一条?</a><#else><a>点击网页顶部注册,就可以评论了!</a></#if>
+            </h4>
             <br>
             <#elseif have_comment=1>
             <#list comment_list as cl>
@@ -78,7 +79,7 @@
         var comment = {}
         comment.comment=$('#comment_input').val()
         comment.articleId=$("input[name='articleId']").val();
-        alert(comment.comment+comment.articleId)
+        // alert(comment.comment+comment.articleId)
         if (comment.comment==null)
         {
             alert("空评论可不行喔~")
@@ -95,7 +96,7 @@
             contentType : "application/json; charset=UTF-8",
             data:JSON.stringify(comment),
             success:function(data){
-                        alert(data)
+                        // alert(data)
                         if (data == "评论成功!"){
                             window.location.reload();
                         }

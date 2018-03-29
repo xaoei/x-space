@@ -55,9 +55,9 @@ function loginAjax(){
         success:function(data){
             if (data.code==1000){
                 $('#loginModal').modal('hide')
-                $('#modal_title').text("提示");
-                $('#modal_content').text("登陆成功!欢迎回来!");
-                $('#commonModal').modal('show')
+                $('#lr_modal_title').text("提示");
+                $('#lr_modal_content').text("登陆成功!欢迎回来!");
+                $('#loginAndRegistModal').modal('show')
             }else {
                 shakeModal(data.msg);
             }
@@ -83,9 +83,9 @@ function registerAjax(){
         success:function(data){
             if (data.code==1000){
                 $('#loginModal').modal('hide')
-                $('#modal_title').text("提示");
-                $('#modal_content').text("注册成功!欢迎你的加入!");
-                $('#commonModal').modal('show')
+                $('#lr_modal_title').text("提示");
+                $('#lr_modal_content').text("注册成功!欢迎你的加入!");
+                $('#loginAndRegistModal').modal('show')
             }else {
                 shakeModal(data.msg);
             }

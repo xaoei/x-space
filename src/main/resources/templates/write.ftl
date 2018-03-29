@@ -22,12 +22,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-                        <div id="editor">
-                            <#if (edit_article)??>
-                                ${edit_article}
-                            </#if>
-                        </div>
-                        <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..." id="feeling"></textarea>
+                        <div id="editor"><#if (edit_article)??>${edit_article}</#if></div>
+                        <textarea style="border-style: dotted;width: 100%;height: 100px; outline: #5bc0de Solid 1px;resize: none;margin-top: 20px" placeholder="文章感想..." id="feeling"><#if (edit_feeling)??>${edit_feeling}</#if></textarea>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-cubes" aria-hidden="true"></i> 选择分类:
                                 <div class="btn-group" data-toggle="buttons">
@@ -35,7 +31,7 @@
                                         <#list types as item>
                                             <#if edit_type==item.id>
                                                 <label class="btn btn-primary active">
-                                                    <input style="width: 20%" type="radio" name="category" value=${item.id}>${item.typeName}
+                                                    <input style="width: 20%" type="radio" checked="checked" name="category" value=${item.id}>${item.typeName}
                                                 </label>
                                             <#else>
                                                 <label class="btn btn-primary">
@@ -61,13 +57,14 @@
                                 <button type="button" class="btn btn-info" onclick="addNewTags()"><i class="fa fa-floppy-o" aria-hidden="true"></i>  添加新标签</button>
                             </div>
                         </div>
+
                         <div class="col-sm-12" id="tagsAreaSide">
                             <div class="btn-group-sm" id="tagsArea" data-toggle="buttons">
                                 <#if (tag_ids)??>
                                     <#list tags as item>
-                                        <#if tag_ids?index_of(item.id?c)!=-1>
-                                            <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
-                                                <input type="checkbox" name="tag" mark="checked" value=${item.id}>${item.tagName}
+                                        <#if tag_ids?seq_contains(item.id)>
+                                            <label class="btn btn-sm active" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
+                                                <input type="checkbox" name="tag" mark="checked" checked="checked" value=${item.id}>${item.tagName}
                                             </label>
                                         <#else>
                                             <label class="btn btn-sm" style="background-color: #F6F6F6;color: #666666" onclick="buttonChoose(this)">
@@ -86,7 +83,7 @@
                         </div>
                         <form class="col-sm-12">
                             <div style="margin-top: 20px"><i class="fa fa-rocket" aria-hidden="true"></i> 文章标题:
-                                <input style="width: 60%;border-style: double" type="text" id="title" placeholder="造个大新闻..." >
+                                <input style="width: 60%;border-style: double" type="text" id="title" placeholder="造个大新闻..."<#if (edit_title)??> value="${edit_title}"</#if>>
                                 <button style="width: 10%" type="button" class="btn btn-primary" id="save"><i class="fa fa-floppy-o" aria-hidden="true"></i>  保存</button>
                                 <button style="width: 10%" type="button" class="btn btn-success" id="announce"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> 发布</button>
                             </div>
@@ -117,7 +114,9 @@
             editor.customConfig.debug = true
             editor.customConfig.zIndex = 1000
             editor.create()
-
+            <#if (edit_id)??>
+                editor.article_id = ${edit_id}
+            </#if>
             document.getElementById('save').addEventListener('click', function () {
                 var article = getValue()
                 save(article)
@@ -227,15 +226,17 @@
             function buttonChoose(e)
             {
                 if ("checked"!=e.mark){
-                    e.mark = "checked"
+                    e.mark = "checked";
                     e.style.backgroundColor = "#FEC04E";
                     e.style.color = "#FFFFFF";
                 }else {
-                    e.mark = "unchecked"
+                    e.mark = "unchecked";
                     e.style.backgroundColor = "#F6F6F6"
                     e.style.color = "#666666"
                 }
             }
+            $("input[mark='checked']").parent().css({"background-color":"#FEC04E","color":"#FFFFFF"});
+            $("input[mark='unchecked']").parent().css({"background-color":"#F6F6F6","color":"#666666"});
         </script>
     </body>
 </html>

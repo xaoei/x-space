@@ -12,6 +12,8 @@ import me.leiho.blog.services.PageService;
 import me.leiho.blog.vos.CommentVO;
 import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
+import me.leiho.blog.vos.XArticleVO;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -70,7 +72,15 @@ public class PageServiceImpl implements PageService {
             map.put("have_comment",1);
             HashMap<String,String> commentList = new HashMap<>();
         }
-        map.put("one_content",article);
+        XArticleVO xArticleVO = new XArticleVO();
+        BeanUtils.copyProperties(article,xArticleVO);
+        //获取作者名称
+        XUserAccount xUserAccount = xUserAccountMapper.selectByPrimaryKey(xArticleVO.getAuthor());
+        if (xUserAccount==null|| StringUtils.isBlank(xUserAccount.getUsername())){
+            return this;
+        }
+        xArticleVO.setAuthorName(xUserAccount.getUsername());
+        map.put("one_content",xArticleVO);
         return this;
     }
 }

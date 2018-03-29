@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.service.Tags;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.*;
@@ -81,9 +82,22 @@ public class WritePageServiceImpl implements WritePageService {
     }
     public WritePageServiceImpl setDefaultArticle(Integer articleId){
         XArticle xArticle = xArticleMapper.selectByPrimaryKey(articleId);
-        map.put("edit_article",xArticle.getContent());
+        map.put("edit_article",xArticle.getContent().trim());
+        map.put("edit_feeling",xArticle.getFeeling().trim());
         map.put("edit_type",xArticle.getType());
-        map.put("tag_ids",xArticle.getTags());
+        List<Integer> tagIds = new ArrayList<>();
+        if (xArticle.getTags().indexOf(",")>-1){
+            List<String> tags = Arrays.asList(xArticle.getTags().trim().split(","));
+            for (String tag:tags){
+                tagIds.add(Integer.parseInt(tag.trim()));
+            }
+        }else{
+            tagIds.add(Integer.parseInt(xArticle.getTags()));
+        }
+        map.put("tag_ids",tagIds);
+        map.put("edit_title",xArticle.getTitle().trim());
+        map.put("edit_id",xArticle.getId());
+        map.put("mode","edit");
         return this;
     }
     public TagsResult addNewTags(String tags){

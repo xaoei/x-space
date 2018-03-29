@@ -129,7 +129,12 @@ public class ArticleServiceImpl implements ArticleService {
         if (StringUtils.isNotBlank(articleWriteVO.getTags())){
             xArticle.setTags(articleWriteVO.getTags());
         }
-        xArticle.setAnnounce(announce?1:0);
+        if (xArticle.getAnnounce()==0){
+            xArticle.setAnnounce(announce?1:0);
+            if (xArticle.getAnnounce()==1){
+                xArticle.setAnnounceTime(new Date());
+            }
+        }
         xArticle.setUpdateCount(xArticle.getUpdateCount()+1);
         xArticle.setUpdateTime(new Date());
         xArticleMapper.updateByPrimaryKeySelective(xArticle);

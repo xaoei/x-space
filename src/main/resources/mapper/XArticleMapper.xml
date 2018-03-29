@@ -45,7 +45,7 @@
             SELECT *
             FROM x_article
             WHERE del=0
-            AND announce=0
+            AND announce=1
             <if test="keyWord != null and keyWord != ''" >
               AND title LIKE #{keyWord}
             </if>

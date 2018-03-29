@@ -65,3 +65,4 @@
     </div>
 </footer>
 <#include "./modal.ftl">
+<#include "./login_modal.ftl">
