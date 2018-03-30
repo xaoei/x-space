@@ -4,11 +4,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import me.leiho.blog.entities.XArticle;
+import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
+import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.PageListService;
 import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -29,8 +32,23 @@ public class PageListServiceImpl implements PageListService {
 
     @Autowired
     private XArticleMapper xArticleMapper;
+    @Autowired
+    private XUserAccountMapper xUserAccountMapper;
 
     public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(SimpleArticleInfoReq req){
+        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount==null){
+                return new PageInfo<SimpleArticleInfo>();
+            }
+            if (xUserAccount.getId()!=Integer.parseInt(req.getAuthor())){
+                return new PageInfo<SimpleArticleInfo>();
+            }
+        }
         PageHelper.startPage(req.getPage(), req.getSize());
         switch(req.getType().toLowerCase().trim())
         {

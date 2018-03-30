@@ -23,12 +23,23 @@ public class SimpleArticleInfoReq extends StringEntity{
     private String author;
     @ApiModelProperty(name = "hot",value = "热门")
     private String hot;
+    @ApiModelProperty(name = "isAnnounce",value = "已发布")
+    private Integer isAnnounce;
     @ApiModelProperty(name = "announceTime",value = "发布时间")
     private String announceTime;
     @ApiModelProperty(name = "updateTime",value = "更新时间")
     private String updateTime;
     @ApiModelProperty(name = "type",value = "排序方式")
     private String type;
+
+    public Integer getIsAnnounce() {
+        return isAnnounce;
+    }
+
+    public SimpleArticleInfoReq setIsAnnounce(Integer isAnnounce) {
+        this.isAnnounce = isAnnounce;
+        return this;
+    }
 
     public SimpleArticleInfoReq setPage(Integer page) {
         this.page = page;

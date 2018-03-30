@@ -1,6 +1,7 @@
 package me.leiho.blog.services;
 
 import me.leiho.blog.services.impls.ArticlePageServiceImpl;
+import me.leiho.blog.vos.SimpleArticleInfoReq;
 
 import java.util.Map;
 
@@ -11,6 +12,6 @@ import java.util.Map;
  * @Contact: yesxiaolei@outlook.com
  */
 public interface ArticlePageService {
-    ArticlePageServiceImpl setSimpleArticleInfo(String type, Integer no);
+    ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req);
     ArticlePageServiceImpl getValueMap(Map<String, Object> map);
 }

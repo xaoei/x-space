@@ -37,9 +37,9 @@
                                 <#list simple_article_info as sai>
                                     <tr>
                                     <#if sai.hot == 1>
-                                    <td><a href="/page/article/${sai.id}" style="color: red">${sai.title}</a></td>
+                                    <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>" style="color: red">${sai.title}</a></td>
                                     <#else >
-                                    <td><a href="/page/article/${sai.id}">${sai.title}</a></td>
+                                    <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>">${sai.title}</a></td>
                                     </#if>
                                     <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
                                     <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>

@@ -38,8 +38,7 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         this.map = map;
         return this;
     }
-    public ArticlePageServiceImpl setSimpleArticleInfo(String type,Integer no){
-        SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25);
+    public ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req){
         PageInfo<SimpleArticleInfo> pageInfo = pageListService.getSimpleArticleInfo(req);
         map.put("page_index",pageInfo.getPageNum());
         map.put("page_total",pageInfo.getPages());

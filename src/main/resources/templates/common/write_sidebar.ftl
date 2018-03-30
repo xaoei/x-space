@@ -16,7 +16,7 @@
             </ul>
             <#if unFinishArticles??>
                 <#if (unFinishArticles?size>4)>
-                    <button type="button" class="btn btn-success">查看更多</button>
+                    <button type="button" class="btn btn-success" onclick="window.location.href='/update/announce_desc/${user.id}/0/1'">查看更多</button>
                 <#elseif (unFinishArticles?size<1)>
                     <br>
                     <p>还没有未完成的作品喔,请多多创作!</p>
@@ -40,7 +40,7 @@
             </ul>
             <#if finishedArticles??>
                 <#if (finishedArticles?size>4)>
-                    <button type="button" class="btn btn-success">查看更多</button>
+                    <button type="button" class="btn btn-success" onclick="window.location.href='/update/announce_desc/${user.id}/1/1'">查看更多</button>
                 <#elseif (finishedArticles?size<1)>
                     <br>
                     <p>还没有已完成的作品喔,请多多创作!</p>
