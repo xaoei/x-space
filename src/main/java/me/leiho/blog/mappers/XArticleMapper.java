@@ -22,11 +22,15 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
             @Param("author") String author,
             @Param("hot") String hot,
             @Param("announceTime") String announceTime,
-            @Param("updateTime") String updateTime
+            @Param("updateTime") String updateTime,
+            @Param("isAnnounce") Integer isAnnounce
     );
     List<SimpleArticleInfo> getUnFinishArticles(
             @Param("author") Integer author,
             @Param("announce") Integer announce,
             @Param("size") Integer size
     );
+    List<SimpleArticleInfo> getArticlesByType(@Param("size")Integer size,@Param("type")Integer type);
+
+    List<XArticle> getHotArticles(@Param("size")Integer size);
 }

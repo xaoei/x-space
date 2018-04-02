@@ -2,14 +2,18 @@ package me.leiho.blog.services.impls;
 
 import junit.framework.Test;
 import me.leiho.blog.entities.XArticle;
+import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
 import me.leiho.blog.mappers.XArticleTagMapper;
 import me.leiho.blog.mappers.XArticleTypeMapper;
+import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.ArticleService;
 import me.leiho.blog.utils.JsonUtil;
 import me.leiho.blog.vos.ArticleWriteVO;
+import me.leiho.blog.vos.PicUpResult;
 import me.leiho.blog.vos.SaveResult;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +40,8 @@ public class ArticleServiceImpl implements ArticleService {
     private XArticleTypeMapper xArticleTypeMapper;
     @Autowired
     private XArticleTagMapper xArticleTagMapper;
+    @Autowired
+    private XUserAccountMapper xUserAccountMapper;
     public SaveResult saveOrAnnounceArticle(String article, Boolean announce){
         //json反序列化
         ArticleWriteVO articleWriteVO = JsonUtil.json2pojo(article, ArticleWriteVO.class);
@@ -77,7 +83,26 @@ public class ArticleServiceImpl implements ArticleService {
             if (xArticleMapper.selectByPrimaryKey(articleWriteVO.getId())==null){
                 return new SaveResult(FAILED_ARTICLE_ID_NOT_EXIST);
             }
-            //todo 判断是否同一作者
+            if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+                XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+                XUserAccount param = new XUserAccount();
+                param.setId(userInfo.getId());
+                param.setDel(0);
+                XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+                if (xUserAccount == null||xUserAccount.getId()==null) {
+                    logger.error("账号不存在");
+                    return new SaveResult(FAILED_USER_SAVE_ERROR);
+                }
+                XArticle xArticle = xArticleMapper.selectByPrimaryKey(articleWriteVO.getId());
+                if (xArticle==null||xArticle.getAuthor()==null){
+                    logger.error("文章信息异常");
+                    return new SaveResult(FAILED_USER_SAVE_ERROR);
+                }
+                if (xUserAccount.getId()!=xArticle.getAuthor()){
+                    logger.error("账号不存在");
+                    return new SaveResult(FAILED_USER_SAVE_ERROR);
+                }
+            }
         }
         //写入数据库
         if (articleWriteVO.getId()==null){
@@ -95,13 +120,27 @@ public class ArticleServiceImpl implements ArticleService {
         if (StringUtils.isNotBlank(articleWriteVO.getFeeling())){
             xArticle.setFeeling(articleWriteVO.getFeeling());
         }
-        xArticle.setAuthor(1);//todo 获取作者id
+        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount == null||xUserAccount.getId()==null) {
+                logger.error("账号不存在");
+                return new SaveResult(FAILED_USER_SAVE_ERROR);
+            }
+            xArticle.setAuthor(xUserAccount.getId());
+        }
         xArticle.setType(articleWriteVO.getType());
         if (StringUtils.isNotBlank(articleWriteVO.getTags())){
             xArticle.setTags(articleWriteVO.getTags());
         }
         xArticle.setUpdateCount(1);
         xArticle.setAnnounce(announce?1:0);
+        if (xArticle.getAnnounce()==1){
+            xArticle.setAnnounceTime(new Date());
+        }
         xArticle.setCreateTime(new Date());
         xArticleMapper.insertSelective(xArticle);
         //通过相关条件将id返回

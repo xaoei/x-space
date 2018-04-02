@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         if (account.length()>32||account.length()<6){
             return new BaseResult(FAILED_USER_REGISTER_ACCOUNT_LENGTH);
         }
-        if (username.length()>32||username.length()<6){
+        if (username.length()>32||username.length()<2){
             return new BaseResult(FAILED_USER_REGISTER_USERNAME_LENGTH);
         }
         if (password.length()>32||password.length()<6){

@@ -53,19 +53,20 @@
         <div class="tm-content-box tm-margin-t-small">
         <#if myComments??>
             <#list myComments as mcs>
-            <a href="/page/article/${mcs.articleId}" class="tm-text-link" style="text-decoration:none"><h4 class="tm-margin-b-20 tm-thin-font">
-                <#if mcs.title?length gt 10>
-                    ${mcs.title?substring(0,10)}...
-                <#else>
-                    ${mcs.title}
-                </#if>
-            </h4></a><p class="tm-margin-b-30">
+            <h4 class="tm-margin-b-30">
                 <#if mcs.comment?length gt 20>
                     ${mcs.comment?substring(0,20)}...
                 <#else>
                     ${mcs.comment}
                 </#if>
-                </p>
+            </h4>
+            <a href="/page/article/${mcs.articleId}" class="tm-text-link" style="text-decoration:none">
+                <#if mcs.title?length gt 10>
+                    ${mcs.title?substring(0,10)}...
+                <#else>
+                    ${mcs.title}
+                </#if>
+            </a>
             </#list>
         </#if>
         </div>

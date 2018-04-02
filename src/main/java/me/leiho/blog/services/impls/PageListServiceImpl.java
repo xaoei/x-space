@@ -45,8 +45,10 @@ public class PageListServiceImpl implements PageListService {
             if (xUserAccount==null){
                 return new PageInfo<SimpleArticleInfo>();
             }
-            if (xUserAccount.getId()!=Integer.parseInt(req.getAuthor())){
-                return new PageInfo<SimpleArticleInfo>();
+            if (StringUtils.isNotBlank(req.getAuthor())){
+                if (xUserAccount.getId()!=Integer.parseInt(req.getAuthor())){
+                    return new PageInfo<SimpleArticleInfo>();
+                }
             }
         }
         PageHelper.startPage(req.getPage(), req.getSize());
@@ -74,7 +76,8 @@ public class PageListServiceImpl implements PageListService {
                 req.getAuthor(),
                 req.getHot(),
                 StringUtils.isNotBlank(req.getAnnounceTime())?"%"+req.getAnnounceTime()+"%":req.getAnnounceTime(),
-                StringUtils.isNotBlank(req.getUpdateTime())?"%"+req.getUpdateTime()+"%":req.getUpdateTime()
+                StringUtils.isNotBlank(req.getUpdateTime())?"%"+req.getUpdateTime()+"%":req.getUpdateTime(),
+                req.getIsAnnounce()
         );
         PageInfo<SimpleArticleInfo> pageInfo = new PageInfo<>(simpleArticleInfos);
         if (simpleArticleInfos.isEmpty()){

@@ -75,6 +75,7 @@ public class IndexPageController {
         shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-1.jpg").setTitle("第一篇热门文章").setArticle("酒店位于北京首都国际机场与北京新国展中心位置。").setLink("http://www.leiho.me"));
         shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-2.jpg").setTitle("第二篇热门文章").setArticle("北京嘉利华连锁宾馆刘家窑店是一家全新理念的经济宾馆连锁企业。").setLink("http://www.leiho.me"));
         shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-3.jpg").setTitle("第三篇热门文章").setArticle("京石景山玖玖源速8酒店座落于空气清新，环境宜人的北京石景山区CRD的繁盛地段。").setLink("http://www.leiho.me"));
+        shortHotArticles.add(IndexShortArticle.build().setImg("img/tm-img-240x120-3.jpg").setTitle("第三篇热门文章").setArticle("京石景山玖玖源速8酒店座落于空气清新，环境宜人的北京石景山区CRD的繁盛地段。").setLink("http://www.leiho.me"));
         map.put("short_hot_article",shortHotArticles);
 
 

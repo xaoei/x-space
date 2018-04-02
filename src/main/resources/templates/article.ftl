@@ -22,40 +22,33 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>标题</th>
-                                <th>作者</th>
-                                <th>分类</th>
-                                <th>发布时间</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <#if (simple_article_info)??>
-                                <#list simple_article_info as sai>
+                        <#if (simple_article_info)??>
+                                <table class="table table-striped">
+                                    <thead>
                                     <tr>
-                                    <#if sai.hot == 1>
-                                    <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>" style="color: red">${sai.title}</a></td>
-                                    <#else >
-                                    <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>">${sai.title}</a></td>
-                                    </#if>
-                                    <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
-                                    <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>
-                                    <td><a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</td>
+                                        <th>标题</th>
+                                        <th>作者</th>
+                                        <th>分类</th>
+                                        <th>发布时间</th>
                                     </tr>
-                                </#list>
-                            <#else>
-                                <br>
-                                    <h1 >暂无内容</h1>
-                                <br>
-                            </#if>
-                            </tbody>
-                        </table>
-
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9" style="text-align: center">
-                            <ul class="pagination">
+                                    </thead>
+                                    <tbody>
+                                    <#list simple_article_info as sai>
+                                        <tr>
+                                        <#if sai.hot == 1>
+                                        <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>" style="color: red">${sai.title}</a></td>
+                                        <#else >
+                                        <td><a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>">${sai.title}</a></td>
+                                        </#if>
+                                        <td><a href="/page/author/${sai.authorId}">${sai.authorName}</td>
+                                        <td><a href="/page/type/${sai.typeId}">${sai.typeName}</td>
+                                        <td><a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</td>
+                                        </tr>
+                                    </#list>
+                                    </tbody>
+                                </table>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9" style="text-align: center">
+                                    <ul class="pagination">
                                 <#if page_index == 1 || page_total<=0>
                                         <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
                                 <#else >
@@ -78,8 +71,23 @@
                                 <#else >
                                     <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_next}">&raquo;</a></li>
                                 </#if>
-                            </ul><br>
-                        </div>
+                                    </ul><br>
+                                </div>
+                        <#else>
+                            <div style="text-align: center">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                    <h1 >暂无内容</h1>
+                                <br>
+                            </div>
+                        </#if>
                     </div>
                     <#include "./common/sidebar.ftl">
                 </div>

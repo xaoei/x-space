@@ -45,7 +45,7 @@
             SELECT *
             FROM x_article
             WHERE del=0
-            <if test="keyWord != null and keyWord != ''" >
+            <if test="isAnnounce != null and isAnnounce != ''" >
               AND announce=#{isAnnounce}
             </if>
             <if test="keyWord != null and keyWord != ''" >
@@ -68,6 +68,12 @@
     WHERE info.type = xat.id
     </select>
     <select id="getUnFinishArticles" parameterType="Integer" resultMap="SimpleArticleInfo">
-      SELECT * FROM x_article WHERE author = #{author} AND announce=#{announce} ORDER BY create_time LIMIT 0,#{size}
+      SELECT * FROM x_article WHERE author = #{author} AND announce=#{announce} ORDER BY create_time DESC LIMIT 0,#{size}
+    </select>
+    <select id="getArticlesByType" parameterType="Integer" resultMap="SimpleArticleInfo">
+      SELECT * FROM x_article WHERE announce=1 AND del=0 AND type=#{type} ORDER BY announce_time DESC LIMIT 0,#{size}
+    </select>
+    <select id="getHotArticles" parameterType="Integer" resultMap="BaseResultMap">
+      SELECT * FROM x_article WHERE announce=1 AND del=0 AND hot=1 ORDER BY announce_time DESC LIMIT 0,#{size}
     </select>
 </mapper>

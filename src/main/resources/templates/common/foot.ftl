@@ -21,9 +21,14 @@
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">友情链接</h3>
                     <nav>
                         <ul class="nav">
-                            <#list friend_links as fl>
-                                <li><a href=${fl.url} class="tm-footer-link" style="text-decoration: none">${fl.desc}</a></li>
-                            </#list>
+                            <#if (friend_links)??>
+                                <#list friend_links as fl>
+                                    <li><a href=${fl.url} class="tm-footer-link" style="text-decoration: none">${fl.desc}</a></li>
+                                </#list>
+                            <#else>
+                                <h1>暂无友链!</h1>
+                            </#if>
+
                         </ul>
                     </nav>
 
@@ -38,28 +43,36 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box">
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">热门评论</h3>
-                    <#list comment_links as cl>
+                    <#if (comment_links)??>
+                        <#list comment_links as cl>
                         <p class="tm-margin-b-30">${cl.desc}<br/><a href=/page/article/${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
-                    </#list>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
+                        </#list>
+                        <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
+                    <#else>
+                        <h1>暂无评论!</h1>
+                    </#if>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box">
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">博客相册</h3>
-                    <div class="tm-margin-b-30">
+                    <#if (picture_links)??>
+                        <div class="tm-margin-b-30">
                         <#list picture_links as pl>
                             <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail" ></a>
                         </#list>
-                    </div>
-                    <p class="tm-margin-b-20">${picture_area_context}</p>
-                    <a href="#" class="tm-btn tm-btn-gray text-uppercase">浏览更多</a>
+                        </div>
+                        <p class="tm-margin-b-20">${picture_area_context}</p>
+                        <a href="#" class="tm-btn tm-btn-gray text-uppercase">浏览更多</a>
+                    <#else>
+                        <h1>暂无图片!</h1>
+                    </#if>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 tm-copyright-col">
-                <p class="tm-copyright-text">${copyright_text}<a href=${copyright_link} target="_blank" title=${copyright_title}>${copyright_title}</a> - ${contact_text} <a href=${contact_link} title=${contact_title} target="_blank">${contact_title}</a></p>
+                <p class="tm-copyright-text">${copyright_text}<a style="color: #00bbff" href=${copyright_link} target="_blank" title=${copyright_title}>${copyright_title}</a> - ${contact_text} <a style="color: #00bbff" href=${contact_link} title=${contact_title} target="_blank">${contact_title}</a></p>
             </div>
         </div>
     </div>

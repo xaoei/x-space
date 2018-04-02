@@ -13,4 +13,5 @@ public interface XCommentMapper extends CustomerMapper<XComment> {
             @Param("author") Integer author,
             @Param("size") Integer size
     );
+    List<XComment> getNewComments(@Param("size")Integer size);
 }

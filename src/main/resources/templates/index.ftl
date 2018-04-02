@@ -67,9 +67,13 @@
                                 <h3 class="tm-gold-text tm-title">简单随笔</h3>
                                 <nav>
                                     <ul class="nav">
+                                        <#if (essay_links)??>
                                         <#list essay_links as el>
                                             <li><a href=${el.url} class="tm-text-link" style="text-decoration:none">${el.desc}</a></li>
                                         </#list>
+                                        <#else>
+                                            <h1>暂时没有随笔!</h1>
+                                        </#if>
                                     </ul>
                                 </nav>
                             </div> <!-- col -->
@@ -78,9 +82,13 @@
                                 <h3 class="tm-gold-text tm-title">精品转载</h3>
                                 <nav>
                                     <ul class="nav">
-                                        <#list repring_links as rl>
+                                        <#if (repring_links)??>
+                                            <#list repring_links as rl>
                                             <li><a href=${rl.url} class="tm-text-link" style="text-decoration:none">${rl.desc}</a></li>
-                                        </#list>
+                                            </#list>
+                                        <#else>
+                                            <h1>暂时没有转载!</h1>
+                                        </#if>
                                     </ul>
                                 </nav>
                             </div> <!-- col -->
@@ -88,20 +96,19 @@
 
                         <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <h3 class="tm-gold-text tm-title tm-margin-b-30">热门文章</h3>
-                                <#list short_hot_article as sha>
-                                    <div class="media tm-related-post">
-                                        <div class="media-left media-middle">
-                                            <a href=${sha.link}>
-                                                <img class="media-object" src=${sha.img} alt="Generic placeholder image">
-                                            </a>
+                                <#--<h3 class="tm-gold-text tm-title tm-margin-b-30">热门文章</h3>-->
+                                <#if (short_hot_article)??>
+                                    <#list short_hot_article as sha>
+                                        <div class="media tm-related-post">
+                                            <div class="media-body">
+                                                <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15" style="text-decoration:none">${sha.title}</h4></a>
+                                                <p class="tm-small-font tm-media-description">${sha.article}</p>
+                                            </div>
                                         </div>
-                                        <div class="media-body">
-                                            <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15" style="text-decoration:none">${sha.title}</h4></a>
-                                            <p class="tm-small-font tm-media-description">${sha.article}</p>
-                                        </div>
-                                    </div>
-                                </#list>
+                                    </#list>
+                                <#else>
+                                    <h1>暂无热门文章!</h1>
+                                </#if>
                             </div>
                         </div>
                     </div>
