@@ -46,7 +46,7 @@
             <#if finishedArticles??>
                 <#if (finishedArticles?size>4)>
                     <button type="button" class="btn btn-success"
-                            onclick="window.location.href='/update/announce_desc/${user.id}/1/1'">查看更多
+                            onclick="window.location.href='/update/announce_desc/${user.id}/0/1'">查看更多
                     </button>
                 <#elseif (finishedArticles?size<1)>
                     <br>

@@ -13,5 +13,6 @@ import java.util.Map;
 public interface MediaPageService {
     MediaPageServiceImpl getValueMap(Map<String, Object> map);
 
-    MediaPageServiceImpl setPhotoWall();
+//    MediaPageServiceImpl setPhotoWall();
+    String deleteImageById(Integer id);
 }

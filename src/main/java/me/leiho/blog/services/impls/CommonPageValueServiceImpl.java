@@ -38,6 +38,8 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
     private XCommentMapper xCommentMapper;
     @Autowired
     private XBlogImageMapper xBlogImageMapper;
+    @Autowired
+    private XUserImageMapper xUserImageMapper;
 
     private Map<String, Object> map;
 
@@ -83,7 +85,7 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             if (
                     (
                             headItemDTO.getSortId() != 4 &&
-                                    headItemDTO.getSortId() != 3 &&
+//                                    headItemDTO.getSortId() != 3 &&
                                     headItemDTO.getSortId() != 6
                     ) || SecurityUtils.getSubject().isAuthenticated()) {
 //                List<String> roles = new ArrayList<>();
@@ -91,11 +93,11 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
                         (
                         (
                                 headItemDTO.getSortId() != 4 &&
-                                        headItemDTO.getSortId() != 3 &&
+//                                        headItemDTO.getSortId() != 3 &&
                                         headItemDTO.getSortId() != 6
                         ) ||
                                 (headItemDTO.getSortId() == 4 && SecurityUtils.getSubject().isPermitted("/write")) ||
-                                (headItemDTO.getSortId() == 3 && SecurityUtils.getSubject().isPermitted("/media")) ||
+//                                (headItemDTO.getSortId() == 3 && SecurityUtils.getSubject().isPermitted("/media")) ||
                                 (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage"))
                         ) {
                     if (headItemDTO.getSortId() == selective) {
@@ -133,18 +135,17 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             map.put("comment_links", commentLinks);
         }
         List<PictureLink> pictureLinks = new ArrayList<>();
-        Example pictureExample = new Example(XBlogImage.class);
-        pictureExample.createCriteria().andEqualTo("hot", 1).andEqualTo("del", 0);
-        List<XBlogImage> xHotBlogImages = xBlogImageMapper.selectByExample(pictureExample);
-        if (xHotBlogImages.size() > 0) {
-            for (int i = 0; i < (xHotBlogImages.size() > 6 ? 6 : xHotBlogImages.size()); i++) {
+        List<XUserImage> xUserImages = xUserImageMapper.selectSomrImgs(6);
+        if (xUserImages.size() > 0) {
+            for (int i = 0; i < (xUserImages.size() > 6 ? 6 : xUserImages.size()); i++) {
                 String url = "";
-                if (xHotBlogImages.get(i).getSync() == 1) {
-                    url = xHotBlogImages.get(i).getPath();
-                } else {
-                    url = xHotBlogImages.get(i).getSrc();
-                }
-                pictureLinks.add(PictureLink.build().setUrl(url).setLink(xHotBlogImages.get(i).getLink()));
+//                if (xUserImages.get(i).getSync() == 1) {
+//                    url = xUserImages.get(i).getPath();
+//                } else {
+//                    url = xUserImages.get(i).getSrc();
+//                }
+                url = xUserImages.get(i).getSmallSrc();
+                pictureLinks.add(PictureLink.build().setUrl(url).setLink(xUserImages.get(i).getTotalSrc()));
             }
             map.put("picture_links", pictureLinks);
         }

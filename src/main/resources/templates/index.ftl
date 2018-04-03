@@ -22,7 +22,7 @@
 <#include "./common/head.ftl">
 
 <div class="tm-home-img-container">
-    <img src=${logo_url} alt=${logo} class="hidden-lg-up img-fluid" title=${logo},>
+    <img src=${big_img_url} alt=${big_img} class="hidden-lg-up img-fluid" title=${big_img},>
 </div>
 
 <section class="tm-section">
@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="row">
-
-            <#list short_new_article as sna>
+            <#if (short_new_article)??>
+                <#list short_new_article as sna>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                     <div class="tm-content-box">
                         <img src=${sna.img} alt="Image" class="tm-margin-b-20 img-fluid">
@@ -44,19 +44,26 @@
                         <a href=${sna.link} class="tm-btn text-uppercase" style="text-decoration:none">详情</a>
                     </div>
                 </div>
-            </#list>
+                </#list>
+            <#else>
+                <h1>网站建设中,管理员正在添加相关文章,先收藏网址,稍后再来吧!</h1>
+            </#if>
 
         </div> <!-- row -->
 
         <div class="row tm-margin-t-big">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                 <div class="tm-2-col-left">
+                    <#if (main_article_title)??>
+                        <h3 class="tm-gold-text tm-title">${main_article_title}</h3>
+                        <p class="tm-margin-b-30">${main_article_feeling}</p>
+                        <img src=${main_article_img} alt="Image" class="tm-margin-b-40 img-fluid">
+                        ${main_article_context}
+                        <a href=${main_article_url} class="tm-btn text-uppercase" style="text-decoration:none">阅读全部</a>
+                    <#else>
+                        <h1>网站建设中,管理员正在添加相关文章,先收藏网址,稍后再来吧!</h1>
+                    </#if>
 
-                    <h3 class="tm-gold-text tm-title">${main_article_title}</h3>
-                    <p class="tm-margin-b-30">${main_article_feeling}</p>
-                    <img src=${main_article_img} alt="Image" class="tm-margin-b-40 img-fluid">
-                ${main_article_context}
-                    <a href=${main_article_url} class="tm-btn text-uppercase" style="text-decoration:none">阅读全部</a>
 
                 </div>
             </div>

@@ -17,4 +17,5 @@ public interface ArticleService {
      * @return
      */
     BaseResult saveOrAnnounceArticle(String article, Boolean announce);
+    String deleteArticleById(Integer id);
 }

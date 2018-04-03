@@ -1,5 +1,7 @@
 package me.leiho.blog.services;
 
+import me.leiho.blog.entities.XComment;
+
 /**
  * @Author: 萧大侠
  * @Description:
@@ -7,4 +9,6 @@ package me.leiho.blog.services;
  * @Contact: yesxiaolei@outlook.com
  */
 public interface CommentService {
+    String deleteCommentById(Integer id);
+    String updateCommentById(XComment comment);
 }

@@ -36,4 +36,7 @@
     <select id="getNewComments" parameterType="Integer" resultMap="BaseResultMap">
     SELECT  * FROM  x_comment WHERE del=0  ORDER BY create_time DESC LIMIT 0,#{size}
   </select>
+    <update id="deleteCommentById" parameterType="Integer">
+        UPDATE x_comment SET del=1 WHERE id=#{id}
+    </update>
 </mapper>

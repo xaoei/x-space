@@ -24,4 +24,10 @@
     <select id="selectAllImg" resultMap="BaseResultMap">
     SELECT * FROM x_user_image WHERE del = 0 ORDER BY create_time DESC
   </select>
+    <select id="selectSomrImgs" parameterType="Integer" resultMap="BaseResultMap">
+    SELECT * FROM  x_user_image WHERE del=0 ORDER BY create_time DESC LIMIT 0,#{size}
+    </select>
+    <update id="deleteImageById" parameterType="Integer">
+        UPDATE x_user_image SET del=1 WHERE id=#{id}
+    </update>
 </mapper>

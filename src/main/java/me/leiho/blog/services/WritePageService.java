@@ -20,27 +20,27 @@ public interface WritePageService {
      */
     WritePageServiceImpl getValueMap(Map<String, Object> map);
 
-    /**
-     * 设置文章的可选类型
-     *
-     * @return
-     */
-    WritePageServiceImpl setTypes();
-
-    /**
-     * 设置文章的可选标签
-     *
-     * @return
-     */
-    WritePageServiceImpl setTags();
-
-    /**
-     * 通过文章id读取文章
-     *
-     * @param articleId
-     * @return
-     */
-    WritePageServiceImpl setDefaultArticle(Integer articleId);
+//    /**
+//     * 设置文章的可选类型
+//     *
+//     * @return
+//     */
+//    WritePageServiceImpl setTypes();
+//
+//    /**
+//     * 设置文章的可选标签
+//     *
+//     * @return
+//     */
+//    WritePageServiceImpl setTags();
+//
+//    /**
+//     * 通过文章id读取文章
+//     *
+//     * @param articleId
+//     * @return
+//     */
+//    WritePageServiceImpl setDefaultArticle(Integer articleId);
 
     /**
      * 新增标签,并返回所有标签

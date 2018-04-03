@@ -1,6 +1,7 @@
 package me.leiho.blog.services;
 
 import me.leiho.blog.entities.BaseResult;
+import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.vos.LoginVO;
 import me.leiho.blog.vos.RegisterVO;
 
@@ -16,4 +17,7 @@ public interface UserService {
     BaseResult login(LoginVO loginVO);
 
     BaseResult logout();
+
+    String updateUserInfo(XUserAccount user);
+    String deleteUserById(Integer id);
 }

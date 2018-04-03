@@ -36,4 +36,6 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
     List<SimpleArticleInfo> getArticlesByType(@Param("size") Integer size, @Param("type") Integer type);
 
     List<XArticle> getHotArticles(@Param("size") Integer size);
+
+    void deleteArticleById(@Param("id")Integer id);
 }

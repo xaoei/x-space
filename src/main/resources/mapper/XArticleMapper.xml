@@ -77,4 +77,7 @@
     <select id="getHotArticles" parameterType="Integer" resultMap="BaseResultMap">
       SELECT * FROM x_article WHERE announce=1 AND del=0 AND hot=1 ORDER BY announce_time DESC LIMIT 0,#{size}
     </select>
+    <update id="deleteArticleById" parameterType="Integer">
+        UPDATE x_article SET del=1 WHERE id=#{id}
+    </update>
 </mapper>

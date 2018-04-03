@@ -58,7 +58,7 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         return this;
     }
 
-    public ArticlePageServiceImpl setSideBar() {
+    public ArticlePageServiceImpl setSideBar(Integer articleMaxSize) {
         List<SimpleArticleInfo> reprintArticleInfos = xArticleMapper.getArticlesByType(5, 4);
         List<SimpleLink> reprintLinks = new ArrayList<>();
         if (reprintArticleInfos.size() > 0) {
@@ -79,7 +79,7 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         List<IndexShortArticle> shortHotArticles = new ArrayList<>();
         if (hotArticles.size() > 0) {
             for (int i = 0; i < (hotArticles.size() > 4 ? 4 : hotArticles.size()); i++) {
-                shortHotArticles.add(IndexShortArticle.build().setTitle(cutString(hotArticles.get(i).getTitle(), 13)).setArticle(cutString(cleanHtml(hotArticles.get(i).getContent()), 30)).setLink("/page/article/" + hotArticles.get(i).getId()));
+                shortHotArticles.add(IndexShortArticle.build().setTitle(cutString(hotArticles.get(i).getTitle(), 13)).setArticle(cutString(cleanHtml(hotArticles.get(i).getContent()), articleMaxSize)).setLink("/page/article/" + hotArticles.get(i).getId()));
             }
             map.put("short_hot_article", shortHotArticles);
         }
@@ -96,7 +96,7 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         return src.trim();
     }
 
-    public String cleanHtml(String src) {
+    private String cleanHtml(String src) {
         String txtcontent = src.replaceAll("</?[^>]+>", ""); //剔出<html>的标签
         txtcontent = txtcontent.replaceAll("<a>\\s*|\t|\r|\n</a>", "");//去除字符串中的空格,回车,换行符,制表符
         return txtcontent;

@@ -45,13 +45,13 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box">
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">最新评论</h3>
+                    <hr class="tm-margin-b-30">
                     <#if (comment_links)??>
                         <#list comment_links as cl>
                         <p class="tm-margin-b-30">${cl.desc}<br/><a
                                 href=/page/article/${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a></p>
                             <hr class="tm-margin-b-30">
                         </#list>
-                        <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
                     <#else>
                         <h1>暂无评论!</h1>
                     </#if>
@@ -59,15 +59,14 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">博客相册</h3>
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">最新图片</h3>
                     <#if (picture_links)??>
                         <div class="tm-margin-b-30">
                         <#list picture_links as pl>
-                            <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail"></a>
+                            <a href=${pl.link}><img style="max-width: 100px;height: 100px;" src=${pl.url} alt="Image" class="tm-footer-thumbnail"></a>
                         </#list>
                         </div>
                         <p class="tm-margin-b-20">${picture_area_context}</p>
-                        <a href="#" class="tm-btn tm-btn-gray text-uppercase">浏览更多</a>
                     <#else>
                         <h1>暂无图片!</h1>
                     </#if>

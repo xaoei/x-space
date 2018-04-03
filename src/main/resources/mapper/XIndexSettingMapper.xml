@@ -10,9 +10,13 @@
         <result column="article_id" property="articleId" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="head_image" property="headImage" jdbcType="VARCHAR"/>
+        <result column="feeling" property="feeling" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="del" property="del" jdbcType="INTEGER"/>
     </resultMap>
+    <select id="getAllSettings" resultMap="BaseResultMap">
+        SELECT * FROM x_index_setting WHERE del=0 ORDER BY id
+    </select>
 </mapper>

@@ -19,38 +19,38 @@ public interface CommonPageValueService {
      */
     CommonPageValueServiceImpl getValueMap(Map<String, Object> map);
 
-    /**
-     * 设置用户信息
-     *
-     * @return
-     */
-    CommonPageValueServiceImpl setUserInfo();
-
-    /**
-     * 设置网站信息
-     *
-     * @return
-     */
-    CommonPageValueServiceImpl setCommonPageSiteInfo();
-
-    /**
-     * 设置网站头部信息
-     *
-     * @return
-     */
-    CommonPageValueServiceImpl setCommonPageHead(int selective);
-
-    /**
-     * 设置网站底部信息
-     *
-     * @return
-     */
-    CommonPageValueServiceImpl setCommonPageFoot();
-
-    /**
-     * 设置网站页面名称
-     *
-     * @return
-     */
-    CommonPageValueServiceImpl setPageName(String pageName);
+//    /**
+//     * 设置用户信息
+//     *
+//     * @return
+//     */
+//    CommonPageValueServiceImpl setUserInfo();
+//
+//    /**
+//     * 设置网站信息
+//     *
+//     * @return
+//     */
+//    CommonPageValueServiceImpl setCommonPageSiteInfo();
+//
+//    /**
+//     * 设置网站头部信息
+//     *
+//     * @return
+//     */
+//    CommonPageValueServiceImpl setCommonPageHead(int selective);
+//
+//    /**
+//     * 设置网站底部信息
+//     *
+//     * @return
+//     */
+//    CommonPageValueServiceImpl setCommonPageFoot();
+//
+//    /**
+//     * 设置网站页面名称
+//     *
+//     * @return
+//     */
+//    CommonPageValueServiceImpl setPageName(String pageName);
 }

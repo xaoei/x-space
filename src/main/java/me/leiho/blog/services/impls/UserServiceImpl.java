@@ -2,6 +2,7 @@ package me.leiho.blog.services.impls;
 
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
+import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.UserService;
 import me.leiho.blog.utils.PBKDF2;
@@ -127,5 +128,64 @@ public class UserServiceImpl implements UserService {
     public BaseResult logout() {
         //todo 退出账号
         return new BaseResult(SUCCESS);
+    }
+
+    public String deleteUserById(Integer id){
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount == null) {
+                return "用户信息异常";
+            }
+            XUserAccount result= xUserAccountMapper.selectByPrimaryKey(id);
+            if (result==null){
+                return "没有该用户的信息";
+            }
+            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                xUserAccountMapper.deleteUserById(id);
+                return "删除成功";
+            }else {
+                return "没有权限删除";
+            }
+        }
+        return "没有权限删除";
+    }
+
+    public String updateUserInfo(XUserAccount user){
+        if (user==null||user.getId()==null){
+            return "参数异常";
+        }
+        Integer id = user.getId();
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount == null) {
+                return "用户信息异常";
+            }
+            XUserAccount result= xUserAccountMapper.selectByPrimaryKey(id);
+            if (result==null){
+                return "没有该用户的信息";
+            }
+            if (xUserAccount.getId()==id||SecurityUtils.getSubject().hasRole("admin")){
+                //用户和普通管理员不能修改用户角色
+                user.setRole(result.getRole());
+                user.setUpdateTime(new Date());
+                xUserAccountMapper.updateByPrimaryKeySelective(user);
+                return "修改成功";
+            }else if (SecurityUtils.getSubject().hasRole("superadmin")){
+                user.setUpdateTime(new Date());
+                xUserAccountMapper.updateByPrimaryKeySelective(user);
+                return "修改成功";
+            }else {
+                return "没有权限修改";
+            }
+        }
+        return "没有权限修改";
     }
 }

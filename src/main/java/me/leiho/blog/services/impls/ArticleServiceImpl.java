@@ -1,5 +1,6 @@
 package me.leiho.blog.services.impls;
 
+import com.github.pagehelper.PageInfo;
 import junit.framework.Test;
 import me.leiho.blog.entities.XArticle;
 import me.leiho.blog.entities.XUserAccount;
@@ -12,6 +13,7 @@ import me.leiho.blog.utils.JsonUtil;
 import me.leiho.blog.vos.ArticleWriteVO;
 import me.leiho.blog.vos.PicUpResult;
 import me.leiho.blog.vos.SaveResult;
+import me.leiho.blog.vos.SimpleArticleInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -20,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -207,5 +211,31 @@ public class ArticleServiceImpl implements ArticleService {
             }
         }
         return false;
+    }
+    public String deleteArticleById(Integer id){
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
+            if (xUserAccount == null) {
+                return "用户信息异常";
+            }
+            XArticle xArticle = xArticleMapper.selectByPrimaryKey(id);
+            if (xArticle==null||xArticle.getAuthor()==null){
+                return "没有这篇文章的信息";
+            }
+            if (xUserAccount.getId()==xArticle.getAuthor()){
+                xArticleMapper.deleteArticleById(id);
+                return "删除成功";
+            }else if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                xArticleMapper.deleteArticleById(id);
+                return "删除成功";
+            }else {
+                return "没有权限删除";
+            }
+        }
+        return "没有权限删除";
     }
 }

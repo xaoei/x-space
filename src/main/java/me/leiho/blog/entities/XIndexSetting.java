@@ -31,7 +31,11 @@ public class XIndexSetting implements Serializable {
      */
     @Column(name = "head_image")
     private String headImage;
-
+    /**
+     * 感言
+     */
+    @Column(name = "feeling")
+    private String feeling;
     /**
      * 部分内容
      */
@@ -55,6 +59,14 @@ public class XIndexSetting implements Serializable {
     private Integer del;
 
     private static final long serialVersionUID = 1L;
+
+    public String getFeeling() {
+        return feeling;
+    }
+
+    public void setFeeling(String feeling) {
+        this.feeling = feeling;
+    }
 
     /**
      * @return id
