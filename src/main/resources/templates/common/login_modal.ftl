@@ -1,4 +1,5 @@
-<div class="modal fade" id="loginAndRegistModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginAndRegistModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,7 +13,8 @@
                 文本内容
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.location.reload(true)">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="window.location.reload(true)">
                     确定
                 </button>
             </div>

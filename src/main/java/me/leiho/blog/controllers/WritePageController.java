@@ -31,9 +31,10 @@ public class WritePageController {
     private CommonPageValueService commonPageValueService;
     @Autowired
     private WritePageService writePageService;
+
     @GetMapping("/write")
     public String write(Map<String, Object> map) {
-        if (!SecurityUtils.getSubject().isPermitted("/write")){
+        if (!SecurityUtils.getSubject().isPermitted("/write")) {
             return "/403.html";
         }
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
@@ -41,14 +42,15 @@ public class WritePageController {
         logger.info("/write");
         return "write";
     }
+
     @GetMapping("/write/{articleId}")
     public String edit(Map<String, Object> map, @PathVariable Integer articleId) {
-        if (!SecurityUtils.getSubject().isPermitted("/write")){
+        if (!SecurityUtils.getSubject().isPermitted("/write")) {
             return "/403.html";
         }
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("发布").setCommonPageHead(4).setCommonPageFoot();
         writePageService.getValueMap(map).setTypes().setTags().setSideBar().setDefaultArticle(articleId);
-        logger.info("/write/"+articleId);
+        logger.info("/write/" + articleId);
         return "write";
     }
 }

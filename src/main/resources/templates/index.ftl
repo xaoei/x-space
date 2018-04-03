@@ -8,8 +8,11 @@
     <title>${sitename}:${page_name}</title>
 
     <!-- load stylesheets -->
-    <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css"><!-- Bootstrap style -->
-    <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" type='text/css'
+          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css">
+    <!-- Bootstrap style -->
+    <link rel="stylesheet" type='text/css' href="css/templatemo-style.css">
+    <!-- Templatemo style -->
 
 
 </head>
@@ -52,7 +55,7 @@
                     <h3 class="tm-gold-text tm-title">${main_article_title}</h3>
                     <p class="tm-margin-b-30">${main_article_feeling}</p>
                     <img src=${main_article_img} alt="Image" class="tm-margin-b-40 img-fluid">
-                    ${main_article_context}
+                ${main_article_context}
                     <a href=${main_article_url} class="tm-btn text-uppercase" style="text-decoration:none">阅读全部</a>
 
                 </div>
@@ -69,7 +72,8 @@
                                     <ul class="nav">
                                         <#if (essay_links)??>
                                         <#list essay_links as el>
-                                            <li><a href=${el.url} class="tm-text-link" style="text-decoration:none">${el.desc}</a></li>
+                                            <li><a href=${el.url} class="tm-text-link"
+                                                   style="text-decoration:none">${el.desc}</a></li>
                                         </#list>
                                         <#else>
                                             <h1>暂时没有随笔!</h1>
@@ -84,7 +88,8 @@
                                     <ul class="nav">
                                         <#if (repring_links)??>
                                             <#list repring_links as rl>
-                                            <li><a href=${rl.url} class="tm-text-link" style="text-decoration:none">${rl.desc}</a></li>
+                                            <li><a href=${rl.url} class="tm-text-link"
+                                                   style="text-decoration:none">${rl.desc}</a></li>
                                             </#list>
                                         <#else>
                                             <h1>暂时没有转载!</h1>
@@ -96,12 +101,14 @@
 
                         <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <#--<h3 class="tm-gold-text tm-title tm-margin-b-30">热门文章</h3>-->
+                            <#--<h3 class="tm-gold-text tm-title tm-margin-b-30">热门文章</h3>-->
                                 <#if (short_hot_article)??>
                                     <#list short_hot_article as sha>
                                         <div class="media tm-related-post">
                                             <div class="media-body">
-                                                <a href=${sha.link}><h4 class="media-heading tm-gold-text tm-margin-b-15" style="text-decoration:none">${sha.title}</h4></a>
+                                                <a href=${sha.link}><h4
+                                                        class="media-heading tm-gold-text tm-margin-b-15"
+                                                        style="text-decoration:none">${sha.title}</h4></a>
                                                 <p class="tm-small-font tm-media-description">${sha.article}</p>
                                             </div>
                                         </div>
@@ -121,9 +128,12 @@
 <#include "./common/foot.ftl">
 
 <!-- load JS files -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>
+<!-- jQuery (https://jquery.com/download/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script>
+<!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>
+<!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
 

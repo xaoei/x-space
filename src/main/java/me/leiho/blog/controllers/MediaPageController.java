@@ -29,9 +29,10 @@ public class MediaPageController {
 
     @Autowired
     private MediaPageService mediaPageService;
+
     @GetMapping("/media")
     public String about(Map<String, Object> map) {
-        if (!SecurityUtils.getSubject().isPermitted("/media")){
+        if (!SecurityUtils.getSubject().isPermitted("/media")) {
             return "/403.html";
         }
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();

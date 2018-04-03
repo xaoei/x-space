@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface XArticleMapper extends CustomerMapper<XArticle> {
     /**
-     *  时间格式为 2018-01-01
+     * 时间格式为 2018-01-01
+     *
      * @param keyWord
      * @param author
      * @param hot
@@ -25,12 +26,14 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
             @Param("updateTime") String updateTime,
             @Param("isAnnounce") Integer isAnnounce
     );
+
     List<SimpleArticleInfo> getUnFinishArticles(
             @Param("author") Integer author,
             @Param("announce") Integer announce,
             @Param("size") Integer size
     );
-    List<SimpleArticleInfo> getArticlesByType(@Param("size")Integer size,@Param("type")Integer type);
 
-    List<XArticle> getHotArticles(@Param("size")Integer size);
+    List<SimpleArticleInfo> getArticlesByType(@Param("size") Integer size, @Param("type") Integer type);
+
+    List<XArticle> getHotArticles(@Param("size") Integer size);
 }

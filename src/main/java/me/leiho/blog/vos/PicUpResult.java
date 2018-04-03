@@ -10,17 +10,18 @@ import java.util.List;
  * @Date: Create in 9:55 2018/2/7
  * @Contact: yesxiaolei@outlook.com
  */
-public class PicUpResult extends StringEntity{
+public class PicUpResult extends StringEntity {
     private Integer errno;
     private List<String> data;
 
-    public PicUpResult(){}
+    public PicUpResult() {
+    }
 
-    public PicUpResult(Integer errno){
+    public PicUpResult(Integer errno) {
         this.errno = errno;
     }
 
-    public PicUpResult(Integer errno,List<String> data){
+    public PicUpResult(Integer errno, List<String> data) {
         this.errno = errno;
         this.data = data;
     }

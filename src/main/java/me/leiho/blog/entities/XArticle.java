@@ -277,6 +277,7 @@ public class XArticle implements Serializable {
     public Date getAnnounceTime() {
         return announceTime;
     }
+
     /**
      * 设置发布时间
      *

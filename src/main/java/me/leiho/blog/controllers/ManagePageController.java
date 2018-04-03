@@ -24,6 +24,7 @@ public class ManagePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
+
     @GetMapping("/manage")
     public String user(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();

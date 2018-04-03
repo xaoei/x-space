@@ -1,4 +1,5 @@
-<footer class="tm-footer" style="background-image: url('https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/bg/01.png')">
+<footer class="tm-footer"
+        style="background-image: url('https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/bg/01.png')">
     <div class="container-fluid">
         <div class="row">
 
@@ -23,7 +24,8 @@
                         <ul class="nav">
                             <#if (friend_links)??>
                                 <#list friend_links as fl>
-                                    <li><a href=${fl.url} class="tm-footer-link" style="text-decoration: none">${fl.desc}</a></li>
+                                    <li><a href=${fl.url} class="tm-footer-link"
+                                           style="text-decoration: none">${fl.desc}</a></li>
                                 </#list>
                             <#else>
                                 <h1>暂无友链!</h1>
@@ -42,10 +44,12 @@
             <div class="clearfix hidden-lg-up"></div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div class="tm-footer-content-box">
-                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">热门评论</h3>
+                    <h3 class="tm-gold-text tm-title tm-footer-content-box-title">最新评论</h3>
                     <#if (comment_links)??>
                         <#list comment_links as cl>
-                        <p class="tm-margin-b-30">${cl.desc}<br/><a href=/page/article/${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a> </p><hr class="tm-margin-b-30">
+                        <p class="tm-margin-b-30">${cl.desc}<br/><a
+                                href=/page/article/${cl.url} style="color:#BBBB88;text-decoration:none">查看原文</a></p>
+                            <hr class="tm-margin-b-30">
                         </#list>
                         <a href="#" class="tm-btn tm-btn-gray text-uppercase">查看更多</a>
                     <#else>
@@ -59,7 +63,7 @@
                     <#if (picture_links)??>
                         <div class="tm-margin-b-30">
                         <#list picture_links as pl>
-                            <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail" ></a>
+                            <a href=${pl.link}><img src=${pl.url} alt="Image" class="tm-footer-thumbnail"></a>
                         </#list>
                         </div>
                         <p class="tm-margin-b-20">${picture_area_context}</p>
@@ -72,7 +76,11 @@
         </div>
         <div class="row">
             <div class="col-xs-12 tm-copyright-col">
-                <p class="tm-copyright-text">${copyright_text}<a style="color: #00bbff" href=${copyright_link} target="_blank" title=${copyright_title}>${copyright_title}</a> - ${contact_text} <a style="color: #00bbff" href=${contact_link} title=${contact_title} target="_blank">${contact_title}</a></p>
+                <p class="tm-copyright-text">${copyright_text}<a style="color: #00bbff"
+                                                                 href=${copyright_link} target="_blank"
+                                                                 title=${copyright_title}>${copyright_title}</a>
+                    - ${contact_text} <a style="color: #00bbff" href=${contact_link} title=${contact_title}
+                                         target="_blank">${contact_title}</a></p>
             </div>
         </div>
     </div>

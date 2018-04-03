@@ -8,7 +8,7 @@ import me.leiho.blog.entities.StringEntity;
  * @Date: Create in 16:15 2018/2/8
  * @Contact: yesxiaolei@outlook.com
  */
-public class LoginVO extends StringEntity{
+public class LoginVO extends StringEntity {
     private String account;
     private String password;
 

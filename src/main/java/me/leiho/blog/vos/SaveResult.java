@@ -12,13 +12,14 @@ import me.leiho.blog.enums.ResultCode;
 public class SaveResult extends BaseResult {
     private Integer id;
 
-    public SaveResult(){}
+    public SaveResult() {
+    }
 
-    public SaveResult(ResultCode resultCode){
+    public SaveResult(ResultCode resultCode) {
         super(resultCode);
     }
 
-    public SaveResult(ResultCode resultCode,Integer id){
+    public SaveResult(ResultCode resultCode, Integer id) {
         super(resultCode);
         this.id = id;
     }

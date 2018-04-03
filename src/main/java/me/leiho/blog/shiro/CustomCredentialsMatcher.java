@@ -21,19 +21,20 @@ import static me.leiho.blog.enums.ResultCode.FAILED_USER_LOGIN_SERVICE_ERROR;
  * @Date: Create in 11:27 2018/2/27
  * @Contact: yesxiaolei@outlook.com
  */
-public class CustomCredentialsMatcher extends SimpleCredentialsMatcher  {
+public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
         UsernamePasswordToken usernamePasswordTokenoken = (UsernamePasswordToken) token;
         String inputPassword = String.valueOf(usernamePasswordTokenoken.getPassword());
         String realPossword = getCredentials(info).toString();
         try {
-            return PBKDF2.validatePassword(inputPassword,realPossword);
+            return PBKDF2.validatePassword(inputPassword, realPossword);
         } catch (NoSuchAlgorithmException e) {
-            logger.error("解密失败,可能是加密类型出现非法修改",e);
+            logger.error("解密失败,可能是加密类型出现非法修改", e);
         } catch (InvalidKeySpecException e) {
-            logger.error("解密失败,可能是参数出现了非法变动",e);
+            logger.error("解密失败,可能是参数出现了非法变动", e);
         }
         return false;
     }

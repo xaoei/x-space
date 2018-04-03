@@ -61,7 +61,7 @@ public class ImgCompress {
      *
      * @param h int 新高度
      */
-    public void resizeByHeight(int h,String target) throws IOException {
+    public void resizeByHeight(int h, String target) throws IOException {
         int w = (int) (width * h / height);
         resize(w, h, target);
     }
@@ -72,7 +72,7 @@ public class ImgCompress {
      * @param w int 新宽度
      * @param h int 新高度
      */
-    public void resize(int w, int h ,String target) throws IOException {
+    public void resize(int w, int h, String target) throws IOException {
         // SCALE_SMOOTH 的缩略算法 生成缩略图片的平滑度的 优先级比速度高 生成的图片质量比较好 但速度慢
         BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         image.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图

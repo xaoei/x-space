@@ -13,5 +13,6 @@ import java.util.Map;
  */
 public interface ArticlePageService {
     ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req);
+
     ArticlePageServiceImpl getValueMap(Map<String, Object> map);
 }

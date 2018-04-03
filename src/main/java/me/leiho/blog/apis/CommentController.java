@@ -37,13 +37,14 @@ public class CommentController {
     private XArticleMapper xArticleMapper;
     @Autowired
     private XCommentMapper xCommentMapper;
+
     @ApiOperation(value = "保存评论")
     @RequestMapping("/v1/comment/save")
-    public String saveComment(@RequestBody String comment){
-        logger.info("/v1/comment/save:"+comment);
+    public String saveComment(@RequestBody String comment) {
+        logger.info("/v1/comment/save:" + comment);
         //json反序列化
         XComment xComment = JsonUtil.json2pojo(comment, XComment.class);
-        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
             param.setId(userInfo.getId());
@@ -54,11 +55,11 @@ public class CommentController {
                 return "账号不存在";
             }
             xComment.setUserId(xUserAccount.getId());
-        }else {
+        } else {
             return "不是自己人不可以评论喔~";
         }
         XArticle xArticle = xArticleMapper.selectByPrimaryKey(xComment.getArticleId());
-        if (xArticle==null){
+        if (xArticle == null) {
             return "不能乱修改页面元素喔~";
         }
         xComment.setCreateTime(new Date());

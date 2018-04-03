@@ -84,6 +84,7 @@ public class DES {
 
     /**
      * 加密
+     *
      * @param data 原文
      * @param key
      * @return 密文
@@ -95,8 +96,10 @@ public class DES {
         cipher.init(Cipher.ENCRYPT_MODE, k);
         return cipher.doFinal(data);
     }
+
     /**
      * 解密
+     *
      * @param data 密文
      * @param key
      * @return 明文、原文

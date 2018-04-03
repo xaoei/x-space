@@ -11,16 +11,21 @@ import java.util.List;
  * @Date: Create in 11:06 2018/2/7
  * @Contact: yesxiaolei@outlook.com
  */
-public class TagsResult extends BaseResult{
+public class TagsResult extends BaseResult {
     List<String> tags;
-    public TagsResult(){}
-    public TagsResult(ResultCode resultCode){
+
+    public TagsResult() {
+    }
+
+    public TagsResult(ResultCode resultCode) {
         super(resultCode);
     }
-    public TagsResult(ResultCode resultCode,List<String> tags){
+
+    public TagsResult(ResultCode resultCode, List<String> tags) {
         super(resultCode);
-        this.tags=tags;
+        this.tags = tags;
     }
+
     public List<String> getTags() {
         return tags;
     }

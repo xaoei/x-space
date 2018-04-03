@@ -27,10 +27,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/image/**").addResourceLocations("file:C:/工作空间/Projects/x-space/image/");
         String path = Test.class.getResource("/").toString();
-        path = path.substring(0,path.lastIndexOf("target"))+"image/";
+        path = path.substring(0, path.lastIndexOf("target")) + "image/";
         registry.addResourceHandler("/image/**").addResourceLocations(path);
         super.addResourceHandlers(registry);
     }
+
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {

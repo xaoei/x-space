@@ -44,9 +44,6 @@ public class SimpleArticleInfo extends StringEntity {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
 
     public String getAuthorName() {
         return authorName;

@@ -36,6 +36,7 @@ public class ArticlePageController {
 
     @Autowired
     private CommonPageValueService commonPageValueService;
+
     @GetMapping("/article/{type}/{no}")
     /**
      * type:
@@ -44,21 +45,23 @@ public class ArticlePageController {
      *      3:按更新时间排序 update_desc
      *      4:按更新时间排序 update_asc
      */
-    public String contactA(Map<String, Object> map, @PathVariable String type,@PathVariable Integer no) {
+    public String contactA(Map<String, Object> map, @PathVariable String type, @PathVariable Integer no) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25).setIsAnnounce(1).setSize(25);
         articlePageService.getValueMap(map).setSimpleArticleInfo(req).setSideBar();
-        logger.info("/article/"+type+"/"+no);
+        logger.info("/article/" + type + "/" + no);
         return "article";
     }
+
     @GetMapping("/article/{type}")
     public String contactB(Map<String, Object> map, @PathVariable String type) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(1).setSize(25).setIsAnnounce(1);
         articlePageService.getValueMap(map).setSimpleArticleInfo(req).setSideBar();
-        logger.info("/article/"+type);
+        logger.info("/article/" + type);
         return "article";
     }
+
     @GetMapping("/article")
     public String contactC(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
@@ -69,12 +72,12 @@ public class ArticlePageController {
     }
 
     @GetMapping("/update/{type}/{userId}/{isAnnounce}/{no}")
-    public String updateArticle(Map<String, Object> map,@PathVariable String type, @PathVariable String userId,@PathVariable Integer isAnnounce,@PathVariable Integer no) {
+    public String updateArticle(Map<String, Object> map, @PathVariable String type, @PathVariable String userId, @PathVariable Integer isAnnounce, @PathVariable Integer no) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("作品").setCommonPageHead(4).setCommonPageFoot();
-        SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25) .setIsAnnounce(isAnnounce).setAuthor(userId);
+        SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25).setIsAnnounce(isAnnounce).setAuthor(userId);
         articlePageService.getValueMap(map).setSimpleArticleInfo(req).setSideBar();
-        logger.info("/update/"+userId+"/"+no);
-        map.put("page_mode","update");
+        logger.info("/update/" + userId + "/" + no);
+        map.put("page_mode", "update");
         return "article";
     }
 }

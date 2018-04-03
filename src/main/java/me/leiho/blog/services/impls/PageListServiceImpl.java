@@ -35,25 +35,24 @@ public class PageListServiceImpl implements PageListService {
     @Autowired
     private XUserAccountMapper xUserAccountMapper;
 
-    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(SimpleArticleInfoReq req){
-        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(SimpleArticleInfoReq req) {
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
             param.setId(userInfo.getId());
             param.setDel(0);
             XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
-            if (xUserAccount==null){
+            if (xUserAccount == null) {
                 return new PageInfo<SimpleArticleInfo>();
             }
-            if (StringUtils.isNotBlank(req.getAuthor())){
-                if (xUserAccount.getId()!=Integer.parseInt(req.getAuthor())){
+            if (StringUtils.isNotBlank(req.getAuthor())) {
+                if (xUserAccount.getId() != Integer.parseInt(req.getAuthor())) {
                     return new PageInfo<SimpleArticleInfo>();
                 }
             }
         }
         PageHelper.startPage(req.getPage(), req.getSize());
-        switch(req.getType().toLowerCase().trim())
-        {
+        switch (req.getType().toLowerCase().trim()) {
             case "update_asc":
                 PageHelper.orderBy(" update_time ASC");
                 break;
@@ -72,15 +71,15 @@ public class PageListServiceImpl implements PageListService {
         }
         List<SimpleArticleInfo> simpleArticleInfos = null;
         simpleArticleInfos = xArticleMapper.getSimpleArticleInfo(
-                StringUtils.isNotBlank(req.getKeyWord())?"%"+req.getKeyWord()+"%":req.getKeyWord(),
+                StringUtils.isNotBlank(req.getKeyWord()) ? "%" + req.getKeyWord() + "%" : req.getKeyWord(),
                 req.getAuthor(),
                 req.getHot(),
-                StringUtils.isNotBlank(req.getAnnounceTime())?"%"+req.getAnnounceTime()+"%":req.getAnnounceTime(),
-                StringUtils.isNotBlank(req.getUpdateTime())?"%"+req.getUpdateTime()+"%":req.getUpdateTime(),
+                StringUtils.isNotBlank(req.getAnnounceTime()) ? "%" + req.getAnnounceTime() + "%" : req.getAnnounceTime(),
+                StringUtils.isNotBlank(req.getUpdateTime()) ? "%" + req.getUpdateTime() + "%" : req.getUpdateTime(),
                 req.getIsAnnounce()
         );
         PageInfo<SimpleArticleInfo> pageInfo = new PageInfo<>(simpleArticleInfos);
-        if (simpleArticleInfos.isEmpty()){
+        if (simpleArticleInfos.isEmpty()) {
             return new PageInfo<SimpleArticleInfo>();
         }
         //处理标签名称:标签需要前端调用getAllTag()接口将数字替换为名称。

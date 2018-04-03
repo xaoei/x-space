@@ -6,32 +6,37 @@
             <ul class="nav">
             <#if unFinishArticles??>
                 <#list unFinishArticles as ufa>
-                <#if ufa.title?length gt 10>
-                    <li><a href="/write/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title?substring(0,10)}...</a></li>
-                <#else>
-                    <li><a href="/write/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title}</a></li>
-                </#if>
+                    <#if ufa.title?length gt 10>
+                    <li><a href="/write/${ufa.id}" class="tm-text-link"
+                           style="text-decoration:none">${ufa.title?substring(0,10)}...</a></li>
+                    <#else>
+                    <li><a href="/write/${ufa.id}" class="tm-text-link" style="text-decoration:none">${ufa.title}</a>
+                    </li>
+                    </#if>
                 </#list>
             </#if>
             </ul>
             <#if unFinishArticles??>
                 <#if (unFinishArticles?size>4)>
-                    <button type="button" class="btn btn-success" onclick="window.location.href='/update/announce_desc/${user.id}/0/1'">查看更多</button>
+                    <button type="button" class="btn btn-success"
+                            onclick="window.location.href='/update/announce_desc/${user.id}/0/1'">查看更多
+                    </button>
                 <#elseif (unFinishArticles?size<1)>
                     <br>
                     <p>还没有未完成的作品喔,请多多创作!</p>
                     <br>
                 </#if>
             </#if>
-            </nav>
-            <hr class="tm-margin-t-small">
-            <h3 class="tm-gold-text tm-title">已发布</h3>
-            <nav>
+        </nav>
+        <hr class="tm-margin-t-small">
+        <h3 class="tm-gold-text tm-title">已发布</h3>
+        <nav>
             <ul class="nav">
             <#if finishedArticles??>
                 <#list finishedArticles as fea>
                     <#if fea.title?length gt 10>
-                <li><a href="/write/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title?substring(0,10)}...</a></li>
+                <li><a href="/write/${fea.id}" class="tm-text-link"
+                       style="text-decoration:none">${fea.title?substring(0,10)}...</a></li>
                     <#else>
                 <li><a href="/write/${fea.id}" class="tm-text-link" style="text-decoration:none">${fea.title}</a></li>
                     </#if>
@@ -40,7 +45,9 @@
             </ul>
             <#if finishedArticles??>
                 <#if (finishedArticles?size>4)>
-                    <button type="button" class="btn btn-success" onclick="window.location.href='/update/announce_desc/${user.id}/1/1'">查看更多</button>
+                    <button type="button" class="btn btn-success"
+                            onclick="window.location.href='/update/announce_desc/${user.id}/1/1'">查看更多
+                    </button>
                 <#elseif (finishedArticles?size<1)>
                     <br>
                     <p>还没有已完成的作品喔,请多多创作!</p>

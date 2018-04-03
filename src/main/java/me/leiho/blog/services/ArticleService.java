@@ -11,6 +11,7 @@ import me.leiho.blog.entities.BaseResult;
 public interface ArticleService {
     /**
      * 保存或发布文章,announce为false保存,为true发布.
+     *
      * @param article
      * @param announce
      * @return

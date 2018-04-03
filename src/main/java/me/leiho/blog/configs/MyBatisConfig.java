@@ -35,7 +35,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     @Resource
     public DataSource dataSource;
 
-    @Bean(name="sqlSessionFactory")
+    @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
@@ -65,7 +65,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 

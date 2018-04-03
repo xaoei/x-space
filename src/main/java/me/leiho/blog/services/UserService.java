@@ -12,6 +12,8 @@ import me.leiho.blog.vos.RegisterVO;
  */
 public interface UserService {
     BaseResult register(RegisterVO registerVO);
+
     BaseResult login(LoginVO loginVO);
+
     BaseResult logout();
 }

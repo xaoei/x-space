@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface XCommentMapper extends CustomerMapper<XComment> {
     List<XComment> getAllCommentByArticleId(@Param("articleId") Integer articleId);
+
     List<WriteCommentVO> getCommentByAuthor(
             @Param("author") Integer author,
             @Param("size") Integer size
     );
-    List<XComment> getNewComments(@Param("size")Integer size);
+
+    List<XComment> getNewComments(@Param("size") Integer size);
 }

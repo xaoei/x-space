@@ -45,7 +45,7 @@ public class JsonUtil {
     /**
      * json string convert to javaBean
      */
-    public static <T> T json2pojo(String jsonStr, Class<T> clazz){
+    public static <T> T json2pojo(String jsonStr, Class<T> clazz) {
         try {
             return objectMapper.readValue(jsonStr, clazz);
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class JsonUtil {
     /**
      * json string convert to map
      */
-    public static <T> Map<String, Object> json2map(String jsonStr){
+    public static <T> Map<String, Object> json2map(String jsonStr) {
         try {
             return objectMapper.readValue(jsonStr, Map.class);
         } catch (Exception e) {

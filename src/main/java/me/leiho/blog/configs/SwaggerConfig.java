@@ -14,13 +14,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @Author: 萧大侠
  * @Description: swagger-ui的配置
- *                api页面 /swagger-ui.html 或者/swagger/index.html ()
+ * api页面 /swagger-ui.html 或者/swagger/index.html ()
  * @Date: Create in 17:14 2018/1/22
  * @Contact: yesxiaolei@outlook.com
  */
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig  {
+public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
@@ -37,7 +37,7 @@ public class SwaggerConfig  {
                 .title("SpringBoot swagger接口")
                 .termsOfServiceUrl("http://www.leiho.me")
                 .description("SpringBoot集成swagger")
-                .contact(new Contact("萧大侠","http://leiho.me","yesxiaolei@outlook.com"))
+                .contact(new Contact("萧大侠", "http://leiho.me", "yesxiaolei@outlook.com"))
                 .version("1.0")
                 .build();
     }

@@ -40,114 +40,119 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
     private XBlogImageMapper xBlogImageMapper;
 
     private Map<String, Object> map;
-    public CommonPageValueServiceImpl getValueMap(Map<String, Object> map){
+
+    public CommonPageValueServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
         return this;
     }
-    public CommonPageValueServiceImpl setUserInfo(){
-        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null){
+
+    public CommonPageValueServiceImpl setUserInfo() {
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
             param.setId(userInfo.getId());
             param.setDel(0);
             XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
-            if (xUserAccount==null){
+            if (xUserAccount == null) {
                 logger.error("账号不存在");
                 return this;
             }
             UserAccountDTO userAccountDTO = new UserAccountDTO();
-            BeanUtils.copyProperties(xUserAccount,userAccountDTO);
-            map.put("user",userAccountDTO);
+            BeanUtils.copyProperties(xUserAccount, userAccountDTO);
+            map.put("user", userAccountDTO);
         }
         return this;
     }
-    public CommonPageValueServiceImpl setCommonPageSiteInfo(){
+
+    public CommonPageValueServiceImpl setCommonPageSiteInfo() {
         List<XSiteInfo> xSiteInfoList = xSiteInfoMapper.selectAll();
-        for (XSiteInfo xSiteInfo:xSiteInfoList){
-            map.put(xSiteInfo.getItemName(),xSiteInfo.getItemValue());
+        for (XSiteInfo xSiteInfo : xSiteInfoList) {
+            map.put(xSiteInfo.getItemName(), xSiteInfo.getItemValue());
         }
         return this;
     }
-    public CommonPageValueServiceImpl setCommonPageHead(int selective){
+
+    public CommonPageValueServiceImpl setCommonPageHead(int selective) {
         List<XHeadItem> xHeadItemList = xHeadItemMapper.selectAll();
         List<HeadItemDTO> headItemDTOList = new ArrayList<>();
 
-        for (XHeadItem xHeadItem:xHeadItemList){
+        for (XHeadItem xHeadItem : xHeadItemList) {
             Subject subject = SecurityUtils.getSubject();
             HeadItemDTO headItemDTO = new HeadItemDTO();
-            BeanUtils.copyProperties(xHeadItem,headItemDTO);
+            BeanUtils.copyProperties(xHeadItem, headItemDTO);
             if (
                     (
-                            headItemDTO.getSortId() != 4&&
-                            headItemDTO.getSortId() != 3&&
-                            headItemDTO.getSortId() != 6
-                    ) || SecurityUtils.getSubject().isAuthenticated()){
+                            headItemDTO.getSortId() != 4 &&
+                                    headItemDTO.getSortId() != 3 &&
+                                    headItemDTO.getSortId() != 6
+                    ) || SecurityUtils.getSubject().isAuthenticated()) {
 //                List<String> roles = new ArrayList<>();
                 if
                         (
-                            (
-                                headItemDTO.getSortId() != 4&&
-                                headItemDTO.getSortId() != 3&&
-                                headItemDTO.getSortId() != 6
-                            )||
-                            (headItemDTO.getSortId() == 4 &&SecurityUtils.getSubject().isPermitted("/write"))||
-                            (headItemDTO.getSortId() == 3 &&SecurityUtils.getSubject().isPermitted("/media"))||
-                            (headItemDTO.getSortId() == 6&&SecurityUtils.getSubject().isPermitted("/manage"))
-                        )
-                        {
-                    if (headItemDTO.getSortId() == selective){
+                        (
+                                headItemDTO.getSortId() != 4 &&
+                                        headItemDTO.getSortId() != 3 &&
+                                        headItemDTO.getSortId() != 6
+                        ) ||
+                                (headItemDTO.getSortId() == 4 && SecurityUtils.getSubject().isPermitted("/write")) ||
+                                (headItemDTO.getSortId() == 3 && SecurityUtils.getSubject().isPermitted("/media")) ||
+                                (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage"))
+                        ) {
+                    if (headItemDTO.getSortId() == selective) {
                         headItemDTO.setIsSelective(1);
-                    }else {
+                    } else {
                         headItemDTO.setIsSelective(0);
                     }
                     headItemDTOList.add(headItemDTO);
                 }
             }
         }
-        map.put("head_items",headItemDTOList);
+        map.put("head_items", headItemDTOList);
         return this;
     }
-    public CommonPageValueServiceImpl setCommonPageFoot(){
+
+    public CommonPageValueServiceImpl setCommonPageFoot() {
         List<XFriendLink> xFriendLinkList = xFriendLinkMapper.selectAll();
         List<SimpleLink> friendLinks = new ArrayList<>();
-        if (xFriendLinkList.size()>0){
-            for (int i=0;i<(xFriendLinkList.size()>6?6:xFriendLinkList.size());i++){
+        if (xFriendLinkList.size() > 0) {
+            for (int i = 0; i < (xFriendLinkList.size() > 6 ? 6 : xFriendLinkList.size()); i++) {
                 friendLinks.add(SimpleLink.build().setUrl(xFriendLinkList.get(i).getLinkHref()).setDesc(xFriendLinkList.get(i).getLinkValue()));
             }
-            map.put("friend_links",friendLinks);
+            map.put("friend_links", friendLinks);
         }
         List<SimpleLink> commentLinks = new ArrayList<>();
         List<XComment> xHotComments = xCommentMapper.getNewComments(3);
-        if (xHotComments.size()>0){
-            for (int i=0;i<(xHotComments.size()>3?3:xHotComments.size());i++){
+        if (xHotComments.size() > 0) {
+            for (int i = 0; i < (xHotComments.size() > 3 ? 3 : xHotComments.size()); i++) {
                 String comment = xHotComments.get(i).getComment();
-                if (comment.length()>40){//将读取的评论字数控制在40以下
-                    comment = comment.substring(0,40)+"...";
+                if (comment.length() > 40) {//将读取的评论字数控制在40以下
+                    comment = comment.substring(0, 40) + "...";
                 }
-                commentLinks.add(SimpleLink.build().setUrl(xHotComments.get(i).getArticleId()+"").setDesc(comment));
+                commentLinks.add(SimpleLink.build().setUrl(xHotComments.get(i).getArticleId() + "").setDesc(comment));
             }
-            map.put("comment_links",commentLinks);
+            map.put("comment_links", commentLinks);
         }
         List<PictureLink> pictureLinks = new ArrayList<>();
         Example pictureExample = new Example(XBlogImage.class);
-        pictureExample.createCriteria().andEqualTo("hot",1).andEqualTo("del",0);
+        pictureExample.createCriteria().andEqualTo("hot", 1).andEqualTo("del", 0);
         List<XBlogImage> xHotBlogImages = xBlogImageMapper.selectByExample(pictureExample);
-        if (xHotBlogImages.size()>0){
-            for (int i=0;i<(xHotBlogImages.size()>6?6:xHotBlogImages.size());i++){
+        if (xHotBlogImages.size() > 0) {
+            for (int i = 0; i < (xHotBlogImages.size() > 6 ? 6 : xHotBlogImages.size()); i++) {
                 String url = "";
-                if (xHotBlogImages.get(i).getSync()==1){
+                if (xHotBlogImages.get(i).getSync() == 1) {
                     url = xHotBlogImages.get(i).getPath();
-                }else {
+                } else {
                     url = xHotBlogImages.get(i).getSrc();
                 }
                 pictureLinks.add(PictureLink.build().setUrl(url).setLink(xHotBlogImages.get(i).getLink()));
             }
-            map.put("picture_links",pictureLinks);
+            map.put("picture_links", pictureLinks);
         }
         return this;
     }
-    public CommonPageValueServiceImpl setPageName(String pageName){
-        map.put("page_name",pageName);
+
+    public CommonPageValueServiceImpl setPageName(String pageName) {
+        map.put("page_name", pageName);
         return this;
     }
 }

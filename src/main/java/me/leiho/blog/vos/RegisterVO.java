@@ -10,7 +10,7 @@ import me.leiho.blog.entities.StringEntity;
  * @Date: Create in 15:19 2018/2/8
  * @Contact: yesxiaolei@outlook.com
  */
-public class RegisterVO extends StringEntity{
+public class RegisterVO extends StringEntity {
     private String account;
     private String username;
     private String password;

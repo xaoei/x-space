@@ -45,147 +45,156 @@ public class WritePageServiceImpl implements WritePageService {
     private XCommentMapper xCommentMapper;
 
     private Map<String, Object> map;
-    public WritePageServiceImpl getValueMap(Map<String, Object> map){
+
+    public WritePageServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
         return this;
     }
-    public WritePageServiceImpl setTypes(){
+
+    public WritePageServiceImpl setTypes() {
         Example typeExample = new Example(XArticleType.class);
-        typeExample.createCriteria().andEqualTo("del",0);
+        typeExample.createCriteria().andEqualTo("del", 0);
         List<XArticleType> types = xArticleTypeMapper.selectByExample(typeExample);
-        map.put("types",types);
+        map.put("types", types);
         return this;
     }
-    public WritePageServiceImpl setSideBar(){
-        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+
+    public WritePageServiceImpl setSideBar() {
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
             Integer id = userInfo.getId();
             //获取未完成
-            List<SimpleArticleInfo> unFinishArticles = xArticleMapper.getUnFinishArticles(id,0,5);
+            List<SimpleArticleInfo> unFinishArticles = xArticleMapper.getUnFinishArticles(id, 0, 5);
             //获取已完成
-            List<SimpleArticleInfo> finishedArticles = xArticleMapper.getUnFinishArticles(id,1,5);
+            List<SimpleArticleInfo> finishedArticles = xArticleMapper.getUnFinishArticles(id, 1, 5);
             //获取评论
-            List<WriteCommentVO> myComments = xCommentMapper.getCommentByAuthor(id,3);
-            map.put("unFinishArticles",unFinishArticles);
-            map.put("finishedArticles",finishedArticles);
-            map.put("myComments",myComments);
+            List<WriteCommentVO> myComments = xCommentMapper.getCommentByAuthor(id, 3);
+            map.put("unFinishArticles", unFinishArticles);
+            map.put("finishedArticles", finishedArticles);
+            map.put("myComments", myComments);
         }
         return this;
     }
-    public WritePageServiceImpl setTags(){
+
+    public WritePageServiceImpl setTags() {
         Example tagExample = new Example(XArticleTag.class);
-        tagExample.createCriteria().andEqualTo("del",0);
+        tagExample.createCriteria().andEqualTo("del", 0);
         List<XArticleTag> tags = xArticleTagMapper.selectByExample(tagExample);
-        map.put("tags",tags);
+        map.put("tags", tags);
         return this;
     }
-    public WritePageServiceImpl setDefaultArticle(Integer articleId){
+
+    public WritePageServiceImpl setDefaultArticle(Integer articleId) {
         XArticle xArticle = xArticleMapper.selectByPrimaryKey(articleId);
-        map.put("edit_article",xArticle.getContent().trim());
-        map.put("edit_feeling",xArticle.getFeeling().trim());
-        map.put("edit_type",xArticle.getType());
+        map.put("edit_article", xArticle.getContent().trim());
+        map.put("edit_feeling", xArticle.getFeeling().trim());
+        map.put("edit_type", xArticle.getType());
         List<Integer> tagIds = new ArrayList<>();
-        if (xArticle.getTags().indexOf(",")>-1){
+        if (xArticle.getTags().indexOf(",") > -1) {
             List<String> tags = Arrays.asList(xArticle.getTags().trim().split(","));
-            for (String tag:tags){
+            for (String tag : tags) {
                 tagIds.add(Integer.parseInt(tag.trim()));
             }
-        }else{
+        } else {
             tagIds.add(Integer.parseInt(xArticle.getTags()));
         }
-        map.put("tag_ids",tagIds);
-        map.put("edit_title",xArticle.getTitle().trim());
-        map.put("edit_id",xArticle.getId());
-        map.put("mode","edit");
+        map.put("tag_ids", tagIds);
+        map.put("edit_title", xArticle.getTitle().trim());
+        map.put("edit_id", xArticle.getId());
+        map.put("mode", "edit");
         return this;
     }
-    public TagsResult addNewTags(String tags){
-        if (tags==null){
+
+    public TagsResult addNewTags(String tags) {
+        if (tags == null) {
             return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
         }
-        tags = tags.replace("\"","");
-        tags = tags.replace("\\","");
-        if (StringUtils.isBlank(tags)){
+        tags = tags.replace("\"", "");
+        tags = tags.replace("\\", "");
+        if (StringUtils.isBlank(tags)) {
             return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
         }
         tags = tags.trim();
-        tags = tags.replace("，",",");
-        if (tags.indexOf(",")>0){
+        tags = tags.replace("，", ",");
+        if (tags.indexOf(",") > 0) {
             //多tag
             String[] tagList = tags.split(",");
-            for (String tag:tagList){
-                if (checkOneTagFailed(tag)){
+            for (String tag : tagList) {
+                if (checkOneTagFailed(tag)) {
                     return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
                 }
             }
-            for (String tag:tagList){
+            for (String tag : tagList) {
                 addOneTag(tag);
             }
-        }else {
+        } else {
             //单tag
-            if (checkOneTagFailed(tags)){
+            if (checkOneTagFailed(tags)) {
                 return new TagsResult(FAILED_ARTICLE_TAG_ERROR);
             }
             addOneTag(tags);
         }
         return getAllTags();
     }
-    private TagsResult getAllTags(){
+
+    private TagsResult getAllTags() {
         Example tagExample = new Example(XArticleTag.class);
-        tagExample.createCriteria().andEqualTo("del",0);
+        tagExample.createCriteria().andEqualTo("del", 0);
         List<XArticleTag> tagList = xArticleTagMapper.selectByExample(tagExample);
         List<String> tags = new ArrayList<>();
-        for (XArticleTag tag:tagList){
+        for (XArticleTag tag : tagList) {
             tags.add(JsonUtil.obj2json(tag));
         }
-        return new TagsResult(SUCCESS,tags);
+        return new TagsResult(SUCCESS, tags);
     }
-    private void addOneTag(String tag){
-        tag=tag.toLowerCase();
+
+    private void addOneTag(String tag) {
+        tag = tag.toLowerCase();
         Example tagExample = new Example(XArticleTag.class);
-        tagExample.createCriteria().andEqualTo("tagName",tag).andEqualTo("del",0);
-        if (xArticleTagMapper.selectByExample(tagExample)==null||xArticleTagMapper.selectByExample(tagExample).size()==0){
+        tagExample.createCriteria().andEqualTo("tagName", tag).andEqualTo("del", 0);
+        if (xArticleTagMapper.selectByExample(tagExample) == null || xArticleTagMapper.selectByExample(tagExample).size() == 0) {
             XArticleTag newTag = new XArticleTag();
             newTag.setTagName(tag);
             newTag.setCreateTime(new Date());
             xArticleTagMapper.insertSelective(newTag);
         }
     }
-    private Boolean checkOneTagFailed(String tag){
+
+    private Boolean checkOneTagFailed(String tag) {
         if (
-                "<".equals(tag)||
-                ">".equals(tag)||
-                "?".equals(tag)||
-                "/".equals(tag)||
-                ";".equals(tag)||
-                ":".equals(tag)||
-                "'".equals(tag)||
-                "\"".equals(tag)||
-                "\\".equals(tag)||
-                "{".equals(tag)||
-                "}".equals(tag)||
-                "[".equals(tag)||
-                "]".equals(tag)||
-                "~".equals(tag)||
-                "!".equals(tag)||
-                "@".equals(tag)||
-                "#".equals(tag)||
-                "$".equals(tag)||
-                "%".equals(tag)||
-                "^".equals(tag)||
-                "&".equals(tag)||
-                "*".equals(tag)||
-                "(".equals(tag)||
-                ")".equals(tag)||
-                "-".equals(tag)||
-                "+".equals(tag)||
-                "|".equals(tag)||
-                "`".equals(tag)||
-                tag.matches("[a-zA-Z]")||
-                tag.matches("[0-9]")||
-                tag.matches("[\\s]")
-                ){
+                "<".equals(tag) ||
+                        ">".equals(tag) ||
+                        "?".equals(tag) ||
+                        "/".equals(tag) ||
+                        ";".equals(tag) ||
+                        ":".equals(tag) ||
+                        "'".equals(tag) ||
+                        "\"".equals(tag) ||
+                        "\\".equals(tag) ||
+                        "{".equals(tag) ||
+                        "}".equals(tag) ||
+                        "[".equals(tag) ||
+                        "]".equals(tag) ||
+                        "~".equals(tag) ||
+                        "!".equals(tag) ||
+                        "@".equals(tag) ||
+                        "#".equals(tag) ||
+                        "$".equals(tag) ||
+                        "%".equals(tag) ||
+                        "^".equals(tag) ||
+                        "&".equals(tag) ||
+                        "*".equals(tag) ||
+                        "(".equals(tag) ||
+                        ")".equals(tag) ||
+                        "-".equals(tag) ||
+                        "+".equals(tag) ||
+                        "|".equals(tag) ||
+                        "`".equals(tag) ||
+                        tag.matches("[a-zA-Z]") ||
+                        tag.matches("[0-9]") ||
+                        tag.matches("[\\s]")
+                ) {
             return true;
         }
         return false;

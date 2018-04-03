@@ -9,9 +9,10 @@ import java.io.Serializable;
  * @Contact: yesxiaolei@outlook.com
  */
 public class IndexShortArticle extends BaseResult implements Serializable {
-    public static IndexShortArticle build(){
+    public static IndexShortArticle build() {
         return new IndexShortArticle();
     }
+
     private String img;
     private String title;
     private String article;

@@ -8,10 +8,10 @@ package me.leiho.blog.enums;
  */
 public enum ErrorCode {
 
-    NULL_OBJ("COMMONO001","对象为空"),
-    JSONPARSE_ERROR("COMMONO002","json转换异常"),
-    UNKNOWN_ERROR("COMMONO999","系统繁忙，请稍后再试...."),
-    NONLICET_FILE("NONLICET_FILE","非法文件！");
+    NULL_OBJ("COMMONO001", "对象为空"),
+    JSONPARSE_ERROR("COMMONO002", "json转换异常"),
+    UNKNOWN_ERROR("COMMONO999", "系统繁忙，请稍后再试...."),
+    NONLICET_FILE("NONLICET_FILE", "非法文件！");
 
     private String value;
     private String desc;

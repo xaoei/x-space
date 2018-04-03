@@ -9,27 +9,28 @@ import me.leiho.blog.entities.StringEntity;
  * @Date: Create in 17:39 2018/3/14
  * @Contact: yesxiaolei@outlook.com
  */
-public class SimpleArticleInfoReq extends StringEntity{
-    public static SimpleArticleInfoReq build(){
+public class SimpleArticleInfoReq extends StringEntity {
+    public static SimpleArticleInfoReq build() {
         return new SimpleArticleInfoReq();
     }
-    @ApiModelProperty(name = "page",value = "页码")
+
+    @ApiModelProperty(name = "page", value = "页码")
     private Integer page;
-    @ApiModelProperty(name = "size",value = "页面大小")
+    @ApiModelProperty(name = "size", value = "页面大小")
     private Integer size;
-    @ApiModelProperty(name = "keyWord",value = "关键字")
+    @ApiModelProperty(name = "keyWord", value = "关键字")
     private String keyWord;
-    @ApiModelProperty(name = "author",value = "作者")
+    @ApiModelProperty(name = "author", value = "作者")
     private String author;
-    @ApiModelProperty(name = "hot",value = "热门")
+    @ApiModelProperty(name = "hot", value = "热门")
     private String hot;
-    @ApiModelProperty(name = "isAnnounce",value = "已发布")
+    @ApiModelProperty(name = "isAnnounce", value = "已发布")
     private Integer isAnnounce;
-    @ApiModelProperty(name = "announceTime",value = "发布时间")
+    @ApiModelProperty(name = "announceTime", value = "发布时间")
     private String announceTime;
-    @ApiModelProperty(name = "updateTime",value = "更新时间")
+    @ApiModelProperty(name = "updateTime", value = "更新时间")
     private String updateTime;
-    @ApiModelProperty(name = "type",value = "排序方式")
+    @ApiModelProperty(name = "type", value = "排序方式")
     private String type;
 
     public Integer getIsAnnounce() {

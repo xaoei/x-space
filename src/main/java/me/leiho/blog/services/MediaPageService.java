@@ -12,5 +12,6 @@ import java.util.Map;
  */
 public interface MediaPageService {
     MediaPageServiceImpl getValueMap(Map<String, Object> map);
+
     MediaPageServiceImpl setPhotoWall();
 }

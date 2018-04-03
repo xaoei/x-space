@@ -26,14 +26,15 @@ public class MediaPageServiceImpl implements MediaPageService {
 
 
     private Map<String, Object> map;
-    public MediaPageServiceImpl getValueMap(Map<String, Object> map){
+
+    public MediaPageServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
         return this;
     }
 
-    public MediaPageServiceImpl setPhotoWall(){
+    public MediaPageServiceImpl setPhotoWall() {
         List<XUserImage> xUserImageList = xUserImageMapper.selectAllImg();
-        map.put("user_img_list",xUserImageList);
+        map.put("user_img_list", xUserImageList);
         return this;
     }
 }

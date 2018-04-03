@@ -29,19 +29,19 @@ public class UserController {
 
     @ApiOperation(value = "注册账号")
     @PostMapping("/v1/user/register")
-    public BaseResult register(@RequestBody RegisterVO registerVO){
+    public BaseResult register(@RequestBody RegisterVO registerVO) {
         return userService.register(registerVO);
     }
 
     @ApiOperation(value = "用户登陆")
     @PostMapping("/v1/user/login")
-    public BaseResult login(@RequestBody LoginVO loginVO){
+    public BaseResult login(@RequestBody LoginVO loginVO) {
         return userService.login(loginVO);
     }
 
     @ApiOperation(value = "用户下线")
     @PostMapping("/v1/user/logout")
-    public BaseResult logout(){
+    public BaseResult logout() {
         return userService.logout();
     }
 }

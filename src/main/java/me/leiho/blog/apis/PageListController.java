@@ -25,10 +25,11 @@ public class PageListController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PageListService pageListService;
+
     @ApiOperation(value = "分页读取列表")
     @PostMapping("/v1/read/getSimpleArticleInfo")
-    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(@RequestBody SimpleArticleInfoReq req){
-        logger.info("/v1/read/getSimpleArticleInfo:"+req);
+    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(@RequestBody SimpleArticleInfoReq req) {
+        logger.info("/v1/read/getSimpleArticleInfo:" + req);
         return pageListService.getSimpleArticleInfo(req);
     }
 }

@@ -12,5 +12,6 @@ import java.util.Map;
  */
 public interface PageService {
     PageServiceImpl getValueMap(Map<String, Object> map);
-    PageServiceImpl setArticle(String type,Integer no);
+
+    PageServiceImpl setArticle(String type, Integer no);
 }

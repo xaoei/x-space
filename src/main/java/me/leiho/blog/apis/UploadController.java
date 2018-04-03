@@ -50,9 +50,9 @@ public class UploadController {
     private XUserImageMapper xUserImageMapper;
 
     @ApiOperation(value = "上传图片,获得图片链接", notes = "")
-    @PostMapping(value = "/v1/upload",consumes = "multipart/*",headers = "content-type=multipart/form-data")
-    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件",required = true)MultipartFile multipartFile){
-        if (SecurityUtils.getSubject()!=null&&SecurityUtils.getSubject().getPrincipal()!=null) {
+    @PostMapping(value = "/v1/upload", consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile) {
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
             param.setId(userInfo.getId());
@@ -62,17 +62,17 @@ public class UploadController {
                 logger.error("账号不存在");
                 return new PicUpResult(1);
             }
-            if (multipartFile==null){
+            if (multipartFile == null) {
                 logger.error("文件上传失败");
                 return new PicUpResult(2);
             }
-            if (multipartFile.getSize()>5120000){
+            if (multipartFile.getSize() > 5120000) {
                 logger.error("文件太大,请上传5兆以下图片。");
                 return new PicUpResult(3);
             }
             String fileName = multipartFile.getOriginalFilename();
             String suffix = fileName.substring(fileName.lastIndexOf("."));
-            if (!".jpeg".equals(suffix)&&!".jpg".equals(suffix)&&!".png".equals(suffix)){
+            if (!".jpeg".equals(suffix) && !".jpg".equals(suffix) && !".png".equals(suffix)) {
                 logger.error("请上传jpeg、jpg、png格式的图片。");
                 return new PicUpResult(4);
             }
@@ -80,18 +80,19 @@ public class UploadController {
             try {
                 File image = new File("image");
                 image.mkdir();
-                SaveFileFromInputStream(multipartFile.getInputStream(),"image",imageId+suffix,xUserAccount);
+                SaveFileFromInputStream(multipartFile.getInputStream(), "image", imageId + suffix, xUserAccount);
             } catch (IOException e) {
-                logger.error("上传失败",e);
+                logger.error("上传失败", e);
                 return new PicUpResult(5);
             }
             List<String> data = new ArrayList<>();
-            data.add("image/total/"+imageId+suffix);
-            return  new PicUpResult(0,data);
+            data.add("image/total/" + imageId + suffix);
+            return new PicUpResult(0, data);
         }
         return new PicUpResult(6);
     }
-    private void SaveFileFromInputStream(InputStream stream, String path, String filename,XUserAccount xUserAccount) throws IOException {
+
+    private void SaveFileFromInputStream(InputStream stream, String path, String filename, XUserAccount xUserAccount) throws IOException {
         File fp1 = new File(path + "/total/");
         File fp2 = new File(path + "/small/");
         if (!fp1.exists()) {
@@ -100,27 +101,26 @@ public class UploadController {
         if (!fp2.exists()) {
             fp2.mkdirs();
         }
-        FileOutputStream fs=new FileOutputStream( path + "/total/"+ filename);
-        byte[] buffer =new byte[1024*1024];
+        FileOutputStream fs = new FileOutputStream(path + "/total/" + filename);
+        byte[] buffer = new byte[1024 * 1024];
         int bytesum = 0;
         int byteread = 0;
-        while ((byteread=stream.read(buffer))!=-1)
-        {
-            bytesum+=byteread;
-            fs.write(buffer,0,byteread);
+        while ((byteread = stream.read(buffer)) != -1) {
+            bytesum += byteread;
+            fs.write(buffer, 0, byteread);
             fs.flush();
         }
         fs.close();
         stream.close();
         //生成小图
-        ImgCompress imgCompress = new ImgCompress("image/total/"+filename);
-        imgCompress.resizeFix(100,100,"image/small/"+filename);
+        ImgCompress imgCompress = new ImgCompress("image/total/" + filename);
+        imgCompress.resizeFix(100, 100, "image/small/" + filename);
         //信息入库
         XUserImage xUserImage = new XUserImage();
         xUserImage.setUserId(xUserAccount.getId());
         xUserImage.setUsername(xUserAccount.getUsername());
-        xUserImage.setTotalSrc("image/total/"+filename);
-        xUserImage.setSmallSrc("image/small/"+filename);
+        xUserImage.setTotalSrc("image/total/" + filename);
+        xUserImage.setSmallSrc("image/small/" + filename);
         xUserImage.setCreateTime(new Date());
         xUserImageMapper.insertSelective(xUserImage);
     }

@@ -44,43 +44,45 @@ public class PageServiceImpl implements PageService {
     private XUserAccountMapper xUserAccountMapper;
 
     private Map<String, Object> map;
-    public PageServiceImpl getValueMap(Map<String, Object> map){
+
+    public PageServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
         return this;
     }
-    public PageServiceImpl setArticle(String type,Integer no){
+
+    public PageServiceImpl setArticle(String type, Integer no) {
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25);
         XArticle article = xArticleMapper.selectByPrimaryKey(no);
-        if (article==null){
+        if (article == null) {
             return this;
         }
         List<XComment> xCommentList = xCommentMapper.getAllCommentByArticleId(no);
-        map.put("have_comment",0);
-        if (!xCommentList.isEmpty()){
+        map.put("have_comment", 0);
+        if (!xCommentList.isEmpty()) {
             List<CommentVO> commentVOList = new ArrayList<>();
-            for (XComment xComment:xCommentList){
+            for (XComment xComment : xCommentList) {
                 CommentVO commentVO = new CommentVO();
-                BeanUtils.copyProperties(xComment,commentVO);
+                BeanUtils.copyProperties(xComment, commentVO);
                 XUserAccount xUserAccount = xUserAccountMapper.selectByPrimaryKey(xComment.getUserId());
-                if (xUserAccount==null||xUserAccount.getUsername()==null){
+                if (xUserAccount == null || xUserAccount.getUsername() == null) {
                     break;
                 }
                 commentVO.setUserName(xUserAccount.getUsername());
                 commentVOList.add(commentVO);
             }
-            map.put("comment_list",commentVOList);
-            map.put("have_comment",1);
-            HashMap<String,String> commentList = new HashMap<>();
+            map.put("comment_list", commentVOList);
+            map.put("have_comment", 1);
+            HashMap<String, String> commentList = new HashMap<>();
         }
         XArticleVO xArticleVO = new XArticleVO();
-        BeanUtils.copyProperties(article,xArticleVO);
+        BeanUtils.copyProperties(article, xArticleVO);
         //获取作者名称
         XUserAccount xUserAccount = xUserAccountMapper.selectByPrimaryKey(xArticleVO.getAuthor());
-        if (xUserAccount==null|| StringUtils.isBlank(xUserAccount.getUsername())){
+        if (xUserAccount == null || StringUtils.isBlank(xUserAccount.getUsername())) {
             return this;
         }
         xArticleVO.setAuthorName(xUserAccount.getUsername());
-        map.put("one_content",xArticleVO);
+        map.put("one_content", xArticleVO);
         return this;
     }
 }

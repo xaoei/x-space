@@ -32,17 +32,18 @@ public class PageController {
 
     @Autowired
     private PageService pageService;
-    @GetMapping(value="/page/{type}/{id}")
+
+    @GetMapping(value = "/page/{type}/{id}")
     /**
      * type:
      *      article
      *      media
      * */
-    public String index(Map<String, Object> map,@PathVariable String type,@PathVariable Integer id) {
-        logger.info(type+","+id);
+    public String index(Map<String, Object> map, @PathVariable String type, @PathVariable Integer id) {
+        logger.info(type + "," + id);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(0).setCommonPageFoot();
-        pageService.getValueMap(map).setArticle(type,id);
-        logger.info("/page/"+type+"/"+id);
+        pageService.getValueMap(map).setArticle(type, id);
+        logger.info("/page/" + type + "/" + id);
         return "page";
     }
 }

@@ -11,7 +11,7 @@ import java.util.Objects;
  * @Date: Create in 14:19 2018/1/26
  * @Contact: yesxiaolei@outlook.com
  */
-public class HeadItemDTO extends StringEntity{
+public class HeadItemDTO extends StringEntity {
     /**
      * 顺序
      */
