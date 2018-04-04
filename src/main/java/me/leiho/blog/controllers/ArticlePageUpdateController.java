@@ -2,7 +2,6 @@ package me.leiho.blog.controllers;
 
 import me.leiho.blog.services.ArticlePageService;
 import me.leiho.blog.services.CommonPageValueService;
-import me.leiho.blog.services.PageListService;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

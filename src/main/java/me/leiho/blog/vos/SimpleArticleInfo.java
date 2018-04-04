@@ -3,7 +3,6 @@ package me.leiho.blog.vos;
 import me.leiho.blog.entities.StringEntity;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Author: 萧大侠

@@ -1,8 +1,5 @@
 package me.leiho.blog.controllers;
 
-import me.leiho.blog.entities.BaseResult;
-import me.leiho.blog.entities.IndexShortArticle;
-import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
 import me.leiho.blog.services.WritePageService;
 import org.apache.shiro.SecurityUtils;
@@ -12,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

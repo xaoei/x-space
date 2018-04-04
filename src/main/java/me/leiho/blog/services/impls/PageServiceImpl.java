@@ -1,16 +1,13 @@
 package me.leiho.blog.services.impls;
 
-import com.github.pagehelper.PageInfo;
 import me.leiho.blog.entities.XArticle;
 import me.leiho.blog.entities.XComment;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
 import me.leiho.blog.mappers.XCommentMapper;
 import me.leiho.blog.mappers.XUserAccountMapper;
-import me.leiho.blog.services.PageListService;
 import me.leiho.blog.services.PageService;
 import me.leiho.blog.vos.CommentVO;
-import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
 import me.leiho.blog.vos.XArticleVO;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +17,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

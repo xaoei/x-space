@@ -1,6 +1,5 @@
 package me.leiho.blog.vos;
 
-import io.swagger.models.auth.In;
 import me.leiho.blog.entities.StringEntity;
 
 /**

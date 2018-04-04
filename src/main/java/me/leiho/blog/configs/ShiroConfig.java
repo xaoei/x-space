@@ -2,11 +2,11 @@ package me.leiho.blog.configs;
 
 import me.leiho.blog.shiro.CustomCredentialsMatcher;
 import me.leiho.blog.shiro.MyShiroRealm;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.apache.shiro.mgt.SecurityManager;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

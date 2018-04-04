@@ -1,7 +1,5 @@
 package me.leiho.blog.services.impls;
 
-import com.github.pagehelper.PageInfo;
-import junit.framework.Test;
 import me.leiho.blog.entities.XArticle;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
@@ -11,9 +9,7 @@ import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.ArticleService;
 import me.leiho.blog.utils.JsonUtil;
 import me.leiho.blog.vos.ArticleWriteVO;
-import me.leiho.blog.vos.PicUpResult;
 import me.leiho.blog.vos.SaveResult;
-import me.leiho.blog.vos.SimpleArticleInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -22,8 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

@@ -1,7 +1,5 @@
 package me.leiho.blog.vos;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
-import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.StringEntity;
 
 /**

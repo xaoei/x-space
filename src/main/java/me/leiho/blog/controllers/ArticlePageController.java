@@ -1,11 +1,6 @@
 package me.leiho.blog.controllers;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import me.leiho.blog.entities.IndexShortArticle;
-import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.ArticlePageService;
-import me.leiho.blog.services.ArticleService;
 import me.leiho.blog.services.CommonPageValueService;
 import me.leiho.blog.services.PageListService;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
@@ -13,10 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

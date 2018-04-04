@@ -1,20 +1,14 @@
 package me.leiho.blog.controllers;
 
-import me.leiho.blog.entities.IndexShortArticle;
-import me.leiho.blog.entities.SimpleLink;
-import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.services.ArticlePageService;
 import me.leiho.blog.services.CommonPageValueService;
 import me.leiho.blog.services.IndexSettingService;
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -1,9 +1,7 @@
 package me.leiho.blog.services.impls;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import me.leiho.blog.entities.XArticle;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
 import me.leiho.blog.mappers.XUserAccountMapper;
@@ -14,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

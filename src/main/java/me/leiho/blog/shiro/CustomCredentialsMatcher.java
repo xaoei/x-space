@@ -1,19 +1,15 @@
 package me.leiho.blog.shiro;
 
-import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.utils.PBKDF2;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-
-import static me.leiho.blog.enums.ResultCode.FAILED_USER_LOGIN_SERVICE_ERROR;
 
 /**
  * @Author: 萧大侠

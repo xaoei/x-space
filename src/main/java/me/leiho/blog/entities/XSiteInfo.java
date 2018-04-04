@@ -1,8 +1,10 @@
 package me.leiho.blog.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "x_site_info")
 public class XSiteInfo implements Serializable {

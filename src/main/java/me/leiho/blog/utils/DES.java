@@ -1,13 +1,13 @@
 package me.leiho.blog.utils;
 
 
-import java.security.Key;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
+import java.security.Key;
 
 /**
  * @Author: 萧大侠

@@ -1,6 +1,5 @@
 package me.leiho.blog.services.impls;
 
-import me.leiho.blog.entities.XArticle;
 import me.leiho.blog.entities.XComment;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XCommentMapper;

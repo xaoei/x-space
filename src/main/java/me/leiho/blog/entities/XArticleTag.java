@@ -2,9 +2,11 @@ package me.leiho.blog.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "x_article_tag")
 public class XArticleTag implements Serializable {

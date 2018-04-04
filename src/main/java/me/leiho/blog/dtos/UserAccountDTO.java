@@ -2,9 +2,6 @@ package me.leiho.blog.dtos;
 
 import me.leiho.blog.entities.StringEntity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Objects;
 
 /**

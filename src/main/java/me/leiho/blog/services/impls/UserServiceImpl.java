@@ -2,7 +2,6 @@ package me.leiho.blog.services.impls;
 
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
-import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.UserService;
 import me.leiho.blog.utils.PBKDF2;

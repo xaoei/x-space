@@ -2,7 +2,6 @@ package me.leiho.blog.dtos;
 
 import me.leiho.blog.entities.StringEntity;
 
-import javax.persistence.Column;
 import java.util.Objects;
 
 /**
