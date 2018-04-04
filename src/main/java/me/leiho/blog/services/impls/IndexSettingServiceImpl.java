@@ -36,14 +36,22 @@ public class IndexSettingServiceImpl implements IndexSettingService {
         for (XIndexSetting xIndexSetting:indexSettingList){
             if ("hot".equals(xIndexSetting.getType())){
                 //310x180
-                shortNewArticles.add(IndexShortArticle.build().setImg(xIndexSetting.getHeadImage()).setTitle(xIndexSetting.getTitle()).setArticle(xIndexSetting.getContent()).setLink("/article/"+xIndexSetting.getArticleId()));
+                shortNewArticles.add(IndexShortArticle
+                        .build()
+                        .setImg(xIndexSetting.getHeadImage())
+                        .setTitle(xIndexSetting.getTitle())
+                        .setArticle(xIndexSetting.getContent())
+                        .setLink("/page/article/"+xIndexSetting.getArticleId()));
             }else if ("awesome".equals(xIndexSetting.getType())){
                 map.put("main_article_title", xIndexSetting.getTitle());
                 map.put("main_article_feeling",xIndexSetting.getFeeling());
                 //660x330
                 map.put("main_article_img", xIndexSetting.getHeadImage());
                 map.put("main_article_context", xIndexSetting.getContent());
-                map.put("main_article_url", "/article/"+xIndexSetting.getArticleId());
+                map.put("main_article_url", "/page/article/"+xIndexSetting.getArticleId());
+            }else if ("pic".equals(xIndexSetting.getType())){
+                map.put("big_img", xIndexSetting.getTitle());
+                map.put("big_img_url", xIndexSetting.getHeadImage());
             }
         }
         map.put("short_new_article", shortNewArticles);

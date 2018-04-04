@@ -3,11 +3,14 @@ package me.leiho.blog.controllers;
 import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.SimpleLink;
 import me.leiho.blog.services.CommonPageValueService;
+import me.leiho.blog.services.ManageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +27,21 @@ public class ManagePageController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CommonPageValueService commonPageValueService;
+    @Autowired
+    private ManageService manageService;
 
     @GetMapping("/manage")
     public String user(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
+        manageService.getValueMap(map).setPage("self");
         logger.info("/manage");
+        return "manage";
+    }
+    @GetMapping("/manage/{page}")
+    public String manage(Map<String, Object> map,@PathVariable String page) {
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
+        manageService.getValueMap(map).setPage(page);
+        logger.info("/manage/"+page);
         return "manage";
     }
 }

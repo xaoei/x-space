@@ -44,10 +44,6 @@ public class IndexPageController {
                 .setPageName("主页")
                 .setCommonPageHead(1)
                 .setCommonPageFoot();
-
-
-        map.put("big_img", "tm-home-img");//todo
-        map.put("big_img_url", "/img/tm-home-img.jpg");//todo
         indexSettingService.getValueMap(map).setIndexArticles();
         articlePageService.getValueMap(map).setSideBar(100);
         logger.info("/index");

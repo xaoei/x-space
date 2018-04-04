@@ -11,164 +11,72 @@
     <link rel="stylesheet" type='text/css'
           href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css">
     <!-- Bootstrap style -->
-    <link rel="stylesheet" href="css/templatemo-style.css">                                   <!-- Templatemo style -->
-
+    <link rel="stylesheet" type='text/css' href="/css/templatemo-style.css">
+    <!-- Templatemo style -->
+    <style>
+        body{
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='158' height='158' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23cf8b3c' stroke-width='0.7' stroke-opacity='0.25'%3E%3Crect x='-40' y='40' width='75' height='75'/%3E%3Crect x='-35' y='45' width='65' height='65'/%3E%3Crect x='-30' y='50' width='55' height='55'/%3E%3Crect x='-25' y='55' width='45' height='45'/%3E%3Crect x='-20' y='60' width='35' height='35'/%3E%3Crect x='-15' y='65' width='25' height='25'/%3E%3Crect x='-10' y='70' width='15' height='15'/%3E%3Crect x='-5' y='75' width='5' height='5'/%3E%3Crect width='35' height='35'/%3E%3Crect x='5' y='5' width='25' height='25'/%3E%3Crect x='10' y='10' width='15' height='15'/%3E%3Crect x='15' y='15' width='5' height='5'/%3E%3Crect x='40' width='75' height='75'/%3E%3Crect x='45' y='5' width='65' height='65'/%3E%3Crect x='50' y='10' width='55' height='55'/%3E%3Crect x='55' y='15' width='45' height='45'/%3E%3Crect x='60' y='20' width='35' height='35'/%3E%3Crect x='65' y='25' width='25' height='25'/%3E%3Crect x='70' y='30' width='15' height='15'/%3E%3Crect x='75' y='35' width='5' height='5'/%3E%3Crect x='40' y='80' width='35' height='35'/%3E%3Crect x='45' y='85' width='25' height='25'/%3E%3Crect x='50' y='90' width='15' height='15'/%3E%3Crect x='55' y='95' width='5' height='5'/%3E%3Crect x='120' y='-40' width='75' height='75'/%3E%3Crect x='125' y='-35' width='65' height='65'/%3E%3Crect x='130' y='-30' width='55' height='55'/%3E%3Crect x='135' y='-25' width='45' height='45'/%3E%3Crect x='140' y='-20' width='35' height='35'/%3E%3Crect x='145' y='-15' width='25' height='25'/%3E%3Crect x='150' y='-10' width='15' height='15'/%3E%3Crect x='155' y='-5' width='5' height='5'/%3E%3Crect x='120' y='40' width='35' height='35'/%3E%3Crect x='125' y='45' width='25' height='25'/%3E%3Crect x='130' y='50' width='15' height='15'/%3E%3Crect x='135' y='55' width='5' height='5'/%3E%3Crect y='120' width='75' height='75'/%3E%3Crect x='5' y='125' width='65' height='65'/%3E%3Crect x='10' y='130' width='55' height='55'/%3E%3Crect x='15' y='135' width='45' height='45'/%3E%3Crect x='20' y='140' width='35' height='35'/%3E%3Crect x='25' y='145' width='25' height='25'/%3E%3Crect x='30' y='150' width='15' height='15'/%3E%3Crect x='35' y='155' width='5' height='5'/%3E%3Crect x='200' y='120' width='75' height='75'/%3E%3Crect x='40' y='200' width='75' height='75'/%3E%3Crect x='80' y='80' width='75' height='75'/%3E%3Crect x='85' y='85' width='65' height='65'/%3E%3Crect x='90' y='90' width='55' height='55'/%3E%3Crect x='95' y='95' width='45' height='45'/%3E%3Crect x='100' y='100' width='35' height='35'/%3E%3Crect x='105' y='105' width='25' height='25'/%3E%3Crect x='110' y='110' width='15' height='15'/%3E%3Crect x='115' y='115' width='5' height='5'/%3E%3Crect x='80' y='160' width='35' height='35'/%3E%3Crect x='85' y='165' width='25' height='25'/%3E%3Crect x='90' y='170' width='15' height='15'/%3E%3Crect x='95' y='175' width='5' height='5'/%3E%3Crect x='120' y='160' width='75' height='75'/%3E%3Crect x='125' y='165' width='65' height='65'/%3E%3Crect x='130' y='170' width='55' height='55'/%3E%3Crect x='135' y='175' width='45' height='45'/%3E%3Crect x='140' y='180' width='35' height='35'/%3E%3Crect x='145' y='185' width='25' height='25'/%3E%3Crect x='150' y='190' width='15' height='15'/%3E%3Crect x='155' y='195' width='5' height='5'/%3E%3Crect x='160' y='40' width='75' height='75'/%3E%3Crect x='165' y='45' width='65' height='65'/%3E%3Crect x='170' y='50' width='55' height='55'/%3E%3Crect x='175' y='55' width='45' height='45'/%3E%3Crect x='180' y='60' width='35' height='35'/%3E%3Crect x='185' y='65' width='25' height='25'/%3E%3Crect x='190' y='70' width='15' height='15'/%3E%3Crect x='195' y='75' width='5' height='5'/%3E%3Crect x='160' y='120' width='35' height='35'/%3E%3Crect x='165' y='125' width='25' height='25'/%3E%3Crect x='170' y='130' width='15' height='15'/%3E%3Crect x='175' y='135' width='5' height='5'/%3E%3Crect x='200' y='200' width='35' height='35'/%3E%3Crect x='200' width='35' height='35'/%3E%3Crect y='200' width='35' height='35'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
 </head>
 
 <body>
        
         <#include "./common/head.ftl">
 
-<div class="tm-blog-img-container">
-
-</div>
-
+<div class="tm-blog-img-container"></div>
 <section class="tm-section">
     <div class="container-fluid">
         <div class="row">
-
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-                <div class="tm-blog-post">
-                    <h3 class="tm-gold-text">Pellentesque fermentum mauris</h3>
-                    <p>Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-                    <img src="img/tm-img-1010x336-1.jpg" alt="Image" class="img-fluid tm-img-post">
-
-                    <p>You can help templatemo by telling your friends about our HTML CSS templates. Praesent velit
-                        ante, congue ac dignissim in, vehicula sit amet urna. Fusce in dapibus quam, eget finibus velit.
-                        Nullam erat odio, vulputate id est ut, consequat rutrum justo. Vivamus vel leo vel nunc
-                        tincidunt mattis. Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent
-                        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-
-                    <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus
-                        fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non
-                        luctus mauris lacinia quis. Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex
-                        et mattis.</p>
-
-                    <p>Quisque vel sem eu turpis ullamcorper euismod. Praesent quis nisi ac augue luctus viverra. Sed et
-                        dui nisi. Fusce vitae dapibus justo. Pellentesque accumsan est ac posuere imperdiet. Curabitur
-                        eros mi, lacinia at euismod quis, dapibus vel ligula. Ut sodales erat vitae nunc tempor mollis.
-                        Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In
-                        eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh
-                        vestibulum eleifend et ac elit.</p>
-
-                    <p>Sed vitae luctus libero. Nam sem neque, finibus id sem pharetra, cursus porttitor ligula.
-                        Praesent aliquam fermentum dui, vitae venenatis libero vulputate ac. Fusce bibendum scelerisque
-                        magna eget iaculis. Phasellus non arcu eu sem convallis semper. Duis vulputate dignissim
-                        rhoncus.</p>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-left:auto;margin-right:auto;">
+                <div name="导航栏">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link <#if manage_page='self'>active</#if>" href="/manage/self">密码修改</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <#if manage_page='user'>active</#if>" href="/manage/user">用户管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <#if manage_page='indx'>active</#if>" href="/manage/indx">展示管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <#if manage_page='info'>active</#if>" href="/manage/info">网站信息管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">禁用</a>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="row tm-margin-t-big">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="img/tm-img-310x180-1.jpg" alt="Image" class="tm-margin-b-30 img-fluid">
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #1</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Detail</a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="img/tm-img-310x180-2.jpg" alt="Image" class="tm-margin-b-30 img-fluid">
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #2</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Read More</a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="img/tm-img-310x180-3.jpg" alt="Image" class="tm-margin-b-30 img-fluid">
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #3</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Detail</a>
-                        </div>
-
-                    </div>
-                </div>
-
+                <hr style="height:10px;border:none;border-top:10px groove skyblue;">
+                <#if manage_page='self'>
+                    <#include "./manage/selfset.ftl">
+                </#if>
+                <#if manage_page='user'>
+                    <#include "./manage/usermanage.ftl">
+                </#if>
+                <#if manage_page='indx'>
+                    <#include "./manage/indexset.ftl">
+                </#if>
+                <#if manage_page='info'>
+                    <#include "./manage/webinfoset.ftl">
+                </#if>
+                <hr style="height:10px;border:none;border-top:10px skyblue groove;">
             </div>
-
-            <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">
-
-                <div class="tm-aside-container">
-                    <h3 class="tm-gold-text tm-title">
-                        Categories
-                    </h3>
-                    <nav>
-                        <ul class="nav">
-                            <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
-                            <li><a href="#" class="tm-text-link">Tincidunt non faucibus placerat</a></li>
-                            <li><a href="#" class="tm-text-link">Vestibulum tempor ac lectus</a></li>
-                            <li><a href="#" class="tm-text-link">Elementum egestas dui</a></li>
-                            <li><a href="#" class="tm-text-link">Nam in augue consectetur</a></li>
-                            <li><a href="#" class="tm-text-link">Fusce non turpis euismod</a></li>
-                            <li><a href="#" class="tm-text-link">Text Link Color #006699</a></li>
-                        </ul>
-                    </nav>
-                    <hr class="tm-margin-t-small">
-                    <h3 class="tm-gold-text tm-title tm-margin-t-small">
-                        Useful Links
-                    </h3>
-                    <nav>
-                        <ul class="nav">
-                            <li><a href="#" class="tm-text-link">Suspendisse sed dui nulla</a></li>
-                            <li><a href="#" class="tm-text-link">Lorem ipsum dolor sit</a></li>
-                            <li><a href="#" class="tm-text-link">Duiss nec purus et eros</a></li>
-                            <li><a href="#" class="tm-text-link">Etiam pulvinar et ligula sed</a></li>
-                            <li><a href="#" class="tm-text-link">Proin egestas eu felis et iaculis</a></li>
-                        </ul>
-                    </nav>
-                    <hr class="tm-margin-t-small">
-
-                    <div class="tm-content-box tm-margin-t-small">
-                        <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique
-                            #1</h4></a>
-                        <p class="tm-margin-b-30">Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique
-                            nibh. Nunc in molestie elit.</p>
-                    </div>
-                    <hr class="tm-margin-t-small">
-                    <div class="tm-content-box tm-margin-t-small">
-                        <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique
-                            #2</h4></a>
-                        <p>Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie
-                            elit.</p>
-                    </div>
-                    <hr class="tm-margin-t-small">
-                    <div class="tm-content-box tm-margin-t-small">
-                        <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique
-                            #3</h4></a>
-                        <p>Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie
-                            elit.</p>
-                    </div>
-                </div>
-
-
-            </aside>
-
         </div>
-
     </div>
 </section>
         
-        <#include "./common/foot.ftl">
+    <#include "./common/foot.ftl">
 
 <!-- load JS files -->
-<script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>
+<!-- jQuery (https://jquery.com/download/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script>
 <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-<script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>
+<!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
 </body>
