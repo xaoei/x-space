@@ -60,6 +60,9 @@ public class MediaPageServiceImpl implements MediaPageService {
             }else {
                 xUserImageVO.setIsOwner(0);
             }
+            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                xUserImageVO.setIsOwner(1);
+            }
 //            System.out.println(xUserImageVO);
             imageVOList.add(xUserImageVO);
         }
