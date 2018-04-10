@@ -5,12 +5,15 @@ import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.mappers.XUserImageMapper;
 import me.leiho.blog.services.MediaPageService;
+import me.leiho.blog.vos.XUserImageVO;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +42,28 @@ public class MediaPageServiceImpl implements MediaPageService {
     }
 
     public MediaPageServiceImpl setPhotoWall() {
+        XUserAccount xUserAccount = null;
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            xUserAccount = xUserAccountMapper.selectOne(param);
+        }
         List<XUserImage> xUserImageList = xUserImageMapper.selectAllImg();
-        map.put("user_img_list", xUserImageList);
+        List<XUserImageVO> imageVOList = new ArrayList<>();
+        for (XUserImage xUserImage:xUserImageList){
+            XUserImageVO xUserImageVO = new XUserImageVO();
+            BeanUtils.copyProperties(xUserImage,xUserImageVO);
+            if (xUserAccount!=null&&xUserAccount.getId()!=null&&xUserImage.getUserId()!=null&&xUserAccount.getId().equals(xUserImage.getUserId())){
+                xUserImageVO.setIsOwner(1);
+            }else {
+                xUserImageVO.setIsOwner(0);
+            }
+//            System.out.println(xUserImageVO);
+            imageVOList.add(xUserImageVO);
+        }
+        map.put("user_img_list", imageVOList);
         return this;
     }
     public String deleteImageById(Integer id){

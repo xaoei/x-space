@@ -27,7 +27,7 @@
             <ul class="iw_thumbs" id="iw_thumbs">
             <#list user_img_list as uil>
                 <li><img src="${uil.smallSrc}" data-img="${uil.totalSrc}" alt="${uil.id}"/>
-                    <div><h2>${uil.username}</h2>
+                    <div><h2>${uil.username}</h2><#if uil.isOwner=1><button type="button" class="btn btn-danger" onclick="openDelete('image',${uil.id})">删除</button></#if>
                         <p>${(uil.createTime?string("yyyy-MM-dd"))!}</p></div>
                 </li>
             </#list>
@@ -40,7 +40,7 @@
         </div>
     </div>
 </section>
-
+<#include "common/delete_modal.ftl">
 
 <script src="js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
 <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
