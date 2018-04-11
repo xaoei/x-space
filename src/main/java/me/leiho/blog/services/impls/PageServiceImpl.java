@@ -11,6 +11,7 @@ import me.leiho.blog.vos.CommentVO;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
 import me.leiho.blog.vos.XArticleVO;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +48,15 @@ public class PageServiceImpl implements PageService {
     }
 
     public PageServiceImpl setArticle(String type, Integer no) {
+        XUserAccount loginUser = null;
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            loginUser = xUserAccountMapper.selectOne(param);
+        }
+
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25);
         XArticle article = xArticleMapper.selectByPrimaryKey(no);
         if (article == null) {
@@ -58,12 +68,21 @@ public class PageServiceImpl implements PageService {
             List<CommentVO> commentVOList = new ArrayList<>();
             for (XComment xComment : xCommentList) {
                 CommentVO commentVO = new CommentVO();
+                commentVO.setId(xComment.getId());
                 BeanUtils.copyProperties(xComment, commentVO);
                 XUserAccount xUserAccount = xUserAccountMapper.selectByPrimaryKey(xComment.getUserId());
                 if (xUserAccount == null || xUserAccount.getUsername() == null) {
                     break;
                 }
                 commentVO.setUserName(xUserAccount.getUsername());
+                if (loginUser!=null&&xUserAccount.getId()==loginUser.getId()){
+                    commentVO.setIsOwner(1);
+                }else {
+                    commentVO.setIsOwner(0);
+                }
+                if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                    commentVO.setIsOwner(1);
+                }
                 commentVOList.add(commentVO);
             }
             map.put("comment_list", commentVOList);

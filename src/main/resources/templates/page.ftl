@@ -66,6 +66,9 @@ ${one_content.content}
                     <#elseif cl.hot=0>
                         <a style="color: black;">${cl.comment}</a>
                     </#if>
+                    <#if cl.isOwner=1>
+                        <button type="button" class="btn btn-danger" onclick="openDelete('comment',${cl.id})">删除</button>
+                    </#if>
                 </div>
                 <br>
                 </#list>
@@ -87,7 +90,7 @@ ${one_content.content}
     <br>
 </div>
 <#include "./common/foot.ftl">
-
+<#include "common/delete_modal.ftl">
 <!-- load JS files -->
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>
 <!-- jQuery (https://jquery.com/download/) -->

@@ -32,20 +32,8 @@
     }
     function deleteItem() {
         alert(type+','+id);
-        var url;
-        if (type='image'){
-            url='/delete/image';
-        }else if(type='article'){
-            url='/delete/article';
-        }else if(type='article'){
-            url='/delete/comment';
-        }else if(type='article'){
-            url='/delete/user';
-        }else{
-            return;
-        }
         $.ajax({
-            url: url,
+            url: '/delete/'+type,
             type: "post",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(id),
