@@ -189,4 +189,42 @@ public class UserServiceImpl implements UserService {
         }
         return "没有权限修改";
     }
+
+    @Override
+    public String updateUserPwd(String oldPwd, String newPwd) {
+        if (StringUtils.isBlank(oldPwd)||StringUtils.isBlank(newPwd)){
+            return "参数异常";
+        }
+        XUserAccount loginUser = null;
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            loginUser = xUserAccountMapper.selectOne(param);
+        }
+        if (loginUser==null||loginUser.getPassword()==null||loginUser.getPassword()==null){
+            return "用户状态异常";
+        }
+        String password = null;
+        try {
+            if (!PBKDF2.validatePassword(oldPwd,loginUser.getPassword())){
+                return "原密码错误";
+            }
+            password = PBKDF2.createHash(newPwd);
+        } catch (NoSuchAlgorithmException e) {
+            return "内部错误,请联系网站管理员";
+        } catch (InvalidKeySpecException e) {
+            return "内部错误,请联系网站管理员";
+        }
+        if (StringUtils.isBlank(password)){
+            return "参数异常";
+        }
+        XUserAccount xUserAccount = new XUserAccount();
+        xUserAccount.setId(loginUser.getId());
+        xUserAccount.setPassword(password);
+        xUserAccount.setUpdateTime(new Date());
+        xUserAccountMapper.updateByPrimaryKeySelective(xUserAccount);
+        return "修改成功";
+    }
 }

@@ -78,7 +78,6 @@ public class UploadController {
                 path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
                 path = path.replace("jar:","").replace("file:/","").replace("file:","");
                 path = URLDecoder.decode(path,"utf-8");
-                logger.info("path: "+path);
                 File image = new File(path);
                 if (!image.exists()){
                     image.mkdir();
