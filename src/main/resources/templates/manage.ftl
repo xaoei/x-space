@@ -45,7 +45,7 @@
                             <a class="nav-link <#if manage_page='info'>active</#if>" href="/manage/info">网站信息管理</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#">禁用</a>
+                            <a class="nav-link disabled" href="/deleteThisWeb">删除网站(手动滑稽)</a>
                         </li>
                     </ul>
                 </div>

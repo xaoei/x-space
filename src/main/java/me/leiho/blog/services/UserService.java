@@ -1,9 +1,11 @@
 package me.leiho.blog.services;
 
+import com.github.pagehelper.PageInfo;
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.vos.LoginVO;
 import me.leiho.blog.vos.RegisterVO;
+import me.leiho.blog.vos.UserInfoReq;
 
 /**
  * @Author: 萧大侠
@@ -21,4 +23,5 @@ public interface UserService {
     String updateUserInfo(XUserAccount user);
     String updateUserPwd(String oldPwd,String newPwd);
     String deleteUserById(Integer id);
+    PageInfo<XUserAccount> getUserInfoList(UserInfoReq req);
 }

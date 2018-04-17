@@ -1,12 +1,13 @@
 package me.leiho.blog.services.impls;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.UserService;
 import me.leiho.blog.utils.PBKDF2;
-import me.leiho.blog.vos.LoginVO;
-import me.leiho.blog.vos.RegisterVO;
+import me.leiho.blog.vos.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -226,5 +227,19 @@ public class UserServiceImpl implements UserService {
         xUserAccount.setUpdateTime(new Date());
         xUserAccountMapper.updateByPrimaryKeySelective(xUserAccount);
         return "修改成功";
+    }
+
+    public PageInfo<XUserAccount> getUserInfoList(UserInfoReq req) {
+        if (!SecurityUtils.getSubject().hasRole("admin")&&!SecurityUtils.getSubject().hasRole("superadmin")){
+            return null;
+        }
+        PageHelper.startPage(req.getPage(), req.getSize());
+        List<XUserAccount> userInfos = xUserAccountMapper.selectAll();
+        PageInfo<XUserAccount> userInfoList = new PageInfo<>(userInfos);
+        if (userInfos.isEmpty()) {
+            return null;
+        }
+        //处理标签名称:标签需要前端调用getAllTag()接口将数字替换为名称。
+        return userInfoList;
     }
 }

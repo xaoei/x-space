@@ -11,6 +11,9 @@
         margin-bottom: 10px;
     }
 </style>
+    <#if (forbidden)??>
+        <h1 style="text-align: center">页面禁止访问</h1>
+    <#else>
     <div name="修改页" id="svgB">
         <div name="热门文章设置">
             <hr style="height:5px;border:none;border-top:5px ridge green;" />
@@ -112,3 +115,4 @@
             <hr style="height:5px;border:none;border-top:5px ridge green;" />
         </div>
     </div>
+    </#if>

@@ -11,6 +11,9 @@
         margin-bottom: 10px;
     }
 </style>
+<#if (forbidden)??>
+        <h1 style="text-align: center">页面禁止访问</h1>
+<#else>
 <div name="网站信息修改" id="svgB">
     <hr style="height:5px;border:none;border-top:5px ridge green;" />
     <div style="margin-left: 30%">
@@ -36,3 +39,4 @@
     </button>
     <hr style="height:5px;border:none;border-top:5px ridge green;" />
 </div>
+</#if>

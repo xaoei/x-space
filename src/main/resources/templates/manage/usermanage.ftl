@@ -9,6 +9,9 @@
         margin-bottom: 10px;
     }
 </style>
+<#if (forbidden)??>
+        <h1 style="text-align: center">页面禁止访问</h1>
+<#else>
 <div name="用户管理" id="svgB">
     <div name="用户管理">
         <table class="table table-striped">
@@ -22,43 +25,65 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>15234324124</td>
-                    <td>萧大俠</td>
-                    <td style="color: #00bbff">正常</td>
-                    <td><button type="button" class="btn btn-danger">修改</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>4543442343@qq.com</td>
-                    <td>道德观</td>
-                    <td style="color: red">封禁</td>
-                    <td><button type="button" class="btn btn-danger disabled">修改</button></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>15234324124</td>
-                    <td>萧大俠</td>
-                    <td style="color: #00bbff">正常</td>
-                    <td><button type="button" class="btn btn-danger">修改</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>4543442343@qq.com</td>
-                    <td>道德观</td>
-                    <td style="color: red">封禁</td>
-                    <td><button type="button" class="btn btn-danger disabled">修改</button></td>
-                </tr>
+                <#if (user_info_list)??>
+                    <#list user_info_list as uil>
+                        <tr>
+                            <td>${uil.id}</td>
+                            <td>${uil.account}</td>
+                            <td>${uil.username}</td>
+                            <#if uil.del==0><td style="color: #00bbff">正常</td><#else><td style="color: red">禁用</td></#if></td>
+                            <td><button type="button" class="btn btn-danger">修改</button></td>
+                        </tr>
+                    </#list>
+                <#else>
+                    <div style="text-align: center">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h1>暂无内容</h1>
+                        <br>
+                    </div>
+                </#if>
             </tbody>
         </table>
-        <div style="text-align: center">
-            <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
-            </ul>
-            <br>
-        </div>
+        <#if (user_info_list)??>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="text-align: center;">
+                <ul class="pagination">
+                    <#if page_index == 1 || page_total<=0>
+                            <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                    <#else >
+                            <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_pre}">&laquo;</a></li>
+                    </#if>
+                    <#if page_total<=0>
+                        <li class="page-item active"><a class="page-link" href="#">0</a></li>
+                    <#else>
+                        <#list 1..page_total as i>
+                            <#if page_index == i>
+                                <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+                            <#else >
+                                <li class="page-item"><a class="page-link" href="/article/announce_desc/${i}">${i}</a></li>
+                            </#if>
+                        </#list>
+                    </#if>
+                    <#if page_total == page_index||page_total<=0>
+                        <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                    <#else >
+                        <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_next}">&raquo;</a></li>
+                    </#if>
+                </ul>
+                <br>
+                <hr style="height:10px;border:none;border-top:10px skyblue groove;">
+            </div>
+        </#if>
     </div>
 </div>
+</#if>
+<script type="text/javascript">
+
+</script>

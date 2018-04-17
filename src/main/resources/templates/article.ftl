@@ -38,25 +38,41 @@
                                     <th>作者</th>
                                     <th>分类</th>
                                     <th>发布时间</th>
+                                    <#if (role)??>
+                                        <#if role='admin'||role='superadmin'>
+                                            <th>操作</th>
+                                        </#if>
+                                    </#if>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <#list simple_article_info as sai>
                                     <tr>
-                                        <#if sai.hot == 1>
                                         <td>
-                                            <a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>"
-                                               style="color: red">${sai.title}</a></td>
-                                        <#else >
-                                        <td>
-                                            <a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>">${sai.title}</a>
+                                            <#if sai.hot == 1>
+                                                <a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>"
+                                                   style="color: red">${sai.title}</a>
+                                            <#else >
+                                                <a href="<#if (page_mode)??>/write/${sai.id}<#else>/page/article/${sai.id}</#if>">${sai.title}</a>
+                                            </#if>
+                                            <#if (user)??&&(role)??>
+                                                <#if role!='admin'&&role!='superadmin'&&user.id==sai.authorId>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>
+                                                </#if>
+                                            </#if>
                                         </td>
-                                        </#if>
                                         <td><a href="/page/author/${sai.authorId}">${sai.authorName}</a></td>
                                         <td><a href="/page/type/${sai.typeId}">${sai.typeName}</a></td>
                                         <td>
                                             <a href="/page/date/${(sai.announceTime?string("yyyy-MM-dd"))!}">${(sai.announceTime?string("yyyy-MM-dd"))!}</a>
                                         </td>
+                                        <#if (role)??>
+                                            <#if role='admin'||role='superadmin'>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>
+                                                </td>
+                                            </#if>
+                                        </#if>
                                     </tr>
                                     </#list>
                                 </tbody>
@@ -114,6 +130,7 @@
 </section>
         
     <#include "./common/foot.ftl">
+<#include "common/delete_modal.ftl">
 
 <!-- load JS files -->
 <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>

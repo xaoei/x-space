@@ -9,6 +9,9 @@
         margin-bottom: 10px;
     }
 </style>
+<#if (forbidden)??>
+        <h1 style="text-align: center">页面禁止访问</h1>
+<#else>
 <div name="个人管理" id="svgB">
     <div name="修改密码">
         <hr style="height:5px;border:none;border-top:5px ridge green;" />
@@ -41,6 +44,7 @@
         <hr style="height:5px;border:none;border-top:5px ridge green;" />
     </div>
 </div>
+</#if>
 <script type="text/javascript">
     function changePwd() {
         var oldP = $('#c_old_password').val()
