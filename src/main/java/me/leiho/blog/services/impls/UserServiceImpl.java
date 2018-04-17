@@ -126,6 +126,8 @@ public class UserServiceImpl implements UserService {
 
     public BaseResult logout() {
         //todo 退出账号
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         return new BaseResult(SUCCESS);
     }
 

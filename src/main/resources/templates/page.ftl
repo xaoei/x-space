@@ -36,7 +36,7 @@
 
 <body>
 <#include "./common/head.ftl">
-<div class="tm-blog-img-container"></div>
+<#--<div class="tm-blog-img-container"></div>-->
 <div class="article_div" style="width: 880px;Margin-Right: auto;Margin-Left: auto;"><br>
     <input name="articleId" value="${one_content.id}" hidden="hidden">
     <h1 style="text-align: center">${one_content.title}</h1><br>

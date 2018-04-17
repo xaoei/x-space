@@ -25,7 +25,7 @@
        
         <#include "./common/head.ftl">
 
-<div class="tm-blog-img-container"></div>
+<#--<div class="tm-blog-img-container"></div>-->
 <section class="tm-section">
     <div class="container-fluid">
         <div class="row">

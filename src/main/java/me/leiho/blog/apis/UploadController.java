@@ -3,6 +3,7 @@ package me.leiho.blog.apis;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import me.leiho.blog.configs.WebAppConfig;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
@@ -21,6 +22,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,9 +74,16 @@ public class UploadController {
             }
             String imageId = UUID.randomUUID().toString().replace("-", "");
             try {
-                File image = new File("image");
-                image.mkdir();
-                SaveFileFromInputStream(multipartFile.getInputStream(), "image", imageId + suffix, xUserAccount);
+                String path = WebAppConfig.class.getResource("/").toString();
+                path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
+                path = path.replace("jar:","").replace("file:/","").replace("file:","");
+                path = URLDecoder.decode(path,"utf-8");
+                logger.info("path: "+path);
+                File image = new File(path);
+                if (!image.exists()){
+                    image.mkdir();
+                }
+                SaveFileFromInputStream(multipartFile.getInputStream(), path, imageId + suffix, xUserAccount);
             } catch (IOException e) {
                 logger.error("上传失败", e);
                 return new PicUpResult(5);
@@ -107,8 +116,8 @@ public class UploadController {
         fs.close();
         stream.close();
         //生成小图
-        ImgCompress imgCompress = new ImgCompress("image/total/" + filename);
-        imgCompress.resizeFix(100, 100, "image/small/" + filename);
+        ImgCompress imgCompress = new ImgCompress(path+"/total/" + filename);
+        imgCompress.resizeFix(100, 100, path+"/small/" + filename);
         //信息入库
         XUserImage xUserImage = new XUserImage();
         xUserImage.setUserId(xUserAccount.getId());

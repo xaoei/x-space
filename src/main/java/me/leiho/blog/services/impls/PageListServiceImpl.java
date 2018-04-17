@@ -33,6 +33,14 @@ public class PageListServiceImpl implements PageListService {
     private XUserAccountMapper xUserAccountMapper;
 
     public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(SimpleArticleInfoReq req) {
+        XUserAccount loginUser = null;
+        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+            XUserAccount param = new XUserAccount();
+            param.setId(userInfo.getId());
+            param.setDel(0);
+            loginUser = xUserAccountMapper.selectOne(param);
+        }
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -75,6 +83,16 @@ public class PageListServiceImpl implements PageListService {
                 StringUtils.isNotBlank(req.getUpdateTime()) ? "%" + req.getUpdateTime() + "%" : req.getUpdateTime(),
                 req.getIsAnnounce()
         );
+        for (int i=0;i<simpleArticleInfos.size();i++){
+            if (loginUser!=null&&simpleArticleInfos.get(i).getId()==loginUser.getId()){
+                simpleArticleInfos.get(i).setIsOwner(1);
+            }else {
+                simpleArticleInfos.get(i).setIsOwner(0);
+            }
+            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                simpleArticleInfos.get(i).setIsOwner(1);
+            }
+        }
         PageInfo<SimpleArticleInfo> pageInfo = new PageInfo<>(simpleArticleInfos);
         if (simpleArticleInfos.isEmpty()) {
             return new PageInfo<SimpleArticleInfo>();

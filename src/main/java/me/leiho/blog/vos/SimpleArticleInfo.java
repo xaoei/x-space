@@ -22,6 +22,19 @@ public class SimpleArticleInfo extends StringEntity {
     private Date announceTime;
     private Date createTime;
     private Date updateTime;
+    private Integer isOwner;
+
+    public Integer getIsOwner() {
+        return isOwner;
+    }
+
+    public void setIsOwner(Integer isOwner) {
+        this.isOwner = isOwner;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
 
     public Integer getId() {
         return id;

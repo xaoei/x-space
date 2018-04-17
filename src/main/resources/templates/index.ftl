@@ -23,12 +23,12 @@
 </head>
 
 <body>
-
+<#--${test}-->
 <#include "./common/head.ftl">
 
-<div class="tm-home-img-container">
-    <img src=${big_img_url} alt=${big_img} class="hidden-lg-up img-fluid" title=${big_img},>
-</div>
+<#--<div class="tm-home-img-container">-->
+    <#--&lt;#&ndash;<img src=${big_img_url} alt=${big_img} class="hidden-lg-up img-fluid" title=${big_img}>&ndash;&gt;-->
+<#--</div>-->
 
 <section class="tm-section">
     <div class="container-fluid">

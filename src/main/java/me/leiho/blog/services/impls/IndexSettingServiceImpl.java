@@ -1,5 +1,6 @@
 package me.leiho.blog.services.impls;
 
+import me.leiho.blog.configs.WebAppConfig;
 import me.leiho.blog.entities.IndexShortArticle;
 import me.leiho.blog.entities.XIndexSetting;
 import me.leiho.blog.mappers.XIndexSettingMapper;
@@ -55,6 +56,7 @@ public class IndexSettingServiceImpl implements IndexSettingService {
             }
         }
         map.put("short_new_article", shortNewArticles);
+//        map.put("test",WebAppConfig.class.getResource("/").toString());
         return this;
     }
 

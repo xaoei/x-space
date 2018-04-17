@@ -1,7 +1,10 @@
 package me.leiho.blog;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 
 /**
  * @Author: 萧大侠
@@ -10,6 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Contact: yesxiaolei@outlook.com
  */
 @SpringBootApplication
+@EnableAutoConfiguration
+//@EnableAutoConfiguration(exclude={WebMvcAutoConfiguration.class})
+
 public class Application {
 
     public static void main(String[] args) {

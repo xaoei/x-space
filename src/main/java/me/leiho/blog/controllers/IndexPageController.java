@@ -28,9 +28,22 @@ public class IndexPageController {
 
     @Autowired
     private IndexSettingService indexSettingService;
-    @GetMapping({"/", "/index"})
+    @GetMapping("/")
     public String index(Map<String, Object> map) {
-
+        commonPageValueService
+                .getValueMap(map)
+                .setUserInfo()
+                .setCommonPageSiteInfo()
+                .setPageName("主页")
+                .setCommonPageHead(1)
+                .setCommonPageFoot();
+        indexSettingService.getValueMap(map).setIndexArticles();
+        articlePageService.getValueMap(map).setSideBar(100);
+        logger.info("/index");
+        return "index";
+    }
+    @GetMapping("/index")
+    public String index1(Map<String, Object> map) {
         commonPageValueService
                 .getValueMap(map)
                 .setUserInfo()
