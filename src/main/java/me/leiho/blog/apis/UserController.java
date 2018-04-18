@@ -51,10 +51,4 @@ public class UserController {
     public BaseResult logout() {
         return userService.logout();
     }
-
-    @ApiOperation(value = "用户列表")
-    @PostMapping("/v1/user/selectAll")
-    public BaseResult getAllUser() {
-        return userService.logout();
-    }
 }

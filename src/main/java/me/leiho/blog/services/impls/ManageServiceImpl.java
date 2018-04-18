@@ -28,20 +28,25 @@ public class ManageServiceImpl implements ManageService {
         return this;
     }
 
-    public ManageServiceImpl setPage(String page){
+    public ManageServiceImpl setPage(String page,Integer index){
         if (!SecurityUtils.getSubject().isPermitted("/manage/"+page)){
             map.put("forbidden",true);
         }else {
             if ("user".equals(page)){
-                setManageUserPage(map);
+                setManageUserPage(map,index);
             }
         }
         //通过page设置不同的map
         map.put("manage_page",page);
         return this;
     }
-    private void setManageUserPage(Map<String, Object> map){
-        UserInfoReq req = UserInfoReq.build().setPage(1).setSize(10);
+    private void setManageUserPage(Map<String, Object> map,Integer index){
+        UserInfoReq req = null;
+        if (index>0){
+            req = UserInfoReq.build().setPage(index).setSize(10);
+        }else {
+            req = UserInfoReq.build().setPage(1).setSize(10);
+        }
         PageInfo<XUserAccount> pageInfo = userService.getUserInfoList(req);
         if (pageInfo==null){
             return;

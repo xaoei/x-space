@@ -20,6 +20,7 @@
                 <th>编号</th>
                 <th>账号</th>
                 <th>昵称</th>
+                <th>角色</th>
                 <th>状态</th>
                 <th>操作</th>
             </tr>
@@ -31,8 +32,9 @@
                             <td>${uil.id}</td>
                             <td>${uil.account}</td>
                             <td>${uil.username}</td>
+                            <td>${uil.role}</td>
                             <#if uil.del==0><td style="color: #00bbff">正常</td><#else><td style="color: red">禁用</td></#if></td>
-                            <td><button type="button" class="btn btn-danger">修改</button></td>
+                            <td><button type="button" class="btn btn-danger" onclick="openUserModal('${uil.id}','${uil.account}','${uil.username}','${uil.role}','${uil.del}');">修改</button></td>
                         </tr>
                     </#list>
                 <#else>
@@ -58,7 +60,7 @@
                     <#if page_index == 1 || page_total<=0>
                             <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
                     <#else >
-                            <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_pre}">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="/manage/user/${page_pre}">&laquo;</a></li>
                     </#if>
                     <#if page_total<=0>
                         <li class="page-item active"><a class="page-link" href="#">0</a></li>
@@ -67,14 +69,14 @@
                             <#if page_index == i>
                                 <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
                             <#else >
-                                <li class="page-item"><a class="page-link" href="/article/announce_desc/${i}">${i}</a></li>
+                                <li class="page-item"><a class="page-link" href="/manage/user/${i}">${i}</a></li>
                             </#if>
                         </#list>
                     </#if>
                     <#if page_total == page_index||page_total<=0>
                         <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
                     <#else >
-                        <li class="page-item"><a class="page-link" href="/article/announce_desc/${page_next}">&raquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="/manage/user/${page_next}">&raquo;</a></li>
                     </#if>
                 </ul>
                 <br>
@@ -84,6 +86,5 @@
     </div>
 </div>
 </#if>
-<script type="text/javascript">
-
-</script>
+<#include "../common/user.ftl">
+<script src="/js/change-user.js"></script>

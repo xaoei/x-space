@@ -6,99 +6,69 @@
  * Web script: #
  * 
  */
-function showRegisterForm(){
-    $('.loginBox').fadeOut('fast',function(){
-        $('.registerBox').fadeIn('fast');
-        $('.login-footer').fadeOut('fast',function(){
-            $('.register-footer').fadeIn('fast');
-        });
-        $('.modal-title').html('欢迎加入我们!');
-    }); 
-    $('.error').removeClass('alert alert-danger').html('');
-       
-}
-function showLoginForm(){
-    $('#loginModal .registerBox').fadeOut('fast',function(){
-        $('.loginBox').fadeIn('fast');
-        $('.register-footer').fadeOut('fast',function(){
-            $('.login-footer').fadeIn('fast');    
-        });
-        
-        $('.modal-title').html('欢迎回来!');
-    });       
-     $('.error').removeClass('alert alert-danger').html(''); 
-}
+var postId = '';
 
-function openUserModal(){
-    showLoginForm();
+function openUserModal(id,account,username,role,del){
+    // showLoginForm();
+    postId = id;
+    $('#caccount').val(account);
+    $('#cusername').val(username);
+    if (role=='reader'){
+        $('#reader').prop("checked",true);
+        $('#reader').parent().addClass('active');
+    } else if(role=='author'){
+        $('#author').prop("checked",true);
+        $('#author').parent().addClass('active');
+    } else if(role=='admin'){
+        $('#admin').prop("checked",true);
+        $('#admin').parent().addClass('active');
+    }
+    if (del=='0'){
+        $('#normal').prop("checked",true);
+        $('#normal').parent().addClass('active');
+    }else if(del=='1'){
+        $('#forbidden').prop("checked",true);
+        $('#forbidden').parent().addClass('active');
+    }
     setTimeout(function(){
         $('#userModal').modal('show');
     }, 230);
-    
 }
-function openRegisterModal(){
-    showRegisterForm();
-    setTimeout(function(){
-        $('#loginModal').modal('show');    
-    }, 230);
-}
-
-function loginAjax(){
-    var login_info = {}
-    login_info.account = $('#laccount').val()
-    login_info.password = $('#lpassword').val()
+function changeAjax(){
+    var user_info = {}
+    user_info.id = postId;
+    user_info.account = $('#caccount').val()
+    user_info.username = $('#cusername').val()
+    user_info.role = $('input[name="role"]:checked').val();
+    user_info.del = $('input[name="state"]:checked').val();
+    // alert(user_info.id)
+    // alert(user_info.account)
+    // alert(user_info.username)
+    // alert(user_info.role)
+    // alert(user_info.del)
     $.ajax({
-        url:"/v1/user/login",
+        url:"/update/userInfo",
         type:"post",
         contentType : "application/json; charset=UTF-8",
-        data:JSON.stringify(login_info),
+        data:JSON.stringify(user_info),
         success:function(data){
-            if (data.code==1000){
-                $('#loginModal').modal('hide')
+            if (data=='修改成功'){
+                $('#userModal').modal('hide');
                 $('#lr_modal_title').text("提示");
-                $('#lr_modal_content').text("登陆成功!欢迎回来!");
-                $('#loginAndRegistModal').modal('show')
+                $('#lr_modal_content').text("修改成功");
+                $('#loginAndRegistModal').modal('show');
             }else {
-                shakeModal(data.msg);
+                shakeModal(data);
             }
 
         }
     })
 }
-function registerAjax(){
-    var register_info = {}
-    register_info.account = $('#raccount').val()
-    register_info.username = $('#rusername').val()
-    register_info.password = $('#rpassword').val()
-    var re_password = $('#rpassword_confirmation').val()
-    if (register_info.password!=re_password){
-        shakeModal("两次输入密码不一致")
-        return
-    }
-    $.ajax({
-        url:"/v1/user/register",
-        type:"post",
-        contentType : "application/json; charset=UTF-8",
-        data:JSON.stringify(register_info),
-        success:function(data){
-            if (data.code==1000){
-                $('#loginModal').modal('hide')
-                $('#lr_modal_title').text("提示");
-                $('#lr_modal_content').text("注册成功!欢迎你的加入!");
-                $('#loginAndRegistModal').modal('show')
-            }else {
-                shakeModal(data.msg);
-            }
-        }
-    })
-}
-
 function shakeModal(msg){
-    $('#loginModal .modal-dialog').addClass('shake');
+    $('#userModal .modal-dialog').addClass('shake');
              $('.error').addClass('alert alert-danger').html(msg);
-             $('input[type="password"]').val('');
              setTimeout( function(){ 
-                $('#loginModal .modal-dialog').removeClass('shake'); 
+                $('#userModal .modal-dialog').removeClass('shake');
     }, 1000 ); 
 }
 

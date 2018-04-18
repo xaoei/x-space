@@ -28,14 +28,21 @@ public class ManagePageController {
     @GetMapping("/manage")
     public String user(Map<String, Object> map) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
-        manageService.getValueMap(map).setPage("self");
+        manageService.getValueMap(map).setPage("self",0);
         logger.info("/manage");
         return "manage";
     }
     @GetMapping("/manage/{page}")
     public String manage(Map<String, Object> map,@PathVariable String page) {
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
-        manageService.getValueMap(map).setPage(page);
+        manageService.getValueMap(map).setPage(page,0);
+        logger.info("/manage/"+page);
+        return "manage";
+    }
+    @GetMapping("/manage/{page}/{index}")
+    public String manage(Map<String, Object> map,@PathVariable String page,@PathVariable Integer index) {
+        commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
+        manageService.getValueMap(map).setPage(page,index);
         logger.info("/manage/"+page);
         return "manage";
     }

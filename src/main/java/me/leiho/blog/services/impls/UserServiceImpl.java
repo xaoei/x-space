@@ -157,6 +157,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public String updateUserInfo(XUserAccount user){
+
         if (user==null||user.getId()==null){
             return "参数异常";
         }
@@ -234,7 +235,9 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         PageHelper.startPage(req.getPage(), req.getSize());
-        List<XUserAccount> userInfos = xUserAccountMapper.selectAll();
+        Example example = new Example(XUserAccount.class);
+        example.createCriteria().andNotEqualTo("role","superadmin");
+        List<XUserAccount> userInfos = xUserAccountMapper.selectByExample(example);
         PageInfo<XUserAccount> userInfoList = new PageInfo<>(userInfos);
         if (userInfos.isEmpty()) {
             return null;

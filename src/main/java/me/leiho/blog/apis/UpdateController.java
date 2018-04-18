@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,7 +22,7 @@ public class UpdateController {
     private CommentService commentService;
 
     @PostMapping("/update/userInfo")
-    public String updateUserInfo(XUserAccount user){
+    public String updateUserInfo(@RequestBody XUserAccount user){
         return userService.updateUserInfo(user);
     }
     @PostMapping("/update/comment")
