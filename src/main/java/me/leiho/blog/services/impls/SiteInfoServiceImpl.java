@@ -17,9 +17,6 @@ public class SiteInfoServiceImpl implements SiteInfoService {
     private XSiteInfoMapper xSiteInfoMapper;
     public String updateSiteInfo(String siteInfo){
         Map maps = JsonUtil.json2map(siteInfo);
-        for (Object map : maps.entrySet()){
-            System.out.println(((Map.Entry)map).getKey()+"     " + ((Map.Entry)map).getValue());
-        }
         xSiteInfoMapper.updateSiteInfoByMap(maps);
         return "完成了";
     }

@@ -1,8 +1,10 @@
 package me.leiho.blog.services.impls;
 
 import com.github.pagehelper.PageInfo;
+import me.leiho.blog.entities.XIndexSetting;
 import me.leiho.blog.entities.XSiteInfo;
 import me.leiho.blog.entities.XUserAccount;
+import me.leiho.blog.mappers.XIndexSettingMapper;
 import me.leiho.blog.mappers.XSiteInfoMapper;
 import me.leiho.blog.services.ManageService;
 import me.leiho.blog.services.UserService;
@@ -28,6 +30,8 @@ public class ManageServiceImpl implements ManageService {
     private UserService userService;
     @Autowired
     private XSiteInfoMapper xSiteInfoMapper;
+    @Autowired
+    private XIndexSettingMapper xIndexSettingMapper;
 
     public ManageServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
@@ -42,11 +46,30 @@ public class ManageServiceImpl implements ManageService {
                 setManageUserPage(map,index);
             }if ("info".equals(page)){
                 setWebInfo(map);
+            }if ("indx".equals(page)){
+                setIndexInfo(map);
             }
         }
         //通过page设置不同的map
         map.put("manage_page",page);
         return this;
+    }
+    private void setIndexInfo(Map<String, Object> map){
+        List<XIndexSetting> xIndexSettings = xIndexSettingMapper.selectAll();
+        Collections.sort(xIndexSettings, new Comparator<XIndexSetting>() {
+            @Override
+            public int compare(XIndexSetting o1, XIndexSetting o2) {
+                if(o1.getId() > o2.getId()) {
+                    return 1;
+                } else if (o1.getId() < o2.getId()){
+                    return -1;
+                }
+                return 1;
+            }
+        });
+        for (int i = 0;i < xIndexSettings.size();i++){
+            map.put("index_info"+i,xIndexSettings.get(i));
+        }
     }
     private void setWebInfo(Map<String, Object> map){
         List<XSiteInfo> xSiteInfos = xSiteInfoMapper.selectAll();

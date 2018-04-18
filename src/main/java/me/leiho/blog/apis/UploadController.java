@@ -14,8 +14,7 @@ import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -45,9 +44,10 @@ public class UploadController {
     @Autowired
     private XUserImageMapper xUserImageMapper;
 
+
     @ApiOperation(value = "上传图片,获得图片链接", notes = "")
     @PostMapping(value = "/v1/upload", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile) {
+    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile) {
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -121,8 +121,8 @@ public class UploadController {
         XUserImage xUserImage = new XUserImage();
         xUserImage.setUserId(xUserAccount.getId());
         xUserImage.setUsername(xUserAccount.getUsername());
-        xUserImage.setTotalSrc("image/total/" + filename);
-        xUserImage.setSmallSrc("image/small/" + filename);
+        xUserImage.setTotalSrc("/image/total/" + filename);
+        xUserImage.setSmallSrc("/image/small/" + filename);
         xUserImage.setCreateTime(new Date());
         xUserImageMapper.insertSelective(xUserImage);
     }
