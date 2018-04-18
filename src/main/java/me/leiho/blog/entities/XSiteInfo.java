@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "x_site_info")
-public class XSiteInfo implements Serializable {
+public class XSiteInfo extends StringEntity implements Serializable {
     /**
      * 唯一标识
      */

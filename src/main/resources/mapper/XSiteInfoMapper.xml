@@ -14,4 +14,16 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="del" property="del" jdbcType="INTEGER"/>
     </resultMap>
+    <update id="updateSiteInfoByMap" parameterType="Map">
+        UPDATE x_site_info
+        SET item_value = CASE item_name
+        <foreach item="kitem" index="kindex" collection="siteInfo.keys">
+            <foreach item="vitem" index="vindex" collection="siteInfo.values">
+                <if test="kindex==vindex">
+                    WHEN '${kitem}' THEN '${vitem}'
+                </if>
+            </foreach>
+        </foreach>
+        END
+    </update>
 </mapper>

@@ -18,25 +18,47 @@
     <hr style="height:5px;border:none;border-top:5px ridge green;" />
     <div style="margin-left: 30%">
         <table border="0">
-            <tr><td style="text-align: right">网站名称:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">网站标题:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">网站介绍:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">站长公告板:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">版权相关:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">站长名称:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">网站版权声明:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">网站版权链接:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">网站版权标题:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">站长联系文本:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">站长联系链接:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">站长联系标题:</td><td><input type="text" style="width: 20em;"></td></tr>
-            <tr><td style="text-align: right">图片区签名:</td><td><input type="text" style="width: 20em;"></td></tr>
+            <#if (website_info)??>
+                <#list website_info as wi>
+                    <tr><td style="text-align: right">${wi.itemDesc}:</td><td><input id="${wi.itemName}" type="text" style="width: 20em;" value="${wi.itemValue}"></td></tr>
+                </#list>
+            </#if>
         </table>
     </div>
     <hr style="height:1px;border:none;border-top:1px dashed #0066CC;">
-    <button style="width: 10%;margin-left: 45%" type="button" class="btn btn-primary" id="save"><i
+    <button style="width: 10%;margin-left: 45%" type="button" class="btn btn-primary" id="save" onclick="saveSiteInfo();"><i
             class="fa fa-floppy-o" aria-hidden="true"></i> 保存
     </button>
     <hr style="height:5px;border:none;border-top:5px ridge green;" />
 </div>
+<script type="text/javascript">
+    function saveSiteInfo() {
+        var site_info = {}
+        site_info.sitename = $('#sitename').val()
+        site_info.title = $('#title').val()
+        site_info.subtitle = $('#subtitle').val()
+        site_info.motto = $('#motto').val()
+        site_info.authorize = $('#authorize').val()
+        site_info.site_master_name = $('#site_master_name').val()
+        site_info.copyright_text = $('#copyright_text').val()
+        site_info.copyright_link = $('#copyright_link').val()
+        site_info.copyright_title = $('#copyright_title').val()
+        site_info.contact_text = $('#contact_text').val()
+        site_info.contact_link = $('#contact_link').val()
+        site_info.contact_title = $('#contact_title').val()
+        site_info.picture_area_context = $('#picture_area_context').val()
+        $.ajax({
+            url: "/update/siteInfo",
+            type: "post",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(site_info),
+            success: function (data) {
+                alert(data);
+                if (data == "评论成功!") {
+                    window.location.reload();
+                }
+            }
+        })
+    }
+</script>
 </#if>
