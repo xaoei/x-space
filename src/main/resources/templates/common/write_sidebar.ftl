@@ -78,9 +78,7 @@
         </#if>
         </div>
         <#if myComments??>
-            <#if (myComments?size>2)>
-                <button type="button" class="btn btn-warning">查看更多</button>
-            <#elseif (myComments?size<1)>
+            <#if (myComments?size<1)>
                 <br>
                 <p>还没有读者的评论喔,别急,迟早会有的!</p>
                 <br>
