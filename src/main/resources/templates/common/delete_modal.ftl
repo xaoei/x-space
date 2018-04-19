@@ -31,7 +31,7 @@
         $('#deleteModal').modal('show')
     }
     function deleteItem() {
-        alert(type+','+id);
+        // alert(type+','+id);
         $.ajax({
             url: '/delete/'+type,
             type: "post",

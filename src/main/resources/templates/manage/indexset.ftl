@@ -24,7 +24,7 @@
             <div style="margin-left: 5%">
                 <nobr>编号:<input type="text" style="width: 5em;" id="id1" value="${index_info0.articleId}"><a style="font-style: italic">(填入文章编号!)</a></nobr><br>
                 <nobr>标题:<input type="text" style="width: 10em;" id="title1"value="${index_info0.title}"><a style="font-style: italic">(限制10个字!)</a></nobr><br>
-                <nobr><form id="upload1" enctype="multipart/form-data">图片:<input id="img1" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="upload" type="button" onclick="uploadImage('1');">上传</button></form></nobr><br>
+                <nobr><form id="upload1" enctype="multipart/form-data">图片:<input id="img1" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="uploadb1" type="button" onclick="uploadImage('1');">上传</button></form></nobr><br>
                 <a id="url1">${index_info0.headImage}</a><br>
                 <nobr>感言:<input type="text" style="width: 20em;" id="feeling1" value="${index_info0.content}"><a style="font-style: italic">(限制20个字!)</a></nobr><br>
             </div>
@@ -35,8 +35,8 @@
             <div style="margin-left: 10%">
                 <nobr>编号:<input type="text" style="width: 5em;" id="id2" value="${index_info1.articleId}"><a style="font-style: italic">(填入文章编号!)</a></nobr><br>
                 <nobr>标题:<input type="text" style="width: 10em;" id="title2"value="${index_info1.title}"><a style="font-style: italic">(限制10个字!)</a></nobr><br>
-                <nobr><form id="upload2" enctype="multipart/form-data">图片:<input id="img2" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="upload" type="button" onclick="uploadImage('2');">上传</button></form></nobr><br>
-                <a id="url1">${index_info1.headImage}</a><br>
+                <nobr><form id="upload2" enctype="multipart/form-data">图片:<input id="img2" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="uploadb2" type="button" onclick="uploadImage('2');">上传</button></form></nobr><br>
+                <a id="url2">${index_info1.headImage}</a><br>
                 <nobr>感言:<input type="text" style="width: 20em;" id="feeling2" value="${index_info1.content}"><a style="font-style: italic">(限制20个字!)</a></nobr><br>
             </div>
         </div>
@@ -46,8 +46,8 @@
             <div style="margin-left: 15%">
                 <nobr>编号:<input type="text" style="width: 5em;" id="id3" value="${index_info2.articleId}"><a style="font-style: italic">(填入文章编号!)</a></nobr><br>
                 <nobr>标题:<input type="text" style="width: 10em;" id="title3"value="${index_info2.title}"><a style="font-style: italic">(限制10个字!)</a></nobr><br>
-                <nobr><form id="upload3" enctype="multipart/form-data">图片:<input id="img3" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="upload" type="button" onclick="uploadImage('3');">上传</button></form></nobr><br>
-                <a id="url1">${index_info2.headImage}</a><br>
+                <nobr><form id="upload3" enctype="multipart/form-data">图片:<input id="img3" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="uploadb3" type="button" onclick="uploadImage('3');">上传</button></form></nobr><br>
+                <a id="url3">${index_info2.headImage}</a><br>
                 <nobr>感言:<input type="text" style="width: 20em;" id="feeling3" value="${index_info2.content}"><a style="font-style: italic">(限制20个字!)</a></nobr><br>
             </div>
         </div>
@@ -57,13 +57,13 @@
             <div style="margin-left: 20%">
                 <nobr>编号:<input type="text" style="width: 5em;" id="id4" value="${index_info3.articleId}"><a style="font-style: italic">(填入文章编号!)</a></nobr><br>
                 <nobr>标题:<input type="text" style="width: 10em;" id="title4"value="${index_info3.title}"><a style="font-style: italic">(限制10个字!)</a></nobr><br>
-                <nobr><form id="upload4" enctype="multipart/form-data">图片:<input id="img4" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="upload" type="button" onclick="uploadImage('4');">上传</button></form></nobr><br>
-                <a id="url1">${index_info3.headImage}</a><br>
+                <nobr><form id="upload4" enctype="multipart/form-data">图片:<input id="img4" type="file" name="multipartFile"/><a style="font-style: italic">(310:180大小!)</a><button id="uploadb4" type="button" onclick="uploadImage('4');">上传</button></form></nobr><br>
+                <a id="url4">${index_info3.headImage}</a><br>
                 <nobr>感言:<input type="text" style="width: 20em;" id="feeling4" value="${index_info3.content}"><a style="font-style: italic">(限制20个字!)</a></nobr><br>
             </div>
         </div>
-        <button style="width: 10%;margin-left: 10%" type="button" class="btn btn-primary" id="save"><i
-                class="fa fa-floppy-o" aria-hidden="true" onclick="saveHot();"></i> 保存
+        <button style="width: 10%;margin-left: 10%" type="button" class="btn btn-primary" id="save" onclick="saveHot();"><i
+                class="fa fa-floppy-o" aria-hidden="true"></i> 保存
         </button>
         <hr style="height:5px;border:none;border-top:5px ridge green;" />
     </div>
@@ -73,13 +73,13 @@
         <div style="margin-left: 5%"wyy>
             <nobr>编号:<input type="text" style="width: 5em;" id="idgood" value="${index_info4.articleId}"><a style="font-style: italic">(填入文章编号!)</a></nobr><br>
             <nobr>标题:<input type="text" style="width: 10em;" id="titlegood" value="${index_info4.title}"><a style="font-style: italic">(限制10个字!)</a></nobr><br>
-            <nobr><form id="uploadgood" enctype="multipart/form-data">图片:<input id="imggood" type="file" name="multipartFile"/><a style="font-style: italic">(660:330大小!)</a><button id="upload" type="button" onclick="uploadImage('good');">上传</button></form></nobr><br>
+            <nobr><form id="uploadgood" enctype="multipart/form-data">图片:<input id="imggood" type="file" name="multipartFile"/><a style="font-style: italic">(660:330大小!)</a><button id="uploadbgood" type="button" onclick="uploadImage('good');">上传</button></form></nobr><br>
             <a id="urlgood">${index_info4.headImage}</a><br>
             <nobr>感言:<input type="text" style="width: 20em;" id="feelinggood" value="${index_info4.feeling}"><a style="font-style: italic">(限制20个字!)</a></nobr><br>
             <nobr>内容:<textarea rows="15" style="width: 20em" id="contextgood">${index_info4.content}</textarea><a style="font-style: italic">(限制300个字!)</a></nobr><br>
         </div>
     </div>
-    <button style="width: 10%;margin-left: 10%" type="button" class="btn btn-primary" id="save"><i
+    <button style="width: 10%;margin-left: 10%" type="button" class="btn btn-primary" id="save"onclick="saveGood();"><i
             class="fa fa-floppy-o" aria-hidden="true"></i> 保存
     </button>
     <#--<hr style="height:5px;border:none;border-top:5px ridge green;" />-->

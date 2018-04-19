@@ -53,7 +53,7 @@
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(site_info),
             success: function (data) {
-                alert(data);
+                // alert(data);
                 if (data == "评论成功!") {
                     window.location.reload();
                 }
