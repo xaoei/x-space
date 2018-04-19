@@ -40,6 +40,7 @@
                                     <th>发布时间</th>
                                     <#if (role)??>
                                         <#if role='admin'||role='superadmin'>
+                                            <th>编号</th>
                                             <th>操作</th>
                                         </#if>
                                     </#if>
@@ -68,6 +69,7 @@
                                         </td>
                                         <#if (role)??>
                                             <#if role='admin'||role='superadmin'>
+                                                <td>${sai.id}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="openHot(${sai.id});">热门</button>
                                                 </td>

@@ -74,10 +74,12 @@ public class UploadController {
             }
             String imageId = UUID.randomUUID().toString().replace("-", "");
             try {
-                String path = WebAppConfig.class.getResource("/").toString();
-                path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
-                path = path.replace("jar:","").replace("file:/","").replace("file:","");
-                path = URLDecoder.decode(path,"utf-8");
+//                String path = WebAppConfig.class.getResource("/").toString();
+//                path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
+//                path = path.replace("jar:","").replace("file:/","").replace("file:","");
+//                path = URLDecoder.decode(path,"utf-8");
+//                File image = new File(path);
+                String path = "image";
                 File image = new File(path);
                 if (!image.exists()){
                     image.mkdir();
