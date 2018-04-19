@@ -83,7 +83,7 @@ function saveGood() {
     good.title=$('#titlegood').val()
     good.headImage=$('#urlgood').text()
     good.feeling=$('#feelinggood').val()
-    good.content=$('#contextgood').text()
+    good.content=$('#contextgood').val()
     // alert(good.content)
     $.ajax({
         url:"/update/indexSettingGood",

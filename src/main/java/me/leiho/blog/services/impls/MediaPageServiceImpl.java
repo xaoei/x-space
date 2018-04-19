@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,14 @@ public class MediaPageServiceImpl implements MediaPageService {
             param.setDel(0);
             xUserAccount = xUserAccountMapper.selectOne(param);
         }
-        List<XUserImage> xUserImageList = xUserImageMapper.selectAllImg();
+        List<XUserImage> xUserImageList = new ArrayList<>();
+        if (SecurityUtils.getSubject().hasRole("superadmin")||SecurityUtils.getSubject().hasRole("admin")){
+            xUserImageList = xUserImageMapper.selectAllImg();
+        }else {
+            Example example = new Example(XUserImage.class);
+            example.createCriteria().andNotEqualTo("id",1);
+            xUserImageList = xUserImageMapper.selectByExample(example);
+        }
         List<XUserImageVO> imageVOList = new ArrayList<>();
         for (XUserImage xUserImage:xUserImageList){
             XUserImageVO xUserImageVO = new XUserImageVO();

@@ -40,7 +40,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         String role = userInfo.getRole();
         authorizationInfo.addRole(role);
         Example permissionExample = new Example(XPermission.class);
-        permissionExample.createCriteria().andEqualTo("del", 0).andLike("role", "%" + role + "%");//todo 待验证
+        permissionExample.createCriteria().andEqualTo("del", 0).andLike("role", "%[" + role + "]%");//todo 待验证
         List<XPermission> permissions = xPermissionMapper.selectByExample(permissionExample);
         if (permissions == null || permissions.isEmpty()) {
             return authorizationInfo;
