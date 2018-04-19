@@ -57,7 +57,7 @@
                                             </#if>
                                             <#if (user)??&&(role)??>
                                                 <#if role!='admin'&&role!='superadmin'&&user.id==sai.authorId>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id});">删除</button>;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id});">删除</button>
                                                 </#if>
                                             </#if>
                                         </td>

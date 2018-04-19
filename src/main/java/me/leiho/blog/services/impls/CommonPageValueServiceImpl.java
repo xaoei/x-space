@@ -37,8 +37,6 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
     @Autowired
     private XCommentMapper xCommentMapper;
     @Autowired
-    private XBlogImageMapper xBlogImageMapper;
-    @Autowired
     private XUserImageMapper xUserImageMapper;
 
     private Map<String, Object> map;
