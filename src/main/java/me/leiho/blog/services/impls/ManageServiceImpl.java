@@ -1,9 +1,11 @@
 package me.leiho.blog.services.impls;
 
 import com.github.pagehelper.PageInfo;
+import me.leiho.blog.entities.XFriendLink;
 import me.leiho.blog.entities.XIndexSetting;
 import me.leiho.blog.entities.XSiteInfo;
 import me.leiho.blog.entities.XUserAccount;
+import me.leiho.blog.mappers.XFriendLinkMapper;
 import me.leiho.blog.mappers.XIndexSettingMapper;
 import me.leiho.blog.mappers.XSiteInfoMapper;
 import me.leiho.blog.services.ManageService;
@@ -15,10 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ManageServiceImpl implements ManageService {
@@ -32,6 +31,8 @@ public class ManageServiceImpl implements ManageService {
     private XSiteInfoMapper xSiteInfoMapper;
     @Autowired
     private XIndexSettingMapper xIndexSettingMapper;
+    @Autowired
+    private XFriendLinkMapper xFriendLinkMapper;
 
     public ManageServiceImpl getValueMap(Map<String, Object> map) {
         this.map = map;
@@ -48,11 +49,23 @@ public class ManageServiceImpl implements ManageService {
                 setWebInfo(map);
             }if ("indx".equals(page)){
                 setIndexInfo(map);
+            }if ("link".equals(page)){
+                setLinkInfo(map);
             }
         }
         //通过page设置不同的map
         map.put("manage_page",page);
         return this;
+    }
+    private void setLinkInfo(Map<String, Object> map){
+        List<XFriendLink> result = xFriendLinkMapper.selectAll();
+        List<XFriendLink> res = new ArrayList<>();
+        for (int i = 0;i < result.size();i++){
+            if (i<6){
+                res.add(result.get(i));
+            }
+        }
+        map.put("friend_link",res);
     }
     private void setIndexInfo(Map<String, Object> map){
         List<XIndexSetting> xIndexSettings = xIndexSettingMapper.selectAll();

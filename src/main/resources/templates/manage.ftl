@@ -45,6 +45,9 @@
                             <a class="nav-link <#if manage_page='info'>active</#if>" href="/manage/info">网站信息管理</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <#if manage_page='link'>active</#if>" href="/manage/link">链接管理</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link disabled" href="/deleteThisWeb">删除网站(手动滑稽)</a>
                         </li>
                     </ul>
@@ -61,6 +64,9 @@
                 </#if>
                 <#if manage_page='info'>
                     <#include "./manage/webinfoset.ftl">
+                </#if>
+                <#if manage_page='link'>
+                    <#include "./manage/linkset.ftl">
                 </#if>
                 <hr style="height:10px;border:none;border-top:10px skyblue groove;">
             </div>

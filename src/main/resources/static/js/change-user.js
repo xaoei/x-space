@@ -36,11 +36,16 @@ function openUserModal(id,account,username,role,del){
 }
 function changeAjax(){
     var user_info = {}
+    var passwd = $('#cpassword').val()
+    if (passwd!=null||passwd!=""){
+        user_info.password=passwd;
+    }
     user_info.id = postId;
     user_info.account = $('#caccount').val()
     user_info.username = $('#cusername').val()
     user_info.role = $('input[name="role"]:checked').val();
     user_info.del = $('input[name="state"]:checked').val();
+
     // alert(user_info.id)
     // alert(user_info.account)
     // alert(user_info.username)

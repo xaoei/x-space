@@ -23,6 +23,9 @@
                                 <a>用户昵称:</a>
                                 <input id="cusername" class="form-control" type="text" placeholder="修改昵称"
                                        name="cusername">
+                                <a>用户密码:</a>
+                                <input id="cpassword" class="form-control" type="text" placeholder="修改密码"
+                                       name="cpassword">
                                 <a>用户角色:</a>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary">

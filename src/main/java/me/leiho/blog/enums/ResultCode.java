@@ -36,7 +36,8 @@ public enum ResultCode {
     FAILED_USER_LOGIN_LESS_INFO(1801, "登录信息不完整"),
     FAILED_USER_LOGIN_NOT_EXIST(1802, "当前用户不存在"),
     FAILED_USER_LOGIN_SERVICE_ERROR(1803, "登陆服务异常"),
-    FAILED_USER_LOGIN_VALIDATE_PASSWORD(1803, "密码错误");
+    FAILED_USER_LOGIN_VALIDATE_PASSWORD(1804, "密码错误"),
+    FAILED_USER_LOGIN_FORBIDDEN(1805, "当前用户被封禁");
     private Integer value;
     private String desc;
 

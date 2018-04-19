@@ -87,7 +87,7 @@ public class WritePageServiceImpl implements WritePageService {
     public WritePageServiceImpl setDefaultArticle(Integer articleId) {
         XArticle xArticle = xArticleMapper.selectByPrimaryKey(articleId);
         map.put("edit_article", xArticle.getContent().trim());
-        map.put("edit_feeling", xArticle.getFeeling().trim());
+        map.put("edit_feeling", StringUtils.isNotBlank(xArticle.getFeeling())?xArticle.getFeeling().trim():"");
         map.put("edit_type", xArticle.getType());
         List<Integer> tagIds = new ArrayList<>();
         if (xArticle.getTags().indexOf(",") > -1) {

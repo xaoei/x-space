@@ -2,6 +2,7 @@ package me.leiho.blog.services.impls;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.bcel.internal.generic.I2F;
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XUserAccountMapper;
@@ -100,6 +101,9 @@ public class UserServiceImpl implements UserService {
             return new BaseResult(FAILED_USER_LOGIN_NOT_EXIST);
         }
         XUserAccount xUserAccount = xUserAccountList.get(0);
+        if (xUserAccount.getDel()==1){
+            return new BaseResult(FAILED_USER_LOGIN_FORBIDDEN);
+        }
 //        try {
 //            if (!PBKDF2.validatePassword(password,xUserAccount.getPassword())){
 //                return new BaseResult(FAILED_USER_LOGIN_VALIDATE_PASSWORD);
@@ -179,10 +183,32 @@ public class UserServiceImpl implements UserService {
                 //用户和普通管理员不能修改用户角色
                 user.setRole(result.getRole());
                 user.setUpdateTime(new Date());
+                if (StringUtils.isNotBlank(user.getPassword())){
+                    try {
+                        user.setPassword(PBKDF2.createHash(user.getPassword()));
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (InvalidKeySpecException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    user.setPassword(null);
+                }
                 xUserAccountMapper.updateByPrimaryKeySelective(user);
                 return "修改成功";
             }else if (SecurityUtils.getSubject().hasRole("superadmin")){
                 user.setUpdateTime(new Date());
+                if (StringUtils.isNotBlank(user.getPassword())){
+                    try {
+                        user.setPassword(PBKDF2.createHash(user.getPassword()));
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (InvalidKeySpecException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    user.setPassword(null);
+                }
                 xUserAccountMapper.updateByPrimaryKeySelective(user);
                 return "修改成功";
             }else {

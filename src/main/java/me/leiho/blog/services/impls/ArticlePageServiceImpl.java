@@ -9,12 +9,14 @@ import me.leiho.blog.services.ArticlePageService;
 import me.leiho.blog.services.PageListService;
 import me.leiho.blog.vos.SimpleArticleInfo;
 import me.leiho.blog.vos.SimpleArticleInfoReq;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +51,15 @@ public class ArticlePageServiceImpl implements ArticlePageService {
             return this;
         }
         map.put("simple_article_info", pageInfo.getList());
+        if (SecurityUtils.getSubject().hasRole("superadmin")){
+            map.put("role","superadmin");
+        }else if (SecurityUtils.getSubject().hasRole("admin")){
+            map.put("role","admin");
+        }else if (SecurityUtils.getSubject().hasRole("author")){
+            map.put("role","author");
+        }else if (SecurityUtils.getSubject().hasRole("reader")){
+            map.put("role","reader");
+        }
         return this;
     }
 
@@ -79,7 +90,23 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         }
         return this;
     }
-
+    public String setHot(Integer id){
+        if (!SecurityUtils.getSubject().hasRole("superadmin")&&!SecurityUtils.getSubject().hasRole("admin")){
+            return "阁下没有权限修改";
+        }
+        if (id==null){
+            return "参数错误";
+        }
+        XArticle xArticle = xArticleMapper.selectByPrimaryKey(id);
+        if (xArticle==null){
+            return "数据库没有这篇文章";
+        }
+        xArticle.setHot(xArticle.getHot()==0?1:0);
+        xArticle.setUpdateCount(xArticle.getUpdateCount()+1);
+        xArticle.setUpdateTime(new Date());
+        xArticleMapper.updateByPrimaryKeySelective(xArticle);
+        return "修改成功";
+    }
     private String cutString(String src, Integer size) {
         if (src == null || src.length() <= 0) {
             return "error";

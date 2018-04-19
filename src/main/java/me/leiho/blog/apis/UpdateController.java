@@ -1,12 +1,11 @@
 package me.leiho.blog.apis;
 
 import me.leiho.blog.entities.XComment;
+import me.leiho.blog.entities.XFriendLink;
 import me.leiho.blog.entities.XIndexSetting;
 import me.leiho.blog.entities.XUserAccount;
-import me.leiho.blog.services.CommentService;
-import me.leiho.blog.services.ManageIndexSettingService;
-import me.leiho.blog.services.SiteInfoService;
-import me.leiho.blog.services.UserService;
+import me.leiho.blog.mappers.XArticleMapper;
+import me.leiho.blog.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,10 @@ public class UpdateController {
     private SiteInfoService siteInfoService;
     @Autowired
     private ManageIndexSettingService manageIndexSettingService;
+    @Autowired
+    private ArticlePageService articlePageService;
+    @Autowired
+    private ManageFriendLinkService manageFriendLinkService;
 
     @PostMapping("/update/userInfo")
     public String updateUserInfo(@RequestBody XUserAccount user){
@@ -44,11 +47,19 @@ public class UpdateController {
         return siteInfoService.updateSiteInfo(siteInfo);
     }
     @PostMapping("/update/indexSettingHots")
-    public String updatIndexSettingHots(@RequestBody List<XIndexSetting> hots){
+    public String updateIndexSettingHots(@RequestBody List<XIndexSetting> hots){
         return manageIndexSettingService.getUploadSettings(hots);
     }
     @PostMapping("/update/indexSettingGood")
-    public String updatIndexSettingGood(@RequestBody XIndexSetting good){
+    public String updateIndexSettingGood(@RequestBody XIndexSetting good){
         return manageIndexSettingService.getUploadSetting(good);
+    }
+    @PostMapping("/update/hot")
+    public String updateHot(@RequestBody Integer id){
+        return articlePageService.setHot(id);
+    }
+    @PostMapping("/update/links")
+    public String updateLinks(@RequestBody List<XFriendLink> links){
+        return manageFriendLinkService.updateLinks(links);
     }
 }

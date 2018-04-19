@@ -57,7 +57,7 @@
                                             </#if>
                                             <#if (user)??&&(role)??>
                                                 <#if role!='admin'&&role!='superadmin'&&user.id==sai.authorId>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id});">删除</button>;
                                                 </#if>
                                             </#if>
                                         </td>
@@ -69,7 +69,7 @@
                                         <#if (role)??>
                                             <#if role='admin'||role='superadmin'>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>
+                                                    <button type="button" class="btn btn-danger" onclick="openDelete('article',${sai.id})">删除</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="openHot(${sai.id});">热门</button>
                                                 </td>
                                             </#if>
                                         </#if>
