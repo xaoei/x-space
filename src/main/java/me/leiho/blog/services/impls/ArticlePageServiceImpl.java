@@ -84,7 +84,7 @@ public class ArticlePageServiceImpl implements ArticlePageService {
         List<IndexShortArticle> shortHotArticles = new ArrayList<>();
         if (hotArticles.size() > 0) {
             for (int i = 0; i < (hotArticles.size() > 4 ? 4 : hotArticles.size()); i++) {
-                shortHotArticles.add(IndexShortArticle.build().setTitle(cutString(hotArticles.get(i).getTitle(), 13)).setArticle(cutString(cleanHtml(hotArticles.get(i).getContent()), articleMaxSize)).setLink("/page/article/" + hotArticles.get(i).getId()));
+                shortHotArticles.add(IndexShortArticle.build().setTitle(cutString(hotArticles.get(i).getTitle(), 50)).setArticle(cutString(cleanHtml(hotArticles.get(i).getContent()), articleMaxSize)).setLink("/page/article/" + hotArticles.get(i).getId()));
             }
             map.put("short_hot_article", shortHotArticles);
         }
