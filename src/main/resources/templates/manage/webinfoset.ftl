@@ -54,8 +54,11 @@
             data: JSON.stringify(site_info),
             success: function (data) {
                 // alert(data);
-                if (data == "评论成功!") {
+                if (data == "完成了") {
+                    alert(data)
                     window.location.reload();
+                }else {
+                    alert(data)
                 }
             }
         })
