@@ -87,4 +87,4 @@
 </div>
 </#if>
 <#include "../common/user.ftl">
-<script src="/js/change-user.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/change-user.js"></script>

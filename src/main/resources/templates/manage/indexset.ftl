@@ -120,5 +120,5 @@
         <#--<hr style="height:5px;border:none;border-top:5px ridge green;" />-->
     <#--</div>-->
 </div>
-<script src="/js/change-index.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/change-index.js"></script>
 </#if>

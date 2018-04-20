@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>${sitename}:${one_content.title}</title>
-
+    <link rel="icon" type="image/x-icon" href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/favicon.ico">
     <!-- load stylesheets -->
-    <link rel="stylesheet" type='text/css'
-          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.css">
+    <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/bootstrap.min.css">
     <!-- Bootstrap style -->
-    <link rel="stylesheet" type='text/css'
-          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/templatemo-style.css">
+    <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/templatemo-style.css">
     <!-- Templatemo style -->
     <link rel="stylesheet" type='text/css' href="/font-awesome-4.7.0/css/font-awesome.min.css">
 
@@ -92,14 +90,14 @@ ${one_content.content}
 <#include "./common/foot.ftl">
 <#include "common/delete_modal.ftl">
 <!-- load JS files -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/jquery.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.min.js"></script>
 <!-- jQuery (https://jquery.com/download/) -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/tether.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/tether.min.js"></script>
 <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/bootstrap.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/bootstrap.min.js"></script>
 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/html5shiv.min.js"></script>
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/%E5%BC%80%E5%8F%91%E7%94%A8%E6%96%87%E4%BB%B6%E5%A4%B9/x-space/respond.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/html5shiv.min.js"></script>
+<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/respond.min.js"></script>
 <script type="text/javascript">
     function getValue() {
         var comment = {}

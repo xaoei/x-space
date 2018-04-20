@@ -1,7 +1,7 @@
 @charset "utf-8";
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}
-body{background:#f7f7f7 url(../images/pinstripe.gif) repeat top left;color:#000;font-family: Georgia, "Times New Roman",sans-serif;font-size:12px;}
+/*body{background:#f7f7f7 url(../images/pinstripe.gif) repeat top left;color:#000;font-family: Georgia, "Times New Roman",sans-serif;font-size:12px;}*/
 a{color:#000;text-decoration:none;}
 
 /* iw_wrapper */

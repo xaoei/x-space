@@ -1,4 +1,4 @@
-<link rel="stylesheet" type='text/css' href="/css/login-register.css">
+<link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/login-register.css">
 <style>
     .btn-primary:active {
         background-color: green !important;
