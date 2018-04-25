@@ -8,6 +8,7 @@ import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XArticleMapper;
 import me.leiho.blog.mappers.XCommentMapper;
 import me.leiho.blog.mappers.XUserAccountMapper;
+import me.leiho.blog.utils.IpUtil;
 import me.leiho.blog.utils.JsonUtil;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -35,11 +37,12 @@ public class CommentController {
     private XArticleMapper xArticleMapper;
     @Autowired
     private XCommentMapper xCommentMapper;
-
+    @Autowired
+    private IpUtil ipUtil;
     @ApiOperation(value = "保存评论")
     @RequestMapping("/v1/comment/save")
-    public String saveComment(@RequestBody String comment) {
-        logger.info("/v1/comment/save:" + comment);
+    public String saveComment(@RequestBody String comment,HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request)+"访问/v1/comment/save:" + comment);
         //json反序列化
         XComment xComment = JsonUtil.json2pojo(comment, XComment.class);
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {

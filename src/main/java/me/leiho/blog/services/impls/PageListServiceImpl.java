@@ -34,13 +34,13 @@ public class PageListServiceImpl implements PageListService {
 
     public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(SimpleArticleInfoReq req) {
         XUserAccount loginUser = null;
-        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
-            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
-            XUserAccount param = new XUserAccount();
-            param.setId(userInfo.getId());
-            param.setDel(0);
-            loginUser = xUserAccountMapper.selectOne(param);
-        }
+//        if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
+//            XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
+//            XUserAccount param = new XUserAccount();
+//            param.setId(userInfo.getId());
+//            param.setDel(0);
+//            loginUser = xUserAccountMapper.selectOne(param);
+//        }
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();

@@ -2,6 +2,7 @@ package me.leiho.blog.controllers;
 
 import me.leiho.blog.services.CommonPageValueService;
 import me.leiho.blog.services.ManageService;
+import me.leiho.blog.utils.IpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -24,26 +26,27 @@ public class ManagePageController {
     private CommonPageValueService commonPageValueService;
     @Autowired
     private ManageService manageService;
-
+    @Autowired
+    private IpUtil ipUtil;
     @GetMapping("/manage")
-    public String user(Map<String, Object> map) {
+    public String user(Map<String, Object> map,HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request)+"访问/manage");
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage("self",0);
-        logger.info("/manage");
         return "manage";
     }
     @GetMapping("/manage/{page}")
-    public String manage(Map<String, Object> map,@PathVariable String page) {
+    public String manage(Map<String, Object> map,@PathVariable String page,HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request)+"访问/manage/"+page);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage(page,0);
-        logger.info("/manage/"+page);
         return "manage";
     }
     @GetMapping("/manage/{page}/{index}")
-    public String manage(Map<String, Object> map,@PathVariable String page,@PathVariable Integer index) {
+    public String manage(Map<String, Object> map,@PathVariable String page,@PathVariable Integer index,HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request)+"访问/manage/"+page+"/"+index);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage(page,index);
-        logger.info("/manage/"+page);
         return "manage";
     }
 }

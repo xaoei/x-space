@@ -1,6 +1,8 @@
 package me.leiho.blog.vos;
 
-public class ChangePwdVO {
+import me.leiho.blog.entities.StringEntity;
+
+public class ChangePwdVO extends StringEntity {
     private String oldPwd;
     private String newPwd;
 

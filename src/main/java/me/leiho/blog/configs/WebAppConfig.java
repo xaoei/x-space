@@ -68,9 +68,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         };
     }
 
-    public static void main(String[] args) {
-        String path = "file:/www/wwwroot/blog.leiho.me/image/";
-        path = path.replace("jar:","");
-        System.out.println(path);
-    }
+//    public static void main(String[] args) {
+//        String path = "file:/www/wwwroot/blog.leiho.me/image/";
+//        path = path.replace("jar:","");
+//        System.out.println(path);
+//    }
 }

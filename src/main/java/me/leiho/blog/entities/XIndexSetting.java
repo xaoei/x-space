@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "x_index_setting")
-public class XIndexSetting implements Serializable {
+public class XIndexSetting extends StringEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

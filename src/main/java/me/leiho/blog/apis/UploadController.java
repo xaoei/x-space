@@ -9,6 +9,7 @@ import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.mappers.XUserImageMapper;
 import me.leiho.blog.utils.ImgCompress;
+import me.leiho.blog.utils.IpUtil;
 import me.leiho.blog.vos.PicUpResult;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,14 +42,15 @@ public class UploadController {
 
     @Autowired
     private XUserAccountMapper xUserAccountMapper;
-
     @Autowired
     private XUserImageMapper xUserImageMapper;
-
+    @Autowired
+    private IpUtil ipUtil;
 
     @ApiOperation(value = "上传图片,获得图片链接", notes = "")
     @PostMapping(value = "/v1/upload", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile) {
+    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile,HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request)+"访问/v1/upload:文件" + (multipartFile==null?"未知":multipartFile.getName())+",大小为"+(multipartFile==null?"未知":multipartFile.getSize()));
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();

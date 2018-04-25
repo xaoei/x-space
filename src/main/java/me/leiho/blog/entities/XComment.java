@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "x_comment")
-public class XComment implements Serializable {
+public class XComment extends StringEntity implements Serializable {
     @Id
     private Integer id;
 

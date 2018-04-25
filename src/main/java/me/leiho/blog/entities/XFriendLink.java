@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "x_friend_link")
-public class XFriendLink implements Serializable {
+public class XFriendLink extends StringEntity implements Serializable {
     @Id
     private Integer id;
 
