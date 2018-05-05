@@ -93,7 +93,7 @@ public class UploadController {
                 return new PicUpResult(5);
             }
             List<String> data = new ArrayList<>();
-            data.add("image/total/" + imageId + suffix);
+            data.add("/image/total/" + imageId + suffix);
             return new PicUpResult(0, data);
         }
         return new PicUpResult(6);
