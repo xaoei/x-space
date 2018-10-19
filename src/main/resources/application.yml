@@ -1,4 +1,3 @@
-#freemarker
 spring:
   freemarker:
     cache: false
