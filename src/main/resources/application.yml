@@ -5,9 +5,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://47.100.164.32:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: blog
-    password: dabfe4bb67715139ac127146c76e35c3
+    url: jdbc:mysql://ip_address:port/db_name
+    username: username
+    password: password
   application:
     name: x-space
   http:
@@ -15,7 +15,7 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 server:
-  port: 12321
+  port: 80
   context-path: /
 #  session:
 logging:
