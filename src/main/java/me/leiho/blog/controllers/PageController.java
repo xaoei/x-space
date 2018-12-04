@@ -28,14 +28,15 @@ public class PageController {
     private PageService pageService;
     @Autowired
     private IpUtil ipUtil;
+
     @GetMapping(value = "/page/{type}/{id}")
     /**
      * type:
      *      article
      *      media
      * */
-    public String index(Map<String, Object> map, @PathVariable String type, @PathVariable Integer id,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/page/" + type + "/" + id);
+    public String index(Map<String, Object> map, @PathVariable String type, @PathVariable Integer id, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/page/" + type + "/" + id);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(0).setCommonPageFoot();
         pageService.getValueMap(map).setArticle(type, id);
         return "page";

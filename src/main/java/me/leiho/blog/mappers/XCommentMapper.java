@@ -17,5 +17,5 @@ public interface XCommentMapper extends CustomerMapper<XComment> {
 
     List<XComment> getNewComments(@Param("size") Integer size);
 
-    void deleteCommentById(@Param("id")Integer id);
+    void deleteCommentById(@Param("id") Integer id);
 }

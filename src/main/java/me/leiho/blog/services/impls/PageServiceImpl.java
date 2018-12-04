@@ -75,12 +75,12 @@ public class PageServiceImpl implements PageService {
                     break;
                 }
                 commentVO.setUserName(xUserAccount.getUsername());
-                if (loginUser!=null&&xUserAccount.getId()==loginUser.getId()){
+                if (loginUser != null && xUserAccount.getId() == loginUser.getId()) {
                     commentVO.setIsOwner(1);
-                }else {
+                } else {
                     commentVO.setIsOwner(0);
                 }
-                if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+                if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                     commentVO.setIsOwner(1);
                 }
                 commentVOList.add(commentVO);

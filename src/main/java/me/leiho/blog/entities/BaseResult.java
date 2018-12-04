@@ -17,6 +17,21 @@ public class BaseResult extends StringEntity implements Serializable {
     @ApiModelProperty(value = "错误描述")
     private String msg;
 
+    public BaseResult(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public BaseResult(ResultCode resultCode) {
+        this.code = resultCode.getValue();
+        this.msg = resultCode.getDesc();
+    }
+
+    public BaseResult() {
+        this.code = ResultCode.SUCCESS.getValue();
+        this.msg = ResultCode.SUCCESS.getDesc();
+    }
+
     public Integer getCode() {
         return code;
     }
@@ -31,21 +46,6 @@ public class BaseResult extends StringEntity implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public BaseResult(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
-    public BaseResult(ResultCode resultCode) {
-        this.code = resultCode.getValue();
-        this.msg = resultCode.getDesc();
-    }
-
-    public BaseResult() {
-        this.code = ResultCode.SUCCESS.getValue();
-        this.msg = ResultCode.SUCCESS.getDesc();
     }
 
     public void addMessage(Integer code, String msg) {

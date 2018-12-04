@@ -30,10 +30,11 @@ public class PageListController {
     private PageListService pageListService;
     @Autowired
     private IpUtil ipUtil;
+
     @ApiOperation(value = "分页读取列表")
     @PostMapping("/v1/read/getSimpleArticleInfo")
-    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(@RequestBody SimpleArticleInfoReq req,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/v1/read/getSimpleArticleInfo:" + req);
+    public PageInfo<SimpleArticleInfo> getSimpleArticleInfo(@RequestBody SimpleArticleInfoReq req, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/v1/read/getSimpleArticleInfo:" + req);
         return pageListService.getSimpleArticleInfo(req);
     }
 }

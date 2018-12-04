@@ -28,15 +28,27 @@
         <result column="title" property="title" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="getAllCommentByArticleId" parameterType="Integer" resultMap="BaseResultMap">
-    SELECT * FROM x_comment WHERE article_id = #{articleId} AND del = 0
-  </select>
+        SELECT *
+        FROM x_comment
+        WHERE article_id = #{articleId}
+          AND del = 0
+    </select>
     <select id="getCommentByAuthor" parameterType="Integer" resultMap="ResultMapWithTitle">
-    SELECT * FROM x_comment,(SELECT id,title FROM x_article WHERE author = #{author} AND announce = 1) t WHERE article_id = t.id ORDER BY create_time DESC LIMIT 0,#{size};
-  </select>
+        SELECT *
+        FROM x_comment,
+             (SELECT id,title FROM x_article WHERE author = #{author} AND announce = 1) t
+        WHERE article_id = t.id
+        ORDER BY create_time DESC LIMIT 0,#{size};
+    </select>
     <select id="getNewComments" parameterType="Integer" resultMap="BaseResultMap">
-    SELECT  * FROM  x_comment WHERE del=0  ORDER BY create_time DESC LIMIT 0,#{size}
-  </select>
+        SELECT *
+        FROM x_comment
+        WHERE del = 0
+        ORDER BY create_time DESC LIMIT 0,#{size}
+    </select>
     <update id="deleteCommentById" parameterType="Integer">
-        UPDATE x_comment SET del=1 WHERE id=#{id}
+        UPDATE x_comment
+        SET del=1
+        WHERE id = #{id}
     </update>
 </mapper>

@@ -8,51 +8,43 @@ import java.util.Date;
 
 @Table(name = "x_site_info")
 public class XSiteInfo extends StringEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 唯一标识
      */
     @Id
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 标签名
      */
     @Column(name = "item_name")
     private String itemName;
-
     /**
      * 标签值
      */
     @Column(name = "item_value")
     private String itemValue;
-
     /**
      * 标签简介
      */
     @Column(name = "item_desc")
     private String itemDesc;
-
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取唯一标识

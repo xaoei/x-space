@@ -11,7 +11,8 @@ import java.util.Map;
  * @Contact: yesxiaolei@outlook.com
  */
 public interface ArticlePageService {
-//    ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req);
+    //    ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req);
     String setHot(Integer id);
+
     ArticlePageServiceImpl getValueMap(Map<String, Object> map);
 }

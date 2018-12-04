@@ -20,14 +20,15 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 public class ApiController {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private IpUtil ipUtil;
+
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/greeting");
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/greeting");
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 }

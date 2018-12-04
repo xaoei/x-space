@@ -8,15 +8,14 @@ import java.util.Date;
 
 @Table(name = "x_comment")
 public class XComment extends StringEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 评论
      */
@@ -26,33 +25,26 @@ public class XComment extends StringEntity implements Serializable {
      */
     @Column(name = "user_id")
     private Integer userId;
-
     /**
      * 原文
      */
     @Column(name = "article_id")
     private Integer articleId;
-
     /**
      * 是否热门,0否1是
      */
     private Integer hot;
-
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * @return id

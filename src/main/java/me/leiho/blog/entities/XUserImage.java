@@ -8,83 +8,69 @@ import java.util.Date;
 
 @Table(name = "x_user_image")
 public class XUserImage implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 对象存储图片路径
      */
     private String path;
-
     /**
      * 小图源地址
      */
     @Column(name = "small_src")
     private String smallSrc;
-
     /**
      * 完整图片源地址
      */
     @Column(name = "total_src")
     private String totalSrc;
-
     /**
      * 唯一标识
      */
     @Column(name = "user_id")
     private Integer userId;
-
     /**
      * 用户名
      */
     private String username;
-
     /**
      * 图片描述
      */
     @Column(name = "img_desc")
     private String imgDesc;
-
     /**
      * 图片所在页面链接
      */
     private String link;
-
     /**
      * 热门标识,0否1是
      */
     private Integer hot;
-
     /**
      * 同步标识,0未同步1已同步
      */
     private Integer sync;
-
     /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * @return id

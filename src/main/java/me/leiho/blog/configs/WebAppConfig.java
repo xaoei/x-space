@@ -1,6 +1,5 @@
 package me.leiho.blog.configs;
 
-import junit.framework.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -35,17 +34,17 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
         String path = WebAppConfig.class.getResource("/").toString();
         path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
-        path = path.replace("jar:","");
+        path = path.replace("jar:", "");
         try {
-            path = URLDecoder.decode(path,"utf-8");
+            path = URLDecoder.decode(path, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         File pathFile = new File("image");
-        if (!pathFile.exists()){
+        if (!pathFile.exists()) {
             pathFile.mkdirs();
-        }else if(pathFile.isFile()){
+        } else if (pathFile.isFile()) {
             pathFile.delete();
             pathFile.mkdirs();
         }

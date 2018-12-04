@@ -33,8 +33,9 @@ public class IndexPageController {
 
     @Autowired
     private IpUtil ipUtil;
-    @GetMapping({"/","/index"})
-    public String index(Map<String, Object> map,HttpServletRequest request) {
+
+    @GetMapping({"/", "/index"})
+    public String index(Map<String, Object> map, HttpServletRequest request) {
         commonPageValueService
                 .getValueMap(map)
                 .setUserInfo()

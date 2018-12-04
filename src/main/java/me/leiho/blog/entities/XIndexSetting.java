@@ -6,26 +6,23 @@ import java.util.Date;
 
 @Table(name = "x_index_setting")
 public class XIndexSetting extends StringEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     /**
      * 类型
      */
     private String type;
-
     /**
      * 文章编号
      */
     @Column(name = "article_id")
     private Integer articleId;
-
     /**
      * 标题
      */
     private String title;
-
     /**
      * 图片
      */
@@ -40,25 +37,20 @@ public class XIndexSetting extends StringEntity implements Serializable {
      * 部分内容
      */
     private String content;
-
     /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     public String getFeeling() {
         return feeling;

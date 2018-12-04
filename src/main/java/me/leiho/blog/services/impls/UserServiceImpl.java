@@ -2,13 +2,14 @@ package me.leiho.blog.services.impls;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.bcel.internal.generic.I2F;
 import me.leiho.blog.entities.BaseResult;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.mappers.XUserAccountMapper;
 import me.leiho.blog.services.UserService;
 import me.leiho.blog.utils.PBKDF2;
-import me.leiho.blog.vos.*;
+import me.leiho.blog.vos.LoginVO;
+import me.leiho.blog.vos.RegisterVO;
+import me.leiho.blog.vos.UserInfoReq;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -101,7 +102,7 @@ public class UserServiceImpl implements UserService {
             return new BaseResult(FAILED_USER_LOGIN_NOT_EXIST);
         }
         XUserAccount xUserAccount = xUserAccountList.get(0);
-        if (xUserAccount.getDel()==1){
+        if (xUserAccount.getDel() == 1) {
             return new BaseResult(FAILED_USER_LOGIN_FORBIDDEN);
         }
 //        try {
@@ -136,7 +137,7 @@ public class UserServiceImpl implements UserService {
         return new BaseResult(SUCCESS);
     }
 
-    public String deleteUserById(Integer id){
+    public String deleteUserById(Integer id) {
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -146,23 +147,23 @@ public class UserServiceImpl implements UserService {
             if (xUserAccount == null) {
                 return "用户信息异常";
             }
-            XUserAccount result= xUserAccountMapper.selectByPrimaryKey(id);
-            if (result==null){
+            XUserAccount result = xUserAccountMapper.selectByPrimaryKey(id);
+            if (result == null) {
                 return "没有该用户的信息";
             }
-            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 xUserAccountMapper.deleteUserById(id);
                 return "删除成功";
-            }else {
+            } else {
                 return "没有权限删除";
             }
         }
         return "没有权限删除";
     }
 
-    public String updateUserInfo(XUserAccount user){
+    public String updateUserInfo(XUserAccount user) {
 
-        if (user==null||user.getId()==null){
+        if (user == null || user.getId() == null) {
             return "参数异常";
         }
         Integer id = user.getId();
@@ -175,15 +176,15 @@ public class UserServiceImpl implements UserService {
             if (xUserAccount == null) {
                 return "用户信息异常";
             }
-            XUserAccount result= xUserAccountMapper.selectByPrimaryKey(id);
-            if (result==null){
+            XUserAccount result = xUserAccountMapper.selectByPrimaryKey(id);
+            if (result == null) {
                 return "没有该用户的信息";
             }
-            if (xUserAccount.getId()==id||SecurityUtils.getSubject().hasRole("admin")){
+            if (xUserAccount.getId() == id || SecurityUtils.getSubject().hasRole("admin")) {
                 //用户和普通管理员不能修改用户角色
                 user.setRole(result.getRole());
                 user.setUpdateTime(new Date());
-                if (StringUtils.isNotBlank(user.getPassword())){
+                if (StringUtils.isNotBlank(user.getPassword())) {
                     try {
                         user.setPassword(PBKDF2.createHash(user.getPassword()));
                     } catch (NoSuchAlgorithmException e) {
@@ -191,14 +192,14 @@ public class UserServiceImpl implements UserService {
                     } catch (InvalidKeySpecException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     user.setPassword(null);
                 }
                 xUserAccountMapper.updateByPrimaryKeySelective(user);
                 return "修改成功";
-            }else if (SecurityUtils.getSubject().hasRole("superadmin")){
+            } else if (SecurityUtils.getSubject().hasRole("superadmin")) {
                 user.setUpdateTime(new Date());
-                if (StringUtils.isNotBlank(user.getPassword())){
+                if (StringUtils.isNotBlank(user.getPassword())) {
                     try {
                         user.setPassword(PBKDF2.createHash(user.getPassword()));
                     } catch (NoSuchAlgorithmException e) {
@@ -206,12 +207,12 @@ public class UserServiceImpl implements UserService {
                     } catch (InvalidKeySpecException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     user.setPassword(null);
                 }
                 xUserAccountMapper.updateByPrimaryKeySelective(user);
                 return "修改成功";
-            }else {
+            } else {
                 return "没有权限修改";
             }
         }
@@ -220,7 +221,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateUserPwd(String oldPwd, String newPwd) {
-        if (StringUtils.isBlank(oldPwd)||StringUtils.isBlank(newPwd)){
+        if (StringUtils.isBlank(oldPwd) || StringUtils.isBlank(newPwd)) {
             return "参数异常";
         }
         XUserAccount loginUser = null;
@@ -231,12 +232,12 @@ public class UserServiceImpl implements UserService {
             param.setDel(0);
             loginUser = xUserAccountMapper.selectOne(param);
         }
-        if (loginUser==null||loginUser.getPassword()==null||loginUser.getPassword()==null){
+        if (loginUser == null || loginUser.getPassword() == null || loginUser.getPassword() == null) {
             return "用户状态异常";
         }
         String password = null;
         try {
-            if (!PBKDF2.validatePassword(oldPwd,loginUser.getPassword())){
+            if (!PBKDF2.validatePassword(oldPwd, loginUser.getPassword())) {
                 return "原密码错误";
             }
             password = PBKDF2.createHash(newPwd);
@@ -245,7 +246,7 @@ public class UserServiceImpl implements UserService {
         } catch (InvalidKeySpecException e) {
             return "内部错误,请联系网站管理员";
         }
-        if (StringUtils.isBlank(password)){
+        if (StringUtils.isBlank(password)) {
             return "参数异常";
         }
         XUserAccount xUserAccount = new XUserAccount();
@@ -257,12 +258,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public PageInfo<XUserAccount> getUserInfoList(UserInfoReq req) {
-        if (!SecurityUtils.getSubject().hasRole("admin")&&!SecurityUtils.getSubject().hasRole("superadmin")){
+        if (!SecurityUtils.getSubject().hasRole("admin") && !SecurityUtils.getSubject().hasRole("superadmin")) {
             return null;
         }
         PageHelper.startPage(req.getPage(), req.getSize());
         Example example = new Example(XUserAccount.class);
-        example.createCriteria().andNotEqualTo("role","superadmin");
+        example.createCriteria().andNotEqualTo("role", "superadmin");
         List<XUserAccount> userInfos = xUserAccountMapper.selectByExample(example);
         PageInfo<XUserAccount> userInfoList = new PageInfo<>(userInfos);
         if (userInfos.isEmpty()) {

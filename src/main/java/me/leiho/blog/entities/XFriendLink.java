@@ -8,42 +8,35 @@ import java.util.Date;
 
 @Table(name = "x_friend_link")
 public class XFriendLink extends StringEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 友链链接
      */
     @Column(name = "link_href")
     private String linkHref;
-
     /**
      * 友链说明
      */
     @Column(name = "link_value")
     private String linkValue;
-
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * @return id

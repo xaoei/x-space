@@ -15,8 +15,9 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class PBKDF2Test {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Test
-    public void getCodeByStr(){
+    public void getCodeByStr() {
         try {
             logger.info(PBKDF2.createHash("admin"));
         } catch (NoSuchAlgorithmException e) {

@@ -32,10 +32,9 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class MyBatisConfig implements TransactionManagementConfigurer {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Resource
     public DataSource dataSource;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() {

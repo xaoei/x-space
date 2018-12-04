@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface XUserImageMapper extends CustomerMapper<XUserImage> {
     List<XUserImage> selectAllImg();
+
     List<XUserImage> selectSomrImgs(@Param("size") Integer size);
-    void deleteImageById(@Param("id")Integer id);
+
+    void deleteImageById(@Param("id") Integer id);
 }

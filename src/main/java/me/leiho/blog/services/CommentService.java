@@ -10,5 +10,6 @@ import me.leiho.blog.entities.XComment;
  */
 public interface CommentService {
     String deleteCommentById(Integer id);
+
     String updateCommentById(XComment comment);
 }

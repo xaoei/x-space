@@ -37,5 +37,5 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
 
     List<XArticle> getHotArticles(@Param("size") Integer size);
 
-    void deleteArticleById(@Param("id")Integer id);
+    void deleteArticleById(@Param("id") Integer id);
 }

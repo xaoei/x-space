@@ -21,7 +21,10 @@ public interface UserService {
     BaseResult logout();
 
     String updateUserInfo(XUserAccount user);
-    String updateUserPwd(String oldPwd,String newPwd);
+
+    String updateUserPwd(String oldPwd, String newPwd);
+
     String deleteUserById(Integer id);
+
     PageInfo<XUserAccount> getUserInfoList(UserInfoReq req);
 }

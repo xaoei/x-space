@@ -3,7 +3,6 @@ package me.leiho.blog.apis;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import me.leiho.blog.configs.WebAppConfig;
 import me.leiho.blog.entities.XUserAccount;
 import me.leiho.blog.entities.XUserImage;
 import me.leiho.blog.mappers.XUserAccountMapper;
@@ -15,7 +14,9 @@ import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,8 +49,8 @@ public class UploadController {
 
     @ApiOperation(value = "上传图片,获得图片链接", notes = "")
     @PostMapping(value = "/v1/upload", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/v1/upload:文件" + (multipartFile==null?"未知":multipartFile.getName())+",大小为"+(multipartFile==null?"未知":multipartFile.getSize()));
+    public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/v1/upload:文件" + (multipartFile == null ? "未知" : multipartFile.getName()) + ",大小为" + (multipartFile == null ? "未知" : multipartFile.getSize()));
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -84,7 +84,7 @@ public class UploadController {
 //                File image = new File(path);
                 String path = "image";
                 File image = new File(path);
-                if (!image.exists()){
+                if (!image.exists()) {
                     image.mkdir();
                 }
                 SaveFileFromInputStream(multipartFile.getInputStream(), path, imageId + suffix, xUserAccount);
@@ -120,8 +120,8 @@ public class UploadController {
         fs.close();
         stream.close();
         //生成小图
-        ImgCompress imgCompress = new ImgCompress(path+"/total/" + filename);
-        imgCompress.resizeFix(100, 100, path+"/small/" + filename);
+        ImgCompress imgCompress = new ImgCompress(path + "/total/" + filename);
+        imgCompress.resizeFix(100, 100, path + "/small/" + filename);
         //信息入库
         XUserImage xUserImage = new XUserImage();
         xUserImage.setUserId(xUserAccount.getId());

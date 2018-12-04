@@ -8,88 +8,73 @@ import java.util.Date;
 
 @Table(name = "x_article")
 public class XArticle implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 唯一标识
      */
     @Id
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 文章标题
      */
     private String title;
-
     /**
      * 感言
      */
     private String feeling;
-
     /**
      * 作者编号
      */
     private Integer author;
-
     /**
      * 文章分类
      */
     private Integer type;
-
     /**
      * 文章标签
      */
     private String tags;
-
     /**
      * 是否发布
      */
     private Integer announce;
-
     /**
      * 更新次数
      */
     @Column(name = "update_count")
     private Integer updateCount;
-
     /**
      * 是否热门,0否1是
      */
     private Integer hot;
-
     /**
      * 发布时间
      */
     @Column(name = "announce_time")
     private Date announceTime;
-
     /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
     /**
      * 内容,限制10000字
      */
     private String content;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取唯一标识

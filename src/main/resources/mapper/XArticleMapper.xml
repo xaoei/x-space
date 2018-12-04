@@ -69,15 +69,31 @@
         WHERE info.type = xat.id
     </select>
     <select id="getUnFinishArticles" parameterType="Integer" resultMap="SimpleArticleInfo">
-      SELECT * FROM x_article WHERE author = #{author} AND announce=#{announce} ORDER BY create_time DESC LIMIT 0,#{size}
+        SELECT *
+        FROM x_article
+        WHERE author = #{author}
+          AND announce = #{announce}
+        ORDER BY create_time DESC LIMIT 0,#{size}
     </select>
     <select id="getArticlesByType" parameterType="Integer" resultMap="SimpleArticleInfo">
-      SELECT * FROM x_article WHERE announce=1 AND del=0 AND type=#{type} ORDER BY announce_time DESC LIMIT 0,#{size}
+        SELECT *
+        FROM x_article
+        WHERE announce = 1
+          AND del = 0
+          AND type = #{type}
+        ORDER BY announce_time DESC LIMIT 0,#{size}
     </select>
     <select id="getHotArticles" parameterType="Integer" resultMap="BaseResultMap">
-      SELECT * FROM x_article WHERE announce=1 AND del=0 AND hot=1 ORDER BY announce_time DESC LIMIT 0,#{size}
+        SELECT *
+        FROM x_article
+        WHERE announce = 1
+          AND del = 0
+          AND hot = 1
+        ORDER BY announce_time DESC LIMIT 0,#{size}
     </select>
     <update id="deleteArticleById" parameterType="Integer">
-        UPDATE x_article SET del=1 WHERE id=#{id}
+        UPDATE x_article
+        SET del=1
+        WHERE id = #{id}
     </update>
 </mapper>

@@ -5,5 +5,5 @@ import me.leiho.blog.utils.CustomerMapper;
 import org.apache.ibatis.annotations.Param;
 
 public interface XUserAccountMapper extends CustomerMapper<XUserAccount> {
-    void deleteUserById(@Param("id")Integer id);
+    void deleteUserById(@Param("id") Integer id);
 }

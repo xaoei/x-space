@@ -9,12 +9,12 @@ import java.io.Serializable;
  * @Contact: yesxiaolei@outlook.com
  */
 public class SimpleLink extends BaseResult implements Serializable {
+    private String url;
+    private String desc;
+
     public static SimpleLink build() {
         return new SimpleLink();
     }
-
-    private String url;
-    private String desc;
 
     public String getUrl() {
         return url;

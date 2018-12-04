@@ -15,7 +15,8 @@ public class SiteInfoServiceImpl implements SiteInfoService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private XSiteInfoMapper xSiteInfoMapper;
-    public String updateSiteInfo(String siteInfo){
+
+    public String updateSiteInfo(String siteInfo) {
         Map maps = JsonUtil.json2map(siteInfo);
         xSiteInfoMapper.updateSiteInfoByMap(maps);
         return "完成了";

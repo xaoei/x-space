@@ -206,7 +206,8 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return false;
     }
-    public String deleteArticleById(Integer id){
+
+    public String deleteArticleById(Integer id) {
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -217,16 +218,16 @@ public class ArticleServiceImpl implements ArticleService {
                 return "用户信息异常";
             }
             XArticle xArticle = xArticleMapper.selectByPrimaryKey(id);
-            if (xArticle==null||xArticle.getAuthor()==null){
+            if (xArticle == null || xArticle.getAuthor() == null) {
                 return "没有这篇文章的信息";
             }
-            if (xUserAccount.getId()==xArticle.getAuthor()){
+            if (xUserAccount.getId() == xArticle.getAuthor()) {
                 xArticleMapper.deleteArticleById(id);
                 return "删除成功";
-            }else if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            } else if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 xArticleMapper.deleteArticleById(id);
                 return "删除成功";
-            }else {
+            } else {
                 return "没有权限删除";
             }
         }

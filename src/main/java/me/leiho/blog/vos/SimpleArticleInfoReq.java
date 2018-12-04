@@ -10,10 +10,6 @@ import me.leiho.blog.entities.StringEntity;
  * @Contact: yesxiaolei@outlook.com
  */
 public class SimpleArticleInfoReq extends StringEntity {
-    public static SimpleArticleInfoReq build() {
-        return new SimpleArticleInfoReq();
-    }
-
     @ApiModelProperty(name = "page", value = "页码")
     private Integer page;
     @ApiModelProperty(name = "size", value = "页面大小")
@@ -33,6 +29,10 @@ public class SimpleArticleInfoReq extends StringEntity {
     @ApiModelProperty(name = "type", value = "排序方式")
     private String type;
 
+    public static SimpleArticleInfoReq build() {
+        return new SimpleArticleInfoReq();
+    }
+
     public Integer getIsAnnounce() {
         return isAnnounce;
     }
@@ -42,9 +42,17 @@ public class SimpleArticleInfoReq extends StringEntity {
         return this;
     }
 
+    public Integer getPage() {
+        return page;
+    }
+
     public SimpleArticleInfoReq setPage(Integer page) {
         this.page = page;
         return this;
+    }
+
+    public Integer getSize() {
+        return size;
     }
 
     public SimpleArticleInfoReq setSize(Integer size) {
@@ -52,9 +60,17 @@ public class SimpleArticleInfoReq extends StringEntity {
         return this;
     }
 
+    public String getKeyWord() {
+        return keyWord;
+    }
+
     public SimpleArticleInfoReq setKeyWord(String keyWord) {
         this.keyWord = keyWord;
         return this;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public SimpleArticleInfoReq setAuthor(String author) {
@@ -62,9 +78,17 @@ public class SimpleArticleInfoReq extends StringEntity {
         return this;
     }
 
+    public String getHot() {
+        return hot;
+    }
+
     public SimpleArticleInfoReq setHot(String hot) {
         this.hot = hot;
         return this;
+    }
+
+    public String getAnnounceTime() {
+        return announceTime;
     }
 
     public SimpleArticleInfoReq setAnnounceTime(String announceTime) {
@@ -72,45 +96,21 @@ public class SimpleArticleInfoReq extends StringEntity {
         return this;
     }
 
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
     public SimpleArticleInfoReq setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
         return this;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public SimpleArticleInfoReq setType(String type) {
         this.type = type;
         return this;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public String getKeyWord() {
-        return keyWord;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getHot() {
-        return hot;
-    }
-
-    public String getAnnounceTime() {
-        return announceTime;
-    }
-
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public String getType() {
-        return type;
     }
 }

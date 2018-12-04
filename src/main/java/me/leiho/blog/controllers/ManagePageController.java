@@ -28,25 +28,28 @@ public class ManagePageController {
     private ManageService manageService;
     @Autowired
     private IpUtil ipUtil;
+
     @GetMapping("/manage")
-    public String user(Map<String, Object> map,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/manage");
+    public String user(Map<String, Object> map, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/manage");
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
-        manageService.getValueMap(map).setPage("self",0);
+        manageService.getValueMap(map).setPage("self", 0);
         return "manage";
     }
+
     @GetMapping("/manage/{page}")
-    public String manage(Map<String, Object> map,@PathVariable String page,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/manage/"+page);
+    public String manage(Map<String, Object> map, @PathVariable String page, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/manage/" + page);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
-        manageService.getValueMap(map).setPage(page,0);
+        manageService.getValueMap(map).setPage(page, 0);
         return "manage";
     }
+
     @GetMapping("/manage/{page}/{index}")
-    public String manage(Map<String, Object> map,@PathVariable String page,@PathVariable Integer index,HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request)+"访问/manage/"+page+"/"+index);
+    public String manage(Map<String, Object> map, @PathVariable String page, @PathVariable Integer index, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/manage/" + page + "/" + index);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
-        manageService.getValueMap(map).setPage(page,index);
+        manageService.getValueMap(map).setPage(page, index);
         return "manage";
     }
 }

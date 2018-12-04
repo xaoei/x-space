@@ -10,46 +10,40 @@ import java.util.Date;
 
 @Table(name = "x_article_tag")
 public class XArticleTag implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 唯一标识
      */
     @Id
     private Integer id;
-
     /**
      * 顺序
      */
     @JsonIgnore
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 标签名
      */
     @Column(name = "tag_name")
     private String tagName;
-
     /**
      * 创建时间
      */
     @JsonIgnore
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @JsonIgnore
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     @JsonIgnore
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取唯一标识

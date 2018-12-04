@@ -83,13 +83,13 @@ public class PageListServiceImpl implements PageListService {
                 StringUtils.isNotBlank(req.getUpdateTime()) ? "%" + req.getUpdateTime() + "%" : req.getUpdateTime(),
                 req.getIsAnnounce()
         );
-        for (int i=0;i<simpleArticleInfos.size();i++){
-            if (loginUser!=null&&simpleArticleInfos.get(i).getId()==loginUser.getId()){
+        for (int i = 0; i < simpleArticleInfos.size(); i++) {
+            if (loginUser != null && simpleArticleInfos.get(i).getId() == loginUser.getId()) {
                 simpleArticleInfos.get(i).setIsOwner(1);
-            }else {
+            } else {
                 simpleArticleInfos.get(i).setIsOwner(0);
             }
-            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 simpleArticleInfos.get(i).setIsOwner(1);
             }
         }

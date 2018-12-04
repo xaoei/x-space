@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Map;
 
 public interface XSiteInfoMapper extends CustomerMapper<XSiteInfo> {
-    void updateSiteInfoByMap(@Param("siteInfo")Map<String,String> siteInfo);
+    void updateSiteInfoByMap(@Param("siteInfo") Map<String, String> siteInfo);
 }

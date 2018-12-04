@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
+
 @Component
 public class IpUtil {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -24,6 +25,7 @@ public class IpUtil {
     private XUserAccountMapper xUserAccountMapper;
     @Autowired
     private XIpRecordMapper xIpRecordMapper;
+
     public String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
         try {
@@ -55,10 +57,10 @@ public class IpUtil {
                 }
             }
         } catch (Exception e) {
-            ipAddress="";
+            ipAddress = "";
         }
         // ipAddress = this.getRequest().getRemoteAddr();
-        if (ipAddress!=null&&StringUtils.isNotBlank(ipAddress)){
+        if (ipAddress != null && StringUtils.isNotBlank(ipAddress)) {
             //存入数据库
             try {
                 XIpRecord xIpRecord = new XIpRecord();
@@ -94,16 +96,17 @@ public class IpUtil {
                     List<XIpRecord> recordList = xIpRecordMapper.selectByExample(notLogin);
                     updateRecord(recordList, xIpRecord);
                 }
-            }catch (Exception e){
-                logger.error("将ip存入数据库出现异常",e);
+            } catch (Exception e) {
+                logger.error("将ip存入数据库出现异常", e);
             }
         }
         return ipAddress;
     }
-    private void updateRecord(List<XIpRecord> recordList,XIpRecord xIpRecord){
-        if (recordList.isEmpty()){
+
+    private void updateRecord(List<XIpRecord> recordList, XIpRecord xIpRecord) {
+        if (recordList.isEmpty()) {
             xIpRecordMapper.insertSelective(xIpRecord);
-        }else {
+        } else {
             XIpRecord result = recordList.get(0);
             result.setUpdateTime(new Date());
             xIpRecordMapper.updateByPrimaryKeySelective(result);

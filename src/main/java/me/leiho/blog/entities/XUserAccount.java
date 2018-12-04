@@ -8,52 +8,43 @@ import java.util.Date;
 
 @Table(name = "x_user_account")
 public class XUserAccount extends StringEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 唯一标识
      */
     @Id
     private Integer id;
-
     /**
      * 邮箱或手机号码
      */
     private String account;
-
     /**
      * 用户名
      */
     private String username;
-
     /**
      * 密码
      */
     private String password;
-
     /**
      * 角色
      */
     private String role;
-
     /**
      * 性别
      */
     private String gender;
-
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取唯一标识

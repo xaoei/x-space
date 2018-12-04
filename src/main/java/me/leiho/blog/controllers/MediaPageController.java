@@ -27,12 +27,13 @@ public class MediaPageController {
     private MediaPageService mediaPageService;
     @Autowired
     private IpUtil ipUtil;
+
     @GetMapping("/media")
-    public String about(Map<String, Object> map,HttpServletRequest request) {
+    public String about(Map<String, Object> map, HttpServletRequest request) {
 //        if (!SecurityUtils.getSubject().isPermitted("/media")) {
 //            return "/403.html";
 //        }
-        logger.info(ipUtil.getIpAddr(request)+"访问/media");
+        logger.info(ipUtil.getIpAddr(request) + "访问/media");
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
         mediaPageService.getValueMap(map).setPhotoWall();
         return "media";

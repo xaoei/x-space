@@ -28,24 +28,28 @@ public class DeleteController {
     private UserService userService;
     @Autowired
     private IpUtil ipUtil;
+
     @PostMapping("/delete/article")
-    public String deleteArticle(@RequestBody Integer id,HttpServletRequest request){
-        logger.info(ipUtil.getIpAddr(request)+"访问/delete/article:" + id);
+    public String deleteArticle(@RequestBody Integer id, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/delete/article:" + id);
         return articleService.deleteArticleById(id);
     }
+
     @PostMapping("/delete/comment")
-    public String deleteComment(@RequestBody Integer id,HttpServletRequest request){
-        logger.info(ipUtil.getIpAddr(request)+"访问/delete/comment:" + id);
+    public String deleteComment(@RequestBody Integer id, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/delete/comment:" + id);
         return commentService.deleteCommentById(id);
     }
+
     @PostMapping("/delete/image")
-    public String deleteImage(@RequestBody Integer id,HttpServletRequest request){
-        logger.info(ipUtil.getIpAddr(request)+"访问/delete/image:" + id);
+    public String deleteImage(@RequestBody Integer id, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/delete/image:" + id);
         return mediaPageService.deleteImageById(id);
     }
+
     @PostMapping("/delete/user")
-    public String deleteUser(@RequestBody Integer id,HttpServletRequest request){
-        logger.info(ipUtil.getIpAddr(request)+"访问/delete/user:" + id);
+    public String deleteUser(@RequestBody Integer id, HttpServletRequest request) {
+        logger.info(ipUtil.getIpAddr(request) + "访问/delete/user:" + id);
         return userService.deleteUserById(id);
     }
 }

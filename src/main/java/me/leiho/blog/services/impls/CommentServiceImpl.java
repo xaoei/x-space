@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private XCommentMapper xCommentMapper;
 
-    public String deleteCommentById(Integer id){
+    public String deleteCommentById(Integer id) {
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -40,23 +40,24 @@ public class CommentServiceImpl implements CommentService {
                 return "用户信息异常";
             }
             XComment xComment = xCommentMapper.selectByPrimaryKey(id);
-            if (xComment==null||xComment.getUserId()==null){
+            if (xComment == null || xComment.getUserId() == null) {
                 return "没有这篇文章的信息";
             }
-            if (xUserAccount.getId()==xComment.getUserId()){
+            if (xUserAccount.getId() == xComment.getUserId()) {
                 xCommentMapper.deleteCommentById(id);
                 return "删除成功";
-            }else if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            } else if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 xCommentMapper.deleteCommentById(id);
                 return "删除成功";
-            }else {
+            } else {
                 return "没有权限删除";
             }
         }
         return "没有权限删除";
     }
-    public String updateCommentById(XComment comment){
-        if (comment==null||comment.getId()==null){
+
+    public String updateCommentById(XComment comment) {
+        if (comment == null || comment.getId() == null) {
             return "参数异常";
         }
         Integer id = comment.getId();
@@ -70,14 +71,14 @@ public class CommentServiceImpl implements CommentService {
                 return "用户信息异常";
             }
             XComment xComment = xCommentMapper.selectByPrimaryKey(id);
-            if (xComment==null||xComment.getUserId()==null){
+            if (xComment == null || xComment.getUserId() == null) {
                 return "没有这篇文章的信息";
             }
-            if (xUserAccount.getId()==xComment.getUserId()){
+            if (xUserAccount.getId() == xComment.getUserId()) {
                 comment.setUpdateTime(new Date());
                 xCommentMapper.updateByPrimaryKeySelective(comment);
                 return "修改成功";
-            }else {
+            } else {
                 return "没有权限修改";
             }
         }

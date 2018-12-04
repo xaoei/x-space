@@ -6,48 +6,41 @@ import java.util.Date;
 
 @Table(name = "x_role")
 public class XRole implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 唯一标识
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     /**
      * 顺序
      */
     @Column(name = "sort_id")
     private Integer sortId;
-
     /**
      * 角色
      */
     private String role;
-
     /**
      * 描述
      */
     @Column(name = "role_desc")
     private String roleDesc;
-
     /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     private Date updateTime;
-
     /**
      * 删除标识,0正常1删除
      */
     private Integer del;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取唯一标识

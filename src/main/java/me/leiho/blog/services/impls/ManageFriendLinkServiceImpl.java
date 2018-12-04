@@ -1,7 +1,6 @@
 package me.leiho.blog.services.impls;
 
 import me.leiho.blog.entities.XFriendLink;
-import me.leiho.blog.entities.XIndexSetting;
 import me.leiho.blog.mappers.XFriendLinkMapper;
 import me.leiho.blog.services.ManageFriendLinkService;
 import org.apache.commons.lang3.StringUtils;
@@ -22,17 +21,17 @@ public class ManageFriendLinkServiceImpl implements ManageFriendLinkService {
 
     @Override
     public String updateLinks(List<XFriendLink> links) {
-        for (XFriendLink xFriendLink:links){
-            if (xFriendLink.getId()==null||StringUtils.isBlank(xFriendLink.getLinkValue())||StringUtils.isBlank(xFriendLink.getLinkHref())){
+        for (XFriendLink xFriendLink : links) {
+            if (xFriendLink.getId() == null || StringUtils.isBlank(xFriendLink.getLinkValue()) || StringUtils.isBlank(xFriendLink.getLinkHref())) {
                 return "有的地方没有填";
             }
         }
         try {
-            for (XFriendLink xFriendLink:links){
+            for (XFriendLink xFriendLink : links) {
                 xFriendLink.setUpdateTime(new Date());
                 xFriendLinkMapper.updateByPrimaryKeySelective(xFriendLink);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return "数据库保存出错";
         }
         return "ok";

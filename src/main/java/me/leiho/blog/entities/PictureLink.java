@@ -9,12 +9,12 @@ import java.io.Serializable;
  * @Contact: yesxiaolei@outlook.com
  */
 public class PictureLink extends BaseResult implements Serializable {
+    private String url;
+    private String link;
+
     public static PictureLink build() {
         return new PictureLink();
     }
-
-    private String url;
-    private String link;
 
     public String getUrl() {
         return url;

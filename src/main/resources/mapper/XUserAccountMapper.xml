@@ -16,6 +16,8 @@
         <result column="del" property="del" jdbcType="INTEGER"/>
     </resultMap>
     <update id="deleteUserById" parameterType="Integer">
-        UPDATE x_user_account SET del=1 WHERE id=#{id}
+        UPDATE x_user_account
+        SET del=1
+        WHERE id = #{id}
     </update>
 </mapper>

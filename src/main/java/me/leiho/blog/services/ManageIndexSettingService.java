@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ManageIndexSettingService {
     String getUploadSettings(List<XIndexSetting> settings);
+
     String getUploadSetting(XIndexSetting setting);
 }

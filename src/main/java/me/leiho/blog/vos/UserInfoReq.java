@@ -10,10 +10,6 @@ import me.leiho.blog.entities.StringEntity;
  * @Contact: yesxiaolei@outlook.com
  */
 public class UserInfoReq extends StringEntity {
-    public static UserInfoReq build() {
-        return new UserInfoReq();
-    }
-
     @ApiModelProperty(name = "page", value = "页码")
     private Integer page;
     @ApiModelProperty(name = "size", value = "页面大小")
@@ -21,15 +17,8 @@ public class UserInfoReq extends StringEntity {
     @ApiModelProperty(name = "del", value = "删除标识")
     private String del;
 
-
-    public UserInfoReq setPage(Integer page) {
-        this.page = page;
-        return this;
-    }
-
-    public UserInfoReq setSize(Integer size) {
-        this.size = size;
-        return this;
+    public static UserInfoReq build() {
+        return new UserInfoReq();
     }
 
     public String getDel() {
@@ -44,8 +33,18 @@ public class UserInfoReq extends StringEntity {
         return page;
     }
 
+    public UserInfoReq setPage(Integer page) {
+        this.page = page;
+        return this;
+    }
+
     public Integer getSize() {
         return size;
+    }
+
+    public UserInfoReq setSize(Integer size) {
+        this.size = size;
+        return this;
     }
 
 }

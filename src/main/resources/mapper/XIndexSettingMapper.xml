@@ -17,6 +17,9 @@
         <result column="del" property="del" jdbcType="INTEGER"/>
     </resultMap>
     <select id="getAllSettings" resultMap="BaseResultMap">
-        SELECT * FROM x_index_setting WHERE del=0 ORDER BY id
+        SELECT *
+        FROM x_index_setting
+        WHERE del = 0
+        ORDER BY id
     </select>
 </mapper>

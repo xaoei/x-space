@@ -32,10 +32,6 @@ public class SimpleArticleInfo extends StringEntity {
         this.isOwner = isOwner;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -56,6 +52,9 @@ public class SimpleArticleInfo extends StringEntity {
         return authorId;
     }
 
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
 
     public String getAuthorName() {
         return authorName;

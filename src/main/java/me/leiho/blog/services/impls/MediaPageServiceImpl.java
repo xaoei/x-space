@@ -52,23 +52,23 @@ public class MediaPageServiceImpl implements MediaPageService {
             xUserAccount = xUserAccountMapper.selectOne(param);
         }
         List<XUserImage> xUserImageList = new ArrayList<>();
-        if (SecurityUtils.getSubject().hasRole("superadmin")||SecurityUtils.getSubject().hasRole("admin")){
+        if (SecurityUtils.getSubject().hasRole("superadmin") || SecurityUtils.getSubject().hasRole("admin")) {
             xUserImageList = xUserImageMapper.selectAllImg();
-        }else {
+        } else {
             Example example = new Example(XUserImage.class);
-            example.createCriteria().andNotEqualTo("id",1);
+            example.createCriteria().andNotEqualTo("id", 1);
             xUserImageList = xUserImageMapper.selectByExample(example);
         }
         List<XUserImageVO> imageVOList = new ArrayList<>();
-        for (XUserImage xUserImage:xUserImageList){
+        for (XUserImage xUserImage : xUserImageList) {
             XUserImageVO xUserImageVO = new XUserImageVO();
-            BeanUtils.copyProperties(xUserImage,xUserImageVO);
-            if (xUserAccount!=null&&xUserAccount.getId()!=null&&xUserImage.getUserId()!=null&&xUserAccount.getId().equals(xUserImage.getUserId())){
+            BeanUtils.copyProperties(xUserImage, xUserImageVO);
+            if (xUserAccount != null && xUserAccount.getId() != null && xUserImage.getUserId() != null && xUserAccount.getId().equals(xUserImage.getUserId())) {
                 xUserImageVO.setIsOwner(1);
-            }else {
+            } else {
                 xUserImageVO.setIsOwner(0);
             }
-            if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 xUserImageVO.setIsOwner(1);
             }
 //            System.out.println(xUserImageVO);
@@ -77,7 +77,8 @@ public class MediaPageServiceImpl implements MediaPageService {
         map.put("user_img_list", imageVOList);
         return this;
     }
-    public String deleteImageById(Integer id){
+
+    public String deleteImageById(Integer id) {
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
@@ -87,17 +88,17 @@ public class MediaPageServiceImpl implements MediaPageService {
             if (xUserAccount == null) {
                 return "用户信息异常";
             }
-            XUserImage xUserImage= xUserImageMapper.selectByPrimaryKey(id);
-            if (xUserImage==null||xUserImage.getUserId()==null){
+            XUserImage xUserImage = xUserImageMapper.selectByPrimaryKey(id);
+            if (xUserImage == null || xUserImage.getUserId() == null) {
                 return "没有这篇文章的信息";
             }
-            if (xUserAccount.getId()==xUserImage.getUserId()){
+            if (xUserAccount.getId() == xUserImage.getUserId()) {
                 xUserImageMapper.deleteImageById(id);
                 return "删除成功";
-            }else if (SecurityUtils.getSubject().hasRole("admin")||SecurityUtils.getSubject().hasRole("superadmin")){
+            } else if (SecurityUtils.getSubject().hasRole("admin") || SecurityUtils.getSubject().hasRole("superadmin")) {
                 xUserImageMapper.deleteImageById(id);
                 return "删除成功";
-            }else {
+            } else {
                 return "没有权限删除";
             }
         }
