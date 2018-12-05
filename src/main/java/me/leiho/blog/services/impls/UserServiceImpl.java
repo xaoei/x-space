@@ -126,12 +126,12 @@ public class UserServiceImpl implements UserService {
             logger.error("shiro认证失败");
             return new BaseResult(FAILED_USER_LOGIN_VALIDATE_PASSWORD);
         }
-        //todo 加载权限
+        //加载权限
         return new BaseResult(SUCCESS);
     }
 
     public BaseResult logout() {
-        //todo 退出账号
+        //退出账号
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return new BaseResult(SUCCESS);

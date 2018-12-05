@@ -40,7 +40,7 @@
                             <a href="/v1/user/login" data-toggle="modal" class='nav-link'
                                onclick="openLoginModal();">${item.itemValue}</a></li>
                             <#else >
-                            <a href=${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
+                            <a href=/${item.itemHref} class='nav-link'>${item.itemValue}</a></li>
                             </#if>
                         </#list>
                     </ul>

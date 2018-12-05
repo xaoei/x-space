@@ -1,14 +1,13 @@
 package me.leiho.blog.utils;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @Author: 萧大侠
@@ -24,9 +23,8 @@ public class ImgCompress {
     /**
      * 构造函数
      */
-    public ImgCompress(String path) throws IOException {
-        File file = new File(path);// 读入文件
-        img = ImageIO.read(file);      // 构造Image对象
+    public ImgCompress(InputStream inputStream) throws IOException {
+        img = ImageIO.read(inputStream);      // 构造Image对象
         width = img.getWidth(null);    // 得到源图宽
         height = img.getHeight(null);  // 得到源图长
     }
@@ -37,11 +35,11 @@ public class ImgCompress {
      * @param w int 最大宽度
      * @param h int 最大高度
      */
-    public void resizeFix(int w, int h, String target) throws IOException {
+    public InputStream resizeFix(int w, int h) throws IOException {
         if (width / height > w / h) {
-            resizeByWidth(w, target);
+            return resizeByWidth(w);
         } else {
-            resizeByHeight(h, target);
+            return resizeByHeight(h);
         }
     }
 
@@ -50,9 +48,9 @@ public class ImgCompress {
      *
      * @param w int 新宽度
      */
-    public void resizeByWidth(int w, String target) throws IOException {
+    public InputStream resizeByWidth(int w) throws IOException {
         int h = (int) (height * w / width);
-        resize(w, h, target);
+        return resize(w, h);
     }
 
     /**
@@ -60,9 +58,9 @@ public class ImgCompress {
      *
      * @param h int 新高度
      */
-    public void resizeByHeight(int h, String target) throws IOException {
+    public InputStream resizeByHeight(int h) throws IOException {
         int w = (int) (width * h / height);
-        resize(w, h, target);
+        return resize(w, h);
     }
 
     /**
@@ -71,15 +69,13 @@ public class ImgCompress {
      * @param w int 新宽度
      * @param h int 新高度
      */
-    public void resize(int w, int h, String target) throws IOException {
+    public InputStream resize(int w, int h) throws IOException {
         // SCALE_SMOOTH 的缩略算法 生成缩略图片的平滑度的 优先级比速度高 生成的图片质量比较好 但速度慢
         BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         image.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图
-        File destFile = new File(target);
-        FileOutputStream out = new FileOutputStream(destFile); // 输出到文件流
-        // 可以正常实现bmp、png、gif转jpg
-        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-        encoder.encode(image); // JPEG编码
-        out.close();
+        ByteArrayOutputStream bs = new ByteArrayOutputStream();
+        ImageOutputStream imOut = ImageIO.createImageOutputStream(bs);
+        ImageIO.write(image, "jpg", imOut);
+        return new ByteArrayInputStream(bs.toByteArray());
     }
 }

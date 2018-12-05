@@ -19,7 +19,7 @@ function doUpload(element) {
         contentType: false
     }).success(function(res) {
         var req = '#url'+element
-        var url = "/"+res.data
+        var url = res.data
         alert("上传成功")
         $(req).text(url)
     }).fail(function(res) {

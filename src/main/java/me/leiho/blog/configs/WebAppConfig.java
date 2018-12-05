@@ -29,9 +29,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/image/**").addResourceLocations("file:C:/工作空间/Projects/x-space/image/");
-
-
         String path = WebAppConfig.class.getResource("/").toString();
         path = path.substring(0, path.lastIndexOf("x-space")) + "image/";
         path = path.replace("jar:", "");
@@ -50,7 +47,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         }
 
         registry.addResourceHandler("/image/**").addResourceLocations(path);
-//        registry.addResourceHandler("/image/**").addResourceLocations(path);
         super.addResourceHandlers(registry);
     }
 
@@ -66,10 +62,4 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
             }
         };
     }
-
-//    public static void main(String[] args) {
-//        String path = "file:/www/wwwroot/blog.leiho.me/image/";
-//        path = path.replace("jar:","");
-//        System.out.println(path);
-//    }
 }

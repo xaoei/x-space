@@ -80,24 +80,12 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
             Subject subject = SecurityUtils.getSubject();
             HeadItemDTO headItemDTO = new HeadItemDTO();
             BeanUtils.copyProperties(xHeadItem, headItemDTO);
-            if (
-                    (
-                            headItemDTO.getSortId() != 4 &&
-//                                    headItemDTO.getSortId() != 3 &&
-                                    headItemDTO.getSortId() != 6
-                    ) || SecurityUtils.getSubject().isAuthenticated()) {
-//                List<String> roles = new ArrayList<>();
-                if
-                (
-                        (
-                                headItemDTO.getSortId() != 4 &&
-//                                        headItemDTO.getSortId() != 3 &&
-                                        headItemDTO.getSortId() != 6
-                        ) ||
-                                (headItemDTO.getSortId() == 4 && SecurityUtils.getSubject().isPermitted("/write")) ||
-//                                (headItemDTO.getSortId() == 3 && SecurityUtils.getSubject().isPermitted("/media")) ||
-                                (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage"))
-                ) {
+            if ((headItemDTO.getSortId() != 4 && headItemDTO.getSortId() != 6)
+                    || SecurityUtils.getSubject().isAuthenticated()) {
+                if ((headItemDTO.getSortId() != 4 && headItemDTO.getSortId() != 6) ||
+                        (headItemDTO.getSortId() == 4 && SecurityUtils.getSubject().isPermitted("/write")) ||
+                        (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage")))
+                {
                     if (headItemDTO.getSortId() == selective) {
                         headItemDTO.setIsSelective(1);
                     } else {

@@ -8,7 +8,7 @@ spring:
     username: username
     password: password
   application:
-    name: x-space
+    name: xaoei
   http:
     multipart:
       max-file-size: 10MB
