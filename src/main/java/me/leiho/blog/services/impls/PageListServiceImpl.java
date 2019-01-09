@@ -56,8 +56,13 @@ public class PageListServiceImpl implements PageListService {
                 }
             }
         }
-        if ("page".equalsIgnoreCase(req.getType())){
-            PageHelper.startPage(req.getPage(), req.getSize());
+        switch (req.getType()) {
+            case "author":
+                break;
+            case "type":
+                break;
+            default:
+                PageHelper.startPage(req.getPage(), req.getSize());
         }
         switch (req.getType().toLowerCase().trim()) {
             case "update_asc":

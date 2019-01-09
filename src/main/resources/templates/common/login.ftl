@@ -1,4 +1,5 @@
-<link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/login-register.css">                                   <!-- Templatemo style -->
+<link rel="stylesheet" type='text/css'
+      href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/login-register.css">                                   <!-- Templatemo style -->
 <div class="modal fade login" id="loginModal">
     <div class="modal-dialog login animated">
         <div class="modal-content">

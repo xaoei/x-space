@@ -31,7 +31,7 @@ public class ManagePageController {
 
     @GetMapping("/manage")
     public String user(Map<String, Object> map, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/manage");
+        logger.trace(ipUtil.getIpAddr(request) + "访问/manage");
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage("self", 0);
         return "manage";
@@ -39,7 +39,7 @@ public class ManagePageController {
 
     @GetMapping("/manage/{page}")
     public String manage(Map<String, Object> map, @PathVariable String page, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/manage/" + page);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/manage/" + page);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage(page, 0);
         return "manage";
@@ -47,7 +47,7 @@ public class ManagePageController {
 
     @GetMapping("/manage/{page}/{index}")
     public String manage(Map<String, Object> map, @PathVariable String page, @PathVariable Integer index, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/manage/" + page + "/" + index);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/manage/" + page + "/" + index);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("管理").setCommonPageHead(6).setCommonPageFoot();
         manageService.getValueMap(map).setPage(page, index);
         return "manage";

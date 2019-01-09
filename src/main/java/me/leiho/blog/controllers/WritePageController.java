@@ -32,7 +32,7 @@ public class WritePageController {
 
     @GetMapping("/write")
     public String write(Map<String, Object> map, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/write");
+        logger.trace(ipUtil.getIpAddr(request) + "访问/write");
         if (!SecurityUtils.getSubject().isPermitted("/write")) {
             return "/403.html";
         }
@@ -43,7 +43,7 @@ public class WritePageController {
 
     @GetMapping("/write/{articleId}")
     public String edit(Map<String, Object> map, @PathVariable Integer articleId, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/write/" + articleId);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/write/" + articleId);
         if (!SecurityUtils.getSubject().isPermitted("/write")) {
             return "/403.html";
         }

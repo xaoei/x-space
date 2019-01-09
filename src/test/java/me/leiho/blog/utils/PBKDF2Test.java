@@ -19,7 +19,7 @@ public class PBKDF2Test {
     @Test
     public void getCodeByStr() {
         try {
-            logger.info(PBKDF2.createHash("admin"));
+            logger.trace(PBKDF2.createHash("admin"));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeySpecException e) {

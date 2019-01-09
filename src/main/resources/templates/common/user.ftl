@@ -1,4 +1,5 @@
-<link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/login-register.css">
+<link rel="stylesheet" type='text/css'
+      href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/login-register.css">
 <style>
     .btn-primary:active {
         background-color: green !important;
@@ -47,7 +48,8 @@
                                         <input type="radio" name="state" id="forbidden" value="1"> 封禁
                                     </label>
                                 </div>
-                                <input class="btn btn-default btn-login" type="button" value="修改" onclick="changeAjax()">
+                                <input class="btn btn-default btn-login" type="button" value="修改"
+                                       onclick="changeAjax()">
                             </form>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
             </div>
             <div class="modal-footer">
                 <div class="forgot login-footer">
-					<span><a style="color: red">谨慎修改用户权限!</a></span>
+                    <span><a style="color: red">谨慎修改用户权限!</a></span>
                 </div>
             </div>
         </div>

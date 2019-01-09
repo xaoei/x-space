@@ -67,12 +67,12 @@ public class UploadController {
     @ApiOperation(value = "上传图片,获得图片链接", notes = "")
     @PostMapping(value = "/v1/upload", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public PicUpResult uploadPicture(@ApiParam(value = "上传的文件", required = true) @RequestParam("multipartFile") MultipartFile multipartFile, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/upload:文件" + (multipartFile == null ? "未知" : multipartFile.getName()) + ",大小为" + (multipartFile == null ? "未知" : multipartFile.getSize()));
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/upload:文件" + (multipartFile == null ? "未知" : multipartFile.getName()) + ",大小为" + (multipartFile == null ? "未知" : multipartFile.getSize()));
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
             XUserAccount userInfo = (XUserAccount) SecurityUtils.getSubject().getPrincipal();
             XUserAccount param = new XUserAccount();
-             param.setId(userInfo.getId());
-             param.setDel(0);
+            param.setId(userInfo.getId());
+            param.setDel(0);
             XUserAccount xUserAccount = xUserAccountMapper.selectOne(param);
             if (xUserAccount == null) {
                 logger.error("账号不存在");
@@ -108,27 +108,28 @@ public class UploadController {
     }
 
     private String SaveFileFromInputStream(MultipartFile multipartFile, String imageId, XUserAccount xUserAccount) throws IOException {
-        String totalKey = "/image/total/"+ dateFormat.format(new Date())  + "-" + imageId + ".jpg";
-        String smallKey = "/image/small/"+ dateFormat.format(new Date())  + "-" + imageId + ".jpg";
-        uploadPicToQOS(multipartFile.getInputStream(),multipartFile.getSize(),totalKey);
+        String totalKey = "/image/total/" + dateFormat.format(new Date()) + "-" + imageId + ".jpg";
+        String smallKey = "/image/small/" + dateFormat.format(new Date()) + "-" + imageId + ".jpg";
+        uploadPicToQOS(multipartFile.getInputStream(), multipartFile.getSize(), totalKey);
         //生成小图
         ImgCompress imgCompress = new ImgCompress(multipartFile.getInputStream());
         InputStream smallImage = imgCompress.resizeFix(100, 100);
-        uploadPicToQOS(smallImage,smallImage.available(),smallKey);
+        uploadPicToQOS(smallImage, smallImage.available(), smallKey);
         //信息入库
         XUserImage xUserImage = new XUserImage();
         xUserImage.setUserId(xUserAccount.getId());
         xUserImage.setUsername(xUserAccount.getUsername());
-        xUserImage.setTotalSrc("https://"+bucketName+".cos."+regionName+".myqcloud.com"+totalKey);
-        xUserImage.setSmallSrc("https://"+bucketName+".cos."+regionName+".myqcloud.com"+smallKey);
+        xUserImage.setTotalSrc("https://" + bucketName + ".cos." + regionName + ".myqcloud.com" + totalKey);
+        xUserImage.setSmallSrc("https://" + bucketName + ".cos." + regionName + ".myqcloud.com" + smallKey);
         xUserImage.setCreateTime(new Date());
         xUserImageMapper.insertSelective(xUserImage);
-        return "https://"+bucketName+".cos."+regionName+".myqcloud.com"+totalKey;
+        return "https://" + bucketName + ".cos." + regionName + ".myqcloud.com" + totalKey;
     }
-    private void uploadPicToQOS(InputStream ins,long fileSize,String key) throws IOException {
+
+    private void uploadPicToQOS(InputStream ins, long fileSize, String key) throws IOException {
         //图片上传至对象存储
-          COSClient cosclient = null;
-        try{
+        COSClient cosclient = null;
+        try {
             COSCredentials cred = new BasicCOSCredentials(accesskey, secretkey);
             ClientConfig clientConfig = new ClientConfig(new Region(regionName));
             cosclient = new COSClient(cred, clientConfig);
@@ -138,9 +139,9 @@ public class UploadController {
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, ins, objectMetadata);
             cosclient.putObject(putObjectRequest);
         } catch (Exception e) {
-            throw new RuntimeException("图片上传至腾讯云失败:"+e);
+            throw new RuntimeException("图片上传至腾讯云失败:" + e);
         } finally {
-            if (ins!=null){
+            if (ins != null) {
                 ins.close();
             }
             if (cosclient != null) {

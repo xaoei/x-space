@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${sitename}:${page_name}</title>
-    <link rel="icon" type="image/x-icon" href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/favicon.ico">
+    <link rel="icon" type="image/x-icon"
+          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/images/favicon.ico">
     <!-- load stylesheets -->
-    <link rel="stylesheet" type='text/css' href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/bootstrap.min.css">
+    <link rel="stylesheet" type='text/css'
+          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/bootstrap.min.css">
     <!-- Bootstrap style -->
-    <link rel="stylesheet" href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/templatemo-style.css">
+    <link rel="stylesheet"
+          href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/templatemo-style.css">
     <link rel="stylesheet" href="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/css/media-style.css">
     <style>
-        body{
+        body {
             background-color: #ffffff;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='158' height='158' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23cf8b3c' stroke-width='0.7' stroke-opacity='0.25'%3E%3Crect x='-40' y='40' width='75' height='75'/%3E%3Crect x='-35' y='45' width='65' height='65'/%3E%3Crect x='-30' y='50' width='55' height='55'/%3E%3Crect x='-25' y='55' width='45' height='45'/%3E%3Crect x='-20' y='60' width='35' height='35'/%3E%3Crect x='-15' y='65' width='25' height='25'/%3E%3Crect x='-10' y='70' width='15' height='15'/%3E%3Crect x='-5' y='75' width='5' height='5'/%3E%3Crect width='35' height='35'/%3E%3Crect x='5' y='5' width='25' height='25'/%3E%3Crect x='10' y='10' width='15' height='15'/%3E%3Crect x='15' y='15' width='5' height='5'/%3E%3Crect x='40' width='75' height='75'/%3E%3Crect x='45' y='5' width='65' height='65'/%3E%3Crect x='50' y='10' width='55' height='55'/%3E%3Crect x='55' y='15' width='45' height='45'/%3E%3Crect x='60' y='20' width='35' height='35'/%3E%3Crect x='65' y='25' width='25' height='25'/%3E%3Crect x='70' y='30' width='15' height='15'/%3E%3Crect x='75' y='35' width='5' height='5'/%3E%3Crect x='40' y='80' width='35' height='35'/%3E%3Crect x='45' y='85' width='25' height='25'/%3E%3Crect x='50' y='90' width='15' height='15'/%3E%3Crect x='55' y='95' width='5' height='5'/%3E%3Crect x='120' y='-40' width='75' height='75'/%3E%3Crect x='125' y='-35' width='65' height='65'/%3E%3Crect x='130' y='-30' width='55' height='55'/%3E%3Crect x='135' y='-25' width='45' height='45'/%3E%3Crect x='140' y='-20' width='35' height='35'/%3E%3Crect x='145' y='-15' width='25' height='25'/%3E%3Crect x='150' y='-10' width='15' height='15'/%3E%3Crect x='155' y='-5' width='5' height='5'/%3E%3Crect x='120' y='40' width='35' height='35'/%3E%3Crect x='125' y='45' width='25' height='25'/%3E%3Crect x='130' y='50' width='15' height='15'/%3E%3Crect x='135' y='55' width='5' height='5'/%3E%3Crect y='120' width='75' height='75'/%3E%3Crect x='5' y='125' width='65' height='65'/%3E%3Crect x='10' y='130' width='55' height='55'/%3E%3Crect x='15' y='135' width='45' height='45'/%3E%3Crect x='20' y='140' width='35' height='35'/%3E%3Crect x='25' y='145' width='25' height='25'/%3E%3Crect x='30' y='150' width='15' height='15'/%3E%3Crect x='35' y='155' width='5' height='5'/%3E%3Crect x='200' y='120' width='75' height='75'/%3E%3Crect x='40' y='200' width='75' height='75'/%3E%3Crect x='80' y='80' width='75' height='75'/%3E%3Crect x='85' y='85' width='65' height='65'/%3E%3Crect x='90' y='90' width='55' height='55'/%3E%3Crect x='95' y='95' width='45' height='45'/%3E%3Crect x='100' y='100' width='35' height='35'/%3E%3Crect x='105' y='105' width='25' height='25'/%3E%3Crect x='110' y='110' width='15' height='15'/%3E%3Crect x='115' y='115' width='5' height='5'/%3E%3Crect x='80' y='160' width='35' height='35'/%3E%3Crect x='85' y='165' width='25' height='25'/%3E%3Crect x='90' y='170' width='15' height='15'/%3E%3Crect x='95' y='175' width='5' height='5'/%3E%3Crect x='120' y='160' width='75' height='75'/%3E%3Crect x='125' y='165' width='65' height='65'/%3E%3Crect x='130' y='170' width='55' height='55'/%3E%3Crect x='135' y='175' width='45' height='45'/%3E%3Crect x='140' y='180' width='35' height='35'/%3E%3Crect x='145' y='185' width='25' height='25'/%3E%3Crect x='150' y='190' width='15' height='15'/%3E%3Crect x='155' y='195' width='5' height='5'/%3E%3Crect x='160' y='40' width='75' height='75'/%3E%3Crect x='165' y='45' width='65' height='65'/%3E%3Crect x='170' y='50' width='55' height='55'/%3E%3Crect x='175' y='55' width='45' height='45'/%3E%3Crect x='180' y='60' width='35' height='35'/%3E%3Crect x='185' y='65' width='25' height='25'/%3E%3Crect x='190' y='70' width='15' height='15'/%3E%3Crect x='195' y='75' width='5' height='5'/%3E%3Crect x='160' y='120' width='35' height='35'/%3E%3Crect x='165' y='125' width='25' height='25'/%3E%3Crect x='170' y='130' width='15' height='15'/%3E%3Crect x='175' y='135' width='5' height='5'/%3E%3Crect x='200' y='200' width='35' height='35'/%3E%3Crect x='200' width='35' height='35'/%3E%3Crect y='200' width='35' height='35'/%3E%3C/g%3E%3C/svg%3E");
         }
@@ -25,12 +28,13 @@
     <div class="container-fluid">
         <div class="iw_wrapper">
             <ul class="iw_thumbs" id="iw_thumbs">
-            <#list user_img_list as uil>
-                <li><img src="${uil.smallSrc}" data-img="${uil.totalSrc}" alt="${uil.id}"/>
-                    <div><h2>${uil.username}</h2><#if uil.isOwner=1><button type="button" class="btn btn-danger" onclick="openDelete('image',${uil.id})">删除</button></#if>
-                        <p>${(uil.createTime?string("yyyy-MM-dd"))!}</p></div>
-                </li>
-            </#list>
+                <#list user_img_list as uil>
+                    <li><img src="${uil.smallSrc}" data-img="${uil.totalSrc}" alt="${uil.id}"/>
+                    <div><h2>${uil.username}</h2><#if uil.isOwner=1>
+                <button type="button" class="btn btn-danger" onclick="openDelete('image',${uil.id})">删除</button></#if>
+                    <p>${(uil.createTime?string("yyyy-MM-dd"))!}</p></div>
+                    </li>
+                </#list>
             </ul>
         </div>
 
@@ -42,24 +46,26 @@
 </section>
 <#include "common/delete_modal.ftl">
 
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-<!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/html5shiv.min.js"></script>
-<script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/respond.min.js"></script>
-<script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.masonry.min.js"></script>
-<script type="text/javascript" src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript">
-    $(window).load(function () {
-        var $iw_thumbs = $('#iw_thumbs'),
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+    <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/html5shiv.min.js"></script>
+    <script src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/respond.min.js"></script>
+    <script type="text/javascript"
+            src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.masonry.min.js"></script>
+    <script type="text/javascript"
+            src="https://leiho-1252251484.cos.ap-shanghai.myqcloud.com/x-space/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            var $iw_thumbs = $('#iw_thumbs'),
                 $iw_ribbon = $('#iw_ribbon'),
                 $iw_ribbon_close = $iw_ribbon.children('span.iw_close'),
                 $iw_ribbon_zoom = $iw_ribbon.children('span.iw_zoom');
 
-        ImageWall = (function () {
-            // window width and height
-            var w_dim,
+            ImageWall = (function () {
+                // window width and height
+                var w_dim,
                     // index of current image
                     current = -1,
                     isRibbonShown = false,
@@ -95,8 +101,7 @@
 
                             if ($el.data('ribbon')) {
                                 showFullImage($el);
-                            }
-                            else if (!isRibbonShown) {
+                            } else if (!isRibbonShown) {
                                 isRibbonShown = true;
 
                                 $el.data('ribbon', true);
@@ -118,71 +123,70 @@
                                 return false;
                             closeRibbon();
                         })
-                                .bind('scroll', function () {
-                                    if ($iw_ribbon.is(':animated'))
-                                        return false;
-                                    closeRibbon();
-                                });
+                            .bind('scroll', function () {
+                                if ($iw_ribbon.is(':animated'))
+                                    return false;
+                                closeRibbon();
+                            });
 
                     },
                     showRibbon = function ($el) {
                         var $img = $el.children('img'),
-                                $descrp = $img.next();
+                            $descrp = $img.next();
 
                         // fadeOut all the other images
                         $iw_thumbs.children('li').not($el).animate({opacity: 0.2}, imgAnim.speed);
 
                         // increase the image z-index, and set the height to 100px (default height)
                         $img.css('z-index', 100)
-                                .data('originalHeight', $img.height())
-                                .stop()
-                                .animate({
-                                    height: '100px'
-                                }, imgAnim.speed, imgAnim.easing);
+                            .data('originalHeight', $img.height())
+                            .stop()
+                            .animate({
+                                height: '100px'
+                            }, imgAnim.speed, imgAnim.easing);
 
                         // the ribbon will animate from the left or right
                         // depending on the position of the image
                         var ribbonCssParam = {
-                                    top: $el.offset().top - $(window).scrollTop() - 6 + 'px'
-                                },
-                                descriptionCssParam,
-                                dir;
+                                top: $el.offset().top - $(window).scrollTop() - 6 + 'px'
+                            },
+                            descriptionCssParam,
+                            dir;
 
                         if ($el.offset().left < (w_dim.width / 2)) {
                             dir = 'left';
                             ribbonCssParam.left = 0;
                             ribbonCssParam.right = 'auto';
-                        }
-                        else {
+                        } else {
                             dir = 'right';
                             ribbonCssParam.right = 0;
                             ribbonCssParam.left = 'auto';
                         }
 
                         $iw_ribbon.css(ribbonCssParam)
-                                .show()
-                                .stop()
-                                .animate({width: '100%'}, ribbonAnim.speed, ribbonAnim.easing, function () {
-                                    switch (dir) {
-                                        case 'left' :
-                                            descriptionCssParam = {
-                                                'left': $img.outerWidth(true) + 'px',
-                                                'text-align': 'left'
-                                            };
-                                            break;
-                                        case 'right' :
-                                            descriptionCssParam = {
-                                                'left': '-200px',
-                                                'text-align': 'right'
-                                            };
-                                            break;
-                                    }
-                                    ;
-                                    $descrp.css(descriptionCssParam).fadeIn();
-                                    // show close button and zoom
-                                    $iw_ribbon_close.show();
-                                    $iw_ribbon_zoom.show();
-                                });
+                            .show()
+                            .stop()
+                            .animate({width: '100%'}, ribbonAnim.speed, ribbonAnim.easing, function () {
+                                switch (dir) {
+                                    case 'left' :
+                                        descriptionCssParam = {
+                                            'left': $img.outerWidth(true) + 'px',
+                                            'text-align': 'left'
+                                        };
+                                        break;
+                                    case 'right' :
+                                        descriptionCssParam = {
+                                            'left': '-200px',
+                                            'text-align': 'right'
+                                        };
+                                        break;
+                                }
+                                ;
+                                $descrp.css(descriptionCssParam).fadeIn();
+                                // show close button and zoom
+                                $iw_ribbon_close.show();
+                                $iw_ribbon_zoom.show();
+                            });
 
                     },
                     // close the ribbon
@@ -203,10 +207,9 @@
 
                             // slide out ribbon
                             $iw_ribbon.stop()
-                                    .animate({width: '0%'}, ribbonAnim.speed, ribbonAnim.easing);
+                                .animate({width: '0%'}, ribbonAnim.speed, ribbonAnim.easing);
 
-                        }
-                        else {
+                        } else {
                             $iw_ribbon.stop().animate({
                                 opacity: 0.8,
                                 height: '0px',
@@ -224,7 +227,7 @@
                     },
                     resetWall = function ($el) {
                         var $img = $el.children('img'),
-                                $descrp = $img.next();
+                            $descrp = $img.next();
 
                         $el.data('ribbon', false);
 
@@ -245,10 +248,10 @@
                         $iw_ribbon_close.hide();
 
                         var $img = $el.children('img'),
-                                large = $img.data('img'),
+                            large = $img.data('img'),
 
-                                // add a loading image on top of the image
-                                $loading = $('<span class="iw_loading"></span>');
+                            // add a loading image on top of the image
+                            $loading = $('<span class="iw_loading"></span>');
 
                         $el.append($loading);
 
@@ -287,47 +290,46 @@
                     },
                     resizeImage = function ($image) {
                         var widthMargin = 100,
-                                heightMargin = 100,
+                            heightMargin = 100,
 
-                                windowH = w_dim.height - heightMargin,
-                                windowW = w_dim.width - widthMargin,
-                                theImage = new Image();
+                            windowH = w_dim.height - heightMargin,
+                            windowW = w_dim.width - widthMargin,
+                            theImage = new Image();
 
                         theImage.src = $image.attr("src");
 
                         var imgwidth = theImage.width,
-                                imgheight = theImage.height;
+                            imgheight = theImage.height;
 
                         if ((imgwidth > windowW) || (imgheight > windowH)) {
                             if (imgwidth > imgheight) {
                                 var newwidth = windowW,
-                                        ratio = imgwidth / windowW,
-                                        newheight = imgheight / ratio;
+                                    ratio = imgwidth / windowW,
+                                    newheight = imgheight / ratio;
 
                                 theImage.height = newheight;
                                 theImage.width = newwidth;
 
                                 if (newheight > windowH) {
                                     var newnewheight = windowH,
-                                            newratio = newheight / windowH,
-                                            newnewwidth = newwidth / newratio;
+                                        newratio = newheight / windowH,
+                                        newnewwidth = newwidth / newratio;
 
                                     theImage.width = newnewwidth;
                                     theImage.height = newnewheight;
                                 }
-                            }
-                            else {
+                            } else {
                                 var newheight = windowH,
-                                        ratio = imgheight / windowH,
-                                        newwidth = imgwidth / ratio;
+                                    ratio = imgheight / windowH,
+                                    newwidth = imgwidth / ratio;
 
                                 theImage.height = newheight;
                                 theImage.width = newwidth;
 
                                 if (newwidth > windowW) {
                                     var newnewwidth = windowW,
-                                            newratio = newwidth / windowW,
-                                            newnewheight = newheight / newratio;
+                                        newratio = newwidth / windowW,
+                                        newnewheight = newheight / newratio;
 
                                     theImage.height = newnewheight;
                                     theImage.width = newnewwidth;
@@ -343,12 +345,12 @@
                         });
                     };
 
-            return {init: init};
-        })();
+                return {init: init};
+            })();
 
-        ImageWall.init();
-    });
-</script>
-    <#include "./common/foot.ftl">
+            ImageWall.init();
+        });
+    </script>
+<#include "./common/foot.ftl">
 </body>
 </html>

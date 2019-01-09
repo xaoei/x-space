@@ -28,7 +28,7 @@ public class ArticlePageUpdateController {
 
     @GetMapping("/update/{type}/{userId}/{isAnnounce}/{no}")
     public String updateArticle(Map<String, Object> map, @PathVariable String type, @PathVariable String userId, @PathVariable Integer isAnnounce, @PathVariable Integer no, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/" + type + "/" + userId + "/" + isAnnounce + "/" + no);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/" + type + "/" + userId + "/" + isAnnounce + "/" + no);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("作品").setCommonPageHead(4).setCommonPageFoot();
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25).setIsAnnounce(isAnnounce).setAuthor(userId);
         articlePageService.getValueMap(map).setSimpleArticleInfo(req).setSideBar(30);

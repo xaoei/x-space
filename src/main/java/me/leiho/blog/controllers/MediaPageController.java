@@ -33,7 +33,7 @@ public class MediaPageController {
 //        if (!SecurityUtils.getSubject().isPermitted("/media")) {
 //            return "/403.html";
 //        }
-        logger.info(ipUtil.getIpAddr(request) + "访问/media");
+        logger.trace(ipUtil.getIpAddr(request) + "访问/media");
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("影音").setCommonPageHead(3).setCommonPageFoot();
         mediaPageService.getValueMap(map).setPhotoWall();
         return "media";

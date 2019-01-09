@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
     public SaveResult saveOrAnnounceArticle(String article, Boolean announce) {
         //json反序列化
         ArticleWriteVO articleWriteVO = JsonUtil.json2pojo(article, ArticleWriteVO.class);
-        logger.info(articleWriteVO.toString());
+        logger.trace(articleWriteVO.toString());
         //格式检校
         if (articleWriteVO == null) {
             //解析失败

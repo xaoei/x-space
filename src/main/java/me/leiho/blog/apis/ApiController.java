@@ -28,7 +28,7 @@ public class ApiController {
 
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/greeting");
+        logger.trace(ipUtil.getIpAddr(request) + "访问/greeting");
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 }

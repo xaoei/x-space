@@ -15,7 +15,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     取消
                 </button>
-                <button id="deleteButton" type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteItem()">
+                <button id="deleteButton" type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="deleteItem()">
                     确定
                 </button>
             </div>
@@ -25,21 +26,24 @@
 <script type="text/javascript">
     var type;
     var id;
-    function openDelete(type_in,id_in){
-        type=type_in;
-        id=id_in;
+
+    function openDelete(type_in, id_in) {
+        type = type_in;
+        id = id_in;
         $('#del_modal_title').text('警告');
         $('#del_modal_content').text('删除了就不能恢复了,请谨慎操作!');
-        $("#deleteButton").attr("onclick","deleteItem();");
+        $("#deleteButton").attr("onclick", "deleteItem();");
         $('#deleteModal').modal('show')
     }
-    function openHot(id_in){
-        id=id_in;
+
+    function openHot(id_in) {
+        id = id_in;
         $('#del_modal_title').text('注意');
         $('#del_modal_content').text('你确定要切换这篇文章的热门状态吗?');
-        $("#deleteButton").attr("onclick","changeHot("+id_in+");");
+        $("#deleteButton").attr("onclick", "changeHot(" + id_in + ");");
         $('#deleteModal').modal('show')
     }
+
     function changeHot(id_in) {
         $.ajax({
             url: '/update/hot',
@@ -57,17 +61,18 @@
             }
         })
     }
+
     function deleteItem() {
         // alert(type+','+id);
         $.ajax({
-            url: '/delete/'+type,
+            url: '/delete/' + type,
             type: "post",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(id),
             success: function (data) {
                 if (data == "删除成功") {
                     window.location.reload();
-                }else {
+                } else {
                     $('#modal_title').text('错误');
                     $('#modal_content').text(data);
                     $('#commonModal').modal('show')

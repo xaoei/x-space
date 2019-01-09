@@ -11,6 +11,7 @@ import me.leiho.blog.vos.RegisterVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,28 +37,28 @@ public class UserController {
     @ApiOperation(value = "注册账号")
     @PostMapping("/v1/user/register")
     public BaseResult register(@RequestBody RegisterVO registerVO, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/user/register:" + registerVO);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/user/register:" + registerVO);
         return userService.register(registerVO);
     }
 
     @ApiOperation(value = "用户登陆")
     @PostMapping("/v1/user/login")
     public BaseResult login(@RequestBody LoginVO loginVO, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/user/login:" + loginVO);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/user/login:" + loginVO);
         return userService.login(loginVO);
     }
 
     @ApiOperation(value = "用户修改密码")
     @PostMapping("/v1/user/changePwd")
     public String changePwd(@RequestBody ChangePwdVO changePwdVO, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/user/changePwd:" + changePwdVO);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/user/changePwd:" + changePwdVO);
         return userService.updateUserPwd(changePwdVO.getOldPwd(), changePwdVO.getNewPwd());
     }
 
     @ApiOperation(value = "用户下线")
-    @PostMapping("/v1/user/logout")
+    @GetMapping("/v1/user/logout")
     public BaseResult logout(HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/user/logout");
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/user/logout");
         return userService.logout();
     }
 }

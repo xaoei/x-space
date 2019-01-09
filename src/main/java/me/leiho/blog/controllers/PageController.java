@@ -36,7 +36,7 @@ public class PageController {
      *      media
      * */
     public String index(Map<String, Object> map, @PathVariable String type, @PathVariable Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/page/" + type + "/" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/page/" + type + "/" + id);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("主页").setCommonPageHead(0).setCommonPageFoot();
         pageService.getValueMap(map).setArticle(type, id);
         return "page";

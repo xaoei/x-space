@@ -43,7 +43,16 @@ public class ArticlePageServiceImpl implements ArticlePageService {
 
     public ArticlePageServiceImpl setSimpleArticleInfo(SimpleArticleInfoReq req) {
         PageInfo<SimpleArticleInfo> pageInfo = pageListService.getSimpleArticleInfo(req);
-        map.put("need_page",req.getType().equalsIgnoreCase("page")?1:0);
+        switch (req.getType()) {
+            case "author":
+                map.put("need_page", 0);
+                break;
+            case "type":
+                map.put("need_page", 0);
+                break;
+            default:
+                map.put("need_page", 1);
+        }
         map.put("page_index", pageInfo.getPageNum());
         map.put("page_total", pageInfo.getPages());
         map.put("page_pre", pageInfo.getPrePage());

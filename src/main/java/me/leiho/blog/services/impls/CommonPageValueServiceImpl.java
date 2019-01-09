@@ -84,8 +84,7 @@ public class CommonPageValueServiceImpl implements CommonPageValueService {
                     || SecurityUtils.getSubject().isAuthenticated()) {
                 if ((headItemDTO.getSortId() != 4 && headItemDTO.getSortId() != 6) ||
                         (headItemDTO.getSortId() == 4 && SecurityUtils.getSubject().isPermitted("/write")) ||
-                        (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage")))
-                {
+                        (headItemDTO.getSortId() == 6 && SecurityUtils.getSubject().isPermitted("/manage"))) {
                     if (headItemDTO.getSortId() == selective) {
                         headItemDTO.setIsSelective(1);
                     } else {

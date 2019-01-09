@@ -8,37 +8,38 @@
  */
 var postId = '';
 
-function openUserModal(id,account,username,role,del){
+function openUserModal(id, account, username, role, del) {
     // showLoginForm();
     postId = id;
     $('#caccount').val(account);
     $('#cusername').val(username);
-    if (role=='reader'){
-        $('#reader').prop("checked",true);
+    if (role == 'reader') {
+        $('#reader').prop("checked", true);
         $('#reader').parent().addClass('active');
-    } else if(role=='author'){
-        $('#author').prop("checked",true);
+    } else if (role == 'author') {
+        $('#author').prop("checked", true);
         $('#author').parent().addClass('active');
-    } else if(role=='admin'){
-        $('#admin').prop("checked",true);
+    } else if (role == 'admin') {
+        $('#admin').prop("checked", true);
         $('#admin').parent().addClass('active');
     }
-    if (del=='0'){
-        $('#normal').prop("checked",true);
+    if (del == '0') {
+        $('#normal').prop("checked", true);
         $('#normal').parent().addClass('active');
-    }else if(del=='1'){
-        $('#forbidden').prop("checked",true);
+    } else if (del == '1') {
+        $('#forbidden').prop("checked", true);
         $('#forbidden').parent().addClass('active');
     }
-    setTimeout(function(){
+    setTimeout(function () {
         $('#userModal').modal('show');
     }, 230);
 }
-function changeAjax(){
+
+function changeAjax() {
     var user_info = {}
     var passwd = $('#cpassword').val()
-    if (passwd!=null||passwd!=""){
-        user_info.password=passwd;
+    if (passwd != null || passwd != "") {
+        user_info.password = passwd;
     }
     user_info.id = postId;
     user_info.account = $('#caccount').val()
@@ -52,29 +53,30 @@ function changeAjax(){
     // alert(user_info.role)
     // alert(user_info.del)
     $.ajax({
-        url:"/update/userInfo",
-        type:"post",
-        contentType : "application/json; charset=UTF-8",
-        data:JSON.stringify(user_info),
-        success:function(data){
-            if (data=='修改成功'){
+        url: "/update/userInfo",
+        type: "post",
+        contentType: "application/json; charset=UTF-8",
+        data: JSON.stringify(user_info),
+        success: function (data) {
+            if (data == '修改成功') {
                 $('#userModal').modal('hide');
                 $('#lr_modal_title').text("提示");
                 $('#lr_modal_content').text("修改成功");
                 $('#loginAndRegistModal').modal('show');
-            }else {
+            } else {
                 shakeModal(data);
             }
 
         }
     })
 }
-function shakeModal(msg){
+
+function shakeModal(msg) {
     $('#userModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html(msg);
-             setTimeout( function(){ 
-                $('#userModal .modal-dialog').removeClass('shake');
-    }, 1000 ); 
+    $('.error').addClass('alert alert-danger').html(msg);
+    setTimeout(function () {
+        $('#userModal .modal-dialog').removeClass('shake');
+    }, 1000);
 }
 
    

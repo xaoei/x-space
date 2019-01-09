@@ -31,25 +31,25 @@ public class DeleteController {
 
     @PostMapping("/delete/article")
     public String deleteArticle(@RequestBody Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/delete/article:" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/delete/article:" + id);
         return articleService.deleteArticleById(id);
     }
 
     @PostMapping("/delete/comment")
     public String deleteComment(@RequestBody Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/delete/comment:" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/delete/comment:" + id);
         return commentService.deleteCommentById(id);
     }
 
     @PostMapping("/delete/image")
     public String deleteImage(@RequestBody Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/delete/image:" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/delete/image:" + id);
         return mediaPageService.deleteImageById(id);
     }
 
     @PostMapping("/delete/user")
     public String deleteUser(@RequestBody Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/delete/user:" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/delete/user:" + id);
         return userService.deleteUserById(id);
     }
 }

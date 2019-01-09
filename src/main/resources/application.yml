@@ -1,12 +1,13 @@
+#freemarker
 spring:
   freemarker:
     cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://ip_address:port/db_name
-    username: username
-    password: password
+    url: jdbc:mysql://106.15.93.130:3306/www_xaoei_top?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: www_xaoei_top
+    password: AwAfeaZDCyZrNer8
   application:
     name: xaoei
   http:
@@ -14,7 +15,7 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 server:
-  port: 80
+  port: 12321
   context-path: /
 #  session:
 logging:
@@ -27,9 +28,8 @@ logging:
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: me.leiho.blog
-#腾讯云对象存储配置
 sync:
-  accesskey:
-  secretkey:
-  region_name:
-  bucketName:
+  accesskey: AKIDRqHcpy56whXEoHmXVKya5KQp5B5iuZWQ
+  secretkey: ensvBcu1ynvwmZk8naFj8dwyso7FDB0m
+  region_name: ap-shanghai
+  bucketName: blog-1252251484

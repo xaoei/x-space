@@ -45,8 +45,8 @@ public class IndexPageController {
                 .setCommonPageFoot();
         indexSettingService.getValueMap(map).setIndexArticles();
         articlePageService.getValueMap(map).setSideBar(100);
-        logger.info("/index");
-        logger.info(ipUtil.getIpAddr(request));
+        logger.trace("/index");
+        logger.trace(ipUtil.getIpAddr(request));
         return "index";
     }
 //    @GetMapping("/index")

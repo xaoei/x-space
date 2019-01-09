@@ -43,7 +43,7 @@ public class CommentController {
     @ApiOperation(value = "保存评论")
     @RequestMapping("/v1/comment/save")
     public String saveComment(@RequestBody String comment, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/v1/comment/save:" + comment);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/v1/comment/save:" + comment);
         //json反序列化
         XComment xComment = JsonUtil.json2pojo(comment, XComment.class);
         if (SecurityUtils.getSubject() != null && SecurityUtils.getSubject().getPrincipal() != null) {
@@ -63,6 +63,17 @@ public class CommentController {
         XArticle xArticle = xArticleMapper.selectByPrimaryKey(xComment.getArticleId());
         if (xArticle == null) {
             return "不能乱修改页面元素喔~";
+        }
+        if (comment.indexOf("<script")>-1||
+                comment.indexOf("fuck")>-1||
+                comment.indexOf("shit")>-1||
+                comment.indexOf("政府")>-1||
+                comment.indexOf("习近平")>-1||
+                comment.indexOf("蛤")>-1||
+                comment.indexOf("中南海")>-1||
+                comment.indexOf("毛泽东")>-1
+        ){
+            return "请移除非法字符!";
         }
         xComment.setCreateTime(new Date());
         xCommentMapper.insertSelective(xComment);

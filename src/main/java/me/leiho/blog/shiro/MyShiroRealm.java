@@ -69,7 +69,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             return new SimpleAuthenticationInfo();
         }
         XUserAccount userInfo = xUserAccounts.get(0);
-        logger.info("----->>userInfo=" + userInfo);
+        logger.trace("----->>userInfo=" + userInfo);
         if (userInfo == null) {
             return null;
         }

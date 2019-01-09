@@ -37,43 +37,43 @@ public class UpdateController {
 
     @PostMapping("/update/userInfo")
     public String updateUserInfo(@RequestBody XUserAccount user, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/userInfo:" + user);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/userInfo:" + user);
         return userService.updateUserInfo(user);
     }
 
     @PostMapping("/update/comment")
     public String updateComment(@RequestBody XComment comment, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/comment:" + comment);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/comment:" + comment);
         return commentService.updateCommentById(comment);
     }
 
     @PostMapping("/update/siteInfo")
     public String updateSiteInfo(@RequestBody String siteInfo, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/siteInfo:" + siteInfo);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/siteInfo:" + siteInfo);
         return siteInfoService.updateSiteInfo(siteInfo);
     }
 
     @PostMapping("/update/indexSettingHots")
     public String updateIndexSettingHots(@RequestBody List<XIndexSetting> hots, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/indexSettingHots:" + hots.toString());
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/indexSettingHots:" + hots.toString());
         return manageIndexSettingService.getUploadSettings(hots);
     }
 
     @PostMapping("/update/indexSettingGood")
     public String updateIndexSettingGood(@RequestBody XIndexSetting good, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/indexSettingGood:" + good);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/indexSettingGood:" + good);
         return manageIndexSettingService.getUploadSetting(good);
     }
 
     @PostMapping("/update/hot")
     public String updateHot(@RequestBody Integer id, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/hot:" + id);
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/hot:" + id);
         return articlePageService.setHot(id);
     }
 
     @PostMapping("/update/links")
     public String updateLinks(@RequestBody List<XFriendLink> links, HttpServletRequest request) {
-        logger.info(ipUtil.getIpAddr(request) + "访问/update/links:" + links.toString());
+        logger.trace(ipUtil.getIpAddr(request) + "访问/update/links:" + links.toString());
         return manageFriendLinkService.updateLinks(links);
     }
 }

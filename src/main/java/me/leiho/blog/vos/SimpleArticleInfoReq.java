@@ -115,6 +115,7 @@ public class SimpleArticleInfoReq extends StringEntity {
         this.type = type;
         return this;
     }
+
     public String getArticleType() {
         return articleType;
     }
