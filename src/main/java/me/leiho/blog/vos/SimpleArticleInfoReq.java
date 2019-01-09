@@ -18,6 +18,8 @@ public class SimpleArticleInfoReq extends StringEntity {
     private String keyWord;
     @ApiModelProperty(name = "author", value = "作者")
     private String author;
+    @ApiModelProperty(name = "author", value = "作者")
+    private String articleType;
     @ApiModelProperty(name = "hot", value = "热门")
     private String hot;
     @ApiModelProperty(name = "isAnnounce", value = "已发布")
@@ -111,6 +113,14 @@ public class SimpleArticleInfoReq extends StringEntity {
 
     public SimpleArticleInfoReq setType(String type) {
         this.type = type;
+        return this;
+    }
+    public String getArticleType() {
+        return articleType;
+    }
+
+    public SimpleArticleInfoReq setArticleType(String articleType) {
+        this.articleType = articleType;
         return this;
     }
 }

@@ -19,7 +19,7 @@
 <div class="tm-header" id="svgH">
     <div class="container-fluid">
         <div class="tm-header-inner">
-            <a href="#" class="navbar-brand tm-site-name">${sitename}</a>
+            <a href="/" class="navbar-brand tm-site-name">${sitename}</a>
             <!-- navbar -->
             <nav class="navbar tm-main-nav">
                 <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse"

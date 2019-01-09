@@ -35,7 +35,7 @@
 <body>
 <#include "./common/head.ftl">
 <#--<div class="tm-blog-img-container"></div>-->
-<div class="article_div" style="width: 880px;Margin-Right: auto;Margin-Left: auto;"><br>
+<div class="article_div" style="width: 940px;padding-left:30px;padding-right:30px;Margin-Right: auto;Margin-Left: auto;background-color: #FFFFFF"><br>
     <input name="articleId" value="${one_content.id}" hidden="hidden">
     <h1 style="text-align: center">${one_content.title}</h1><br>
     <h6 style="text-align: center">---------本文章由${one_content.authorName}

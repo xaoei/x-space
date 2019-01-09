@@ -21,6 +21,7 @@ public interface XArticleMapper extends CustomerMapper<XArticle> {
     List<SimpleArticleInfo> getSimpleArticleInfo(
             @Param("keyWord") String keyWord,
             @Param("author") String author,
+            @Param("type") String type,
             @Param("hot") String hot,
             @Param("announceTime") String announceTime,
             @Param("updateTime") String updateTime,

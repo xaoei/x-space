@@ -55,6 +55,9 @@
         <if test="author != null and author != ''">
             AND author = #{author}
         </if>
+        <if test="type != null and type != ''">
+            AND type = #{type}
+        </if>
         <if test="hot != null and hot != ''">
             AND hot = #{hot}
         </if>

@@ -43,6 +43,16 @@ public class ArticlePageController {
         logger.info(ipUtil.getIpAddr(request) + "访问/article/" + type + "/" + no);
         commonPageValueService.getValueMap(map).setUserInfo().setCommonPageSiteInfo().setPageName("文章").setCommonPageHead(2).setCommonPageFoot();
         SimpleArticleInfoReq req = SimpleArticleInfoReq.build().setType(type).setPage(no).setSize(25).setIsAnnounce(1).setSize(25);
+        switch (type) {
+            case "author":
+                req.setAuthor(no + "");
+                break;
+            case "type":
+                req.setArticleType(no + "");
+                break;
+            default:
+                break;
+        }
         articlePageService.getValueMap(map).setSimpleArticleInfo(req).setSideBar(30);
         return "article";
     }

@@ -68,7 +68,8 @@
                     <#if (picture_links)??>
                         <div class="tm-margin-b-30">
                         <#list picture_links as pl>
-                            <a href=${pl.link}><img style="max-width: 100px;height: 100px;" src=${pl.url} alt="Image" class="tm-footer-thumbnail"></a>
+                            <#--<a href=${pl.link}>-->
+                            <a href="/media"}><img style="max-width: 100px;height: 100px;" src=${pl.url} alt="Image" class="tm-footer-thumbnail"></a>
                         </#list>
                         </div>
                         <p class="tm-margin-b-20">${picture_area_context}</p>
@@ -84,7 +85,9 @@
                                                                  href=${copyright_link} target="_blank"
                                                                  title=${copyright_title}>${copyright_title}</a>
                     - ${contact_text} <a style="color: #00bbff" href=${contact_link} title=${contact_title}
-                                         target="_blank">${contact_title}</a></p>
+                                         target="_blank">${contact_title}</a>
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275867862'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1275867862%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                </p>
             </div>
         </div>
     </div>

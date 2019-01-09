@@ -56,7 +56,9 @@ public class PageListServiceImpl implements PageListService {
                 }
             }
         }
-        PageHelper.startPage(req.getPage(), req.getSize());
+        if ("page".equalsIgnoreCase(req.getType())){
+            PageHelper.startPage(req.getPage(), req.getSize());
+        }
         switch (req.getType().toLowerCase().trim()) {
             case "update_asc":
                 PageHelper.orderBy(" update_time ASC");
@@ -78,6 +80,7 @@ public class PageListServiceImpl implements PageListService {
         simpleArticleInfos = xArticleMapper.getSimpleArticleInfo(
                 StringUtils.isNotBlank(req.getKeyWord()) ? "%" + req.getKeyWord() + "%" : req.getKeyWord(),
                 req.getAuthor(),
+                req.getArticleType(),
                 req.getHot(),
                 StringUtils.isNotBlank(req.getAnnounceTime()) ? "%" + req.getAnnounceTime() + "%" : req.getAnnounceTime(),
                 StringUtils.isNotBlank(req.getUpdateTime()) ? "%" + req.getUpdateTime() + "%" : req.getUpdateTime(),
