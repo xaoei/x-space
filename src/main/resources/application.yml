@@ -27,3 +27,9 @@ logging:
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: me.leiho.blog
+#腾讯云对象存储配置
+sync:
+  accesskey:
+  secretkey:
+  region_name:
+  bucketName:
